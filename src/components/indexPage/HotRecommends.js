@@ -1,17 +1,28 @@
 import React, { Component } from 'react';
 import { List } from 'antd-mobile';
+import { Link } from 'dva/router';
+
 const Item = List.Item;
 
 export default class HotRecommends extends Component {
   
   render() {
     const { recommends } = this.props;
+    const typeMap = {
+      info: 'infos',
+      hotel: 'hotels',
+    };
+    console.log(recommends)
+  
     let recommendItems = recommends.map((recommend, index) =>{
-      let source_type = recommend.source_type;
-      let source_info = recommend[source_type];
+      let sourceType = recommend.source_type;
+      let sourceInfo = recommend[sourceType];
+      let linkPath = `/${typeMap[sourceType]}/${sourceInfo.id}`;
       return (
         <Item key={index}>
-          {source_info.title}
+          <Link to={linkPath}>
+            {sourceInfo.title}
+          </Link>
         </Item>
       )
     }

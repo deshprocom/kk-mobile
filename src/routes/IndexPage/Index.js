@@ -3,7 +3,7 @@ import { TabBar } from 'antd-mobile';
 import HomePage from "./HomePage";
 import Discovery from "./Discovery";
 
-export default class TabBarExample extends Component {
+export default class IndexPage extends Component {
   constructor(props) {
     super(props);
     this.state = {

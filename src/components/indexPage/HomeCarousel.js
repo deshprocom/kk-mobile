@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel } from 'antd-mobile';
+import { Link } from 'dva/router';
 
 
 export default class HomeCarousel extends Component {
@@ -9,6 +10,30 @@ export default class HomeCarousel extends Component {
   
   render() {
     const { banners } = this.props;
+    const typeMap = {
+      info: 'infos',
+      hotel: 'hotels',
+    };
+    const bannersLayout = banners.map(banner => {
+      let linkPath = `/${typeMap[banner.source_type]}/${banner.source_id}`;
+      
+      return(
+        <Link
+          key={`${banner.source_type}_${banner.source_id}`}
+          to={linkPath}
+        >
+          <img
+            src={banner.image}
+            style={{ width: '100%', verticalAlign: 'top' }}
+            onLoad={() => {
+              // fire window resize event to change height
+              window.dispatchEvent(new Event('resize'));
+              this.setState({ imgHeight: 'auto' });
+            }}
+          />
+        </Link>
+      )
+    })
     return (
       <div>
         <Carousel
@@ -16,23 +41,7 @@ export default class HomeCarousel extends Component {
           autoplayInterval={2000}
           infinite
         >
-          {banners.map(banner => (
-            <a
-              key={`${banner.source_type}_${banner.source_id}`}
-              href="/"
-              style={{ display: 'inline-block', width: '100%', height: this.state.imgHeight }}
-            >
-              <img
-                src={banner.image}
-                style={{ width: '100%', verticalAlign: 'top' }}
-                onLoad={() => {
-                  // fire window resize event to change height
-                  window.dispatchEvent(new Event('resize'));
-                  this.setState({ imgHeight: 'auto' });
-                }}
-              />
-            </a>
-          ))}
+          {bannersLayout}
         </Carousel>
       </div>
     );
