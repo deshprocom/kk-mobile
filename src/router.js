@@ -1,14 +1,14 @@
 import React from 'react';
 import { Router, Route, Switch } from 'dva/router';
 import IndexPage from './routes/IndexPage/Index';
-import Info from './routes/Info';
+import InfoIndex from './routes/Info/Index';
 
 function RouterConfig({ history }) {
   return (
     <Router history={history}>
       <Switch>
         <Route path="/" exact component={IndexPage} />
-        <Route path="/infos/:id" exact component={Info} />
+        <Route path="/infos" component={InfoIndex} />
       </Switch>
     </Router>
   );
