@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TabBar } from 'antd-mobile';
 import HomePage from "./HomePage";
+import Discovery from "./Discovery";
 
 export default class TabBarExample extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ export default class TabBarExample extends Component {
               });
             }}
           >
+            <Discovery/>
           </TabBar.Item>
         </TabBar>
       </div>
