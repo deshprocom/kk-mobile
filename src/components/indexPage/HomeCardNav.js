@@ -3,6 +3,67 @@ import {Card, Grid, Flex} from 'antd-mobile';
 import styles from './index.less';
 import {Images} from '../../Thems';
 
+const catalogs = [
+  [{
+    name: '汇率',
+    type: 'exchange_rate',
+    size: {height: 34, width: 30},
+    icon: Images.macau.rate_exchange
+  },
+    {
+      name: '娱乐',
+      type: 'recreation',
+      size: {height: 34, width: 36},
+      icon: Images.macau.entertainment
+    }
+  ],
+  [
+    {
+      name: '酒店',
+      type: 'hotel',
+      size: {height: 32, width: 35},
+      icon: Images.macau.hotel
+    },
+    {
+      name: '景点',
+      type: 'scenic',
+      size: {height: 34, width: 36},
+      icon: Images.macau.viewpoint
+    }
+  ],
+  [
+    {
+      name: '美食',
+      type: 'cate',
+      size: {height: 35, width: 34},
+      icon: Images.macau.food
+    },
+
+    {
+      name: '人闻',
+      type: 'humanities',
+      size: {height: 34, width: 30},
+      icon: Images.macau.book
+    }
+  ],
+  [
+    {
+      name: '出入境',
+      type: 'entry_exit',
+      size: {height: 29, width: 31},
+      icon: Images.out_exit
+    },
+    {
+      name: '商城',
+      type: 'mall',
+      size: {height: 29, width: 31},
+      icon: Images.macau.store
+    }
+  ]
+
+
+];
+
 const actions = Array.from(new Array(8)).map((_val, i) => ({
   icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
   text: `name${i}`,
