@@ -1,5 +1,6 @@
 import {
   queryInfoDetail,
+  queryInfos,
 } from '../services/info';
 
 export default {
@@ -7,6 +8,7 @@ export default {
   
   state: {
     infoDetail: {},
+    infos: [],
   },
   
   effects: {
@@ -17,6 +19,13 @@ export default {
         payload: response.data.info,
       });
     },
+    *fetchInfos({ payload }, { call, put }) {
+      const response = yield call(queryInfos, payload);
+      yield put({
+        type: 'setInfos',
+        payload: response.data.items,
+      });
+    },
   },
   
   reducers: {
@@ -24,6 +33,12 @@ export default {
       return {
         ...state,
         infoDetail: action.payload,
+      };
+    },
+    setInfos(state, action) {
+      return {
+        ...state,
+        infos: action.payload,
       };
     },
   },

@@ -12,12 +12,11 @@ export default class HomePage extends Component {
   };
   
   render() {
-    const { homePage } = this.props;
-  
+    const { homePage, dispatch } = this.props;
     return (
       <div>
         <HomeCarousel banners={homePage.banners}/>
-        <HomeCardNav/>
+        <HomeCardNav dispatch={dispatch}/>
         <HotRecommends recommends={homePage.recommends} />
       </div>
     );

@@ -12,7 +12,6 @@ export default class HotRecommends extends Component {
       info: 'infos',
       hotel: 'hotels',
     };
-    console.log(recommends)
   
     let recommendItems = recommends.map((recommend, index) =>{
       let sourceType = recommend.source_type;

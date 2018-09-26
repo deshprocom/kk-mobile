@@ -1,11 +1,51 @@
 import React, { Component } from 'react';
 import { Card, Grid, Flex } from 'antd-mobile';
 import styles from './index.less';
+import { routerRedux } from 'dva/router';
 
-const actions = Array.from(new Array(8)).map((_val, i) => ({
-  icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-  text: `name${i}`,
-}));
+const actions = [
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '汇率',
+    path: '/exchange_rates'
+  },
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '酒店',
+    path: '/hotels'
+  },
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '美食',
+    path: '/infos?type=cate',
+  },
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '出入境',
+    path: 'http://www.fsm.gov.mo/psp/pspmonitor/mobile/PortasdoCerco.aspx',
+    externalPath: true
+  },
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '娱乐',
+    path: '/infos?type=recreation',
+  },
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '景点',
+    path: '/infos?type=scenic',
+  },
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '人闻',
+    path: '/infos?type=humanities',
+  },
+  {
+    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    text: '商城',
+    path: '/shop'
+  },
+];
 
 const services = [
   {
@@ -18,7 +58,7 @@ const services = [
   },
   {
     icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-    text: '人闻',
+    text: '往返',
   },
   {
     icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
@@ -27,18 +67,21 @@ const services = [
 ];
 
 export default class HomeCardNav extends Component {
+  clickToPath = (el) => {
+    const { dispatch } = this.props;
+    if (el.externalPath)
+      window.location.href = el.path;
+    else
+      dispatch(routerRedux.push(el.path))
+  };
+  
   render() {
     return (
       <Card full className={styles.customCard}>
-        <Grid data={actions} hasLine={false} />
+        <Grid data={actions} hasLine={false}
+              onClick={this.clickToPath}
+        />
         <Card.Body >
-          {/*<Grid data={services}*/}
-                {/*hasLine={false}*/}
-                {/*className={styles.customCard}*/}
-                {/*renderItem={dataItem => (*/}
-               
-                {/*)}*/}
-          {/*/>*/}
           <Flex className={styles.customFlex}>
             {services.map(dataItem => (
               <Flex.Item key={dataItem.text}>

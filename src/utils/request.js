@@ -70,7 +70,13 @@ export default function request(url, options = {}) {
     }
   }
   
+  console.log('paddedUrl');
+  console.log(options);
+  console.log(urlData);
+  
   const paddedUrl = pathToRegexp.compile(url)(urlData);
+  console.log(paddedUrl);
+  
   return fetch(`${BASIC_URL}${paddedUrl}`, options)
     .then(checkStatus)
     .then(response => {
