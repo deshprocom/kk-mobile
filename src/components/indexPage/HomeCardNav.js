@@ -4,107 +4,46 @@ import styles from './index.less';
 import {Images} from '../../Thems';
 import { routerRedux } from 'dva/router';
 
-const catalogs = [
-  [{
-    name: '汇率',
-    type: 'exchange_rate',
-    size: {height: 34, width: 30},
-    icon: Images.macau.rate_exchange
-  },
-    {
-      name: '娱乐',
-      type: 'recreation',
-      size: {height: 34, width: 36},
-      icon: Images.macau.entertainment
-    }
-  ],
-  [
-    {
-      name: '酒店',
-      type: 'hotel',
-      size: {height: 32, width: 35},
-      icon: Images.macau.hotel
-    },
-    {
-      name: '景点',
-      type: 'scenic',
-      size: {height: 34, width: 36},
-      icon: Images.macau.viewpoint
-    }
-  ],
-  [
-    {
-      name: '美食',
-      type: 'cate',
-      size: {height: 35, width: 34},
-      icon: Images.macau.food
-    },
-
-    {
-      name: '人闻',
-      type: 'humanities',
-      size: {height: 34, width: 30},
-      icon: Images.macau.book
-    }
-  ],
-  [
-    {
-      name: '出入境',
-      type: 'entry_exit',
-      size: {height: 29, width: 31},
-      icon: Images.out_exit
-    },
-    {
-      name: '商城',
-      type: 'mall',
-      size: {height: 29, width: 31},
-      icon: Images.macau.store
-    }
-  ]
-
-
-];
-
 
 const actions = [
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.rate_exchange,
     text: '汇率',
     path: '/exchange_rates'
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.hotel,
     text: '酒店',
     path: '/hotels'
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.food,
     text: '美食',
     path: '/infos?type=cate',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.out_exit,
     text: '出入境',
     path: 'http://www.fsm.gov.mo/psp/pspmonitor/mobile/PortasdoCerco.aspx',
     externalPath: true
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.entertainment,
     text: '娱乐',
     path: '/infos?type=recreation',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.viewpoint,
     text: '景点',
     path: '/infos?type=scenic',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.book,
     text: '人闻',
     path: '/infos?type=humanities',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.store,
     text: '商城',
     path: '/shop'
   },
