@@ -9,42 +9,50 @@ const actions = [
   {
     icon: Images.macau.rate_exchange,
     text: '汇率',
+    size: {height: 34, width: 30},
     path: '/exchange_rates'
   },
   {
     icon: Images.macau.hotel,
     text: '酒店',
+    size: {height: 32, width: 35},
     path: '/hotels'
   },
   {
     icon: Images.macau.food,
     text: '美食',
+    size: {height: 35, width: 34},
     path: '/infos?type=cate',
   },
   {
     icon: Images.out_exit,
     text: '出入境',
+    size: {height: 29, width: 31},
     path: 'http://www.fsm.gov.mo/psp/pspmonitor/mobile/PortasdoCerco.aspx',
     externalPath: true
   },
   {
     icon: Images.macau.entertainment,
     text: '娱乐',
+    size: {height: 34, width: 36},
     path: '/infos?type=recreation',
   },
   {
     icon: Images.macau.viewpoint,
     text: '景点',
+    size: {height: 34, width: 36},
     path: '/infos?type=scenic',
   },
   {
     icon: Images.macau.book,
     text: '人闻',
+    size: {height: 34, width: 30},
     path: '/infos?type=humanities',
   },
   {
     icon: Images.macau.store,
     text: '商城',
+    size: {height: 29, width: 31},
     path: '/shop'
   },
 ];
@@ -88,6 +96,7 @@ export default class HomeCardNav extends Component {
 
         <Grid data={actions} hasLine={false}
               onClick={this.clickToPath}
+
         />
         <Card.Body >
           <Flex className={styles.customFlex}>
