@@ -1,47 +1,49 @@
-import React, { Component } from 'react';
-import { Card, Grid, Flex } from 'antd-mobile';
+import React, {Component} from 'react';
+import {Card, Grid, Flex} from 'antd-mobile';
 import styles from './index.less';
+import {Images} from '../../Thems';
 import { routerRedux } from 'dva/router';
+
 
 const actions = [
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.rate_exchange,
     text: '汇率',
     path: '/exchange_rates'
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.hotel,
     text: '酒店',
     path: '/hotels'
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.food,
     text: '美食',
     path: '/infos?type=cate',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.out_exit,
     text: '出入境',
     path: 'http://www.fsm.gov.mo/psp/pspmonitor/mobile/PortasdoCerco.aspx',
     externalPath: true
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.entertainment,
     text: '娱乐',
     path: '/infos?type=recreation',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.viewpoint,
     text: '景点',
     path: '/infos?type=scenic',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.book,
     text: '人闻',
     path: '/infos?type=humanities',
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.macau.store,
     text: '商城',
     path: '/shop'
   },
@@ -49,20 +51,25 @@ const actions = [
 
 const services = [
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.navigation2.weather,
     text: '天气',
+    size: {height: 23, width: 23},
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.navigation2.fast_food,
     text: '快餐',
+    size: {height: 22, width: 22},
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
-    text: '往返',
+
+    icon: Images.navigation2.round_trip,
+    text: '人闻',
+    size: {height: 20, width: 20},
   },
   {
-    icon: 'https://gw.alipayobjects.com/zos/rmsportal/nywPmnTAvTmLusPxHPSu.png',
+    icon: Images.navigation2.convenient,
     text: '便民',
+    size: {height: 18, width: 18}
   },
 ];
 
@@ -74,18 +81,19 @@ export default class HomeCardNav extends Component {
     else
       dispatch(routerRedux.push(el.path))
   };
-  
+
   render() {
     return (
       <Card full className={styles.customCard}>
+
         <Grid data={actions} hasLine={false}
               onClick={this.clickToPath}
         />
         <Card.Body >
           <Flex className={styles.customFlex}>
             {services.map(dataItem => (
-              <Flex.Item key={dataItem.text}>
-                <img src={dataItem.icon} alt="" className={styles.customImg} />
+              <Flex.Item key={dataItem.text} className={styles.customView}>
+                <img style={dataItem.size} src={dataItem.icon} alt="" className={styles.customImg}/>
                 <span>{dataItem.text}</span>
               </Flex.Item>
             ))}

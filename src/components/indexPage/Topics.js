@@ -8,17 +8,17 @@ export default class Topics extends Component {
     const dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     });
-  
+
     this.state = {
       dataSource,
       isLoading: true,
       nextPage: 1,
       height: document.documentElement.clientHeight * 3 / 4,
     };
-  
+
     this._topicsData = [];
   }
-  
+
   componentDidMount() {
     this.props.dispatch({
       type: 'topic/fetchTopics',
@@ -27,12 +27,12 @@ export default class Topics extends Component {
       }
     })
   }
-  
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.topics !== this.props.topics) {
       const height = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
       let nextPage = this.state.nextPage + 1;
-  
+
       this._topicsData = this._topicsData.concat(nextProps.topics);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(this._topicsData),
@@ -42,7 +42,7 @@ export default class Topics extends Component {
       });
     }
   }
-  
+
   onEndReached = () => {
     this.setState({ isLoading: true });
     this.props.dispatch({
@@ -52,7 +52,7 @@ export default class Topics extends Component {
       }
     })
   };
-  
+
   render() {
     const row = (rowData, sectionID, rowID) => {
       let user = rowData.user;
@@ -62,7 +62,7 @@ export default class Topics extends Component {
         </div>
       );
     };
-  
+
     return (
       <div>
         <ListView
