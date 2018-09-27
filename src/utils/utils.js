@@ -8,6 +8,13 @@ export function isUrl(path) {
   return reg.test(path);
 }
 
+/**
+ * 日志输出
+ * @param msgs
+ */
+export function logMsg(...msgs) {
+   console.log(...msgs)
+}
 export function toSnakeToJson(object) {
   return stringify(objectKeyToSnake(object))
 }

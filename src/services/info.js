@@ -1,8 +1,11 @@
 import request from '../utils/request';
-import {toSnakeToJson} from "../utils/utils";
+import {logMsg, toSnakeToJson} from "../utils/utils";
 
 export async function queryInfoDetail(params) {
-  return request('/infos/:id', { urlData: params });
+  logMsg('Info 的请求 url;/infos/:id,参数',params)
+  let ret = request('/infos/:id', { urlData: params });
+  logMsg('Info 的services 接口响应:',ret)
+  return ret
 }
 
 export async function queryInfos(params) {
