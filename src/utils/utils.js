@@ -14,7 +14,7 @@ export function toSnakeToJson(object) {
 
 export function objectKeyToSnake(oldObject) {
   let newObject;
-  
+
   if (
     !oldObject ||
     typeof oldObject !== "object" ||
@@ -22,7 +22,7 @@ export function objectKeyToSnake(oldObject) {
   ) {
     return oldObject;
   }
-  
+
   if (Array.isArray(oldObject)) {
     newObject = oldObject.map(element =>
       objectKeyToSnake(element, snakeCase)
@@ -34,6 +34,15 @@ export function objectKeyToSnake(oldObject) {
       newObject[newKey] = objectKeyToSnake(oldObject[oldKey], snakeCase);
     });
   }
-  
+
   return newObject;
+}
+
+export function strNotNull(str) {
+  if (str === undefined || str === null || str.length === 0 || str === 'undefined') {
+    return false;
+  }
+  else {
+    return true;
+  }
 }
