@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
-import { ListView } from 'antd-mobile';
+import React, {Component} from 'react';
+import {Link} from 'dva/router';
+import {ListView, Grid} from 'antd-mobile';
 import ReactDOM from 'react-dom';
+import styles from './index.less';
+import {strNotNull, getDateDiff} from "../../utils/utils";
+import {Images} from "../../Thems";
 
 export default class Topics extends Component {
   constructor(props) {
@@ -44,7 +48,7 @@ export default class Topics extends Component {
   }
 
   onEndReached = () => {
-    this.setState({ isLoading: true });
+    this.setState({isLoading: true});
     this.props.dispatch({
       type: 'topic/fetchTopics',
       payload: {
@@ -53,22 +57,156 @@ export default class Topics extends Component {
     })
   };
 
+  set_avatar = (avatar) => {
+    if (strNotNull(avatar)) {
+      return avatar;
+    } else {
+      return Images.home_avatar
+    }
+  };
+
+  bodyTypes = (item) => {
+    switch (item.body_type) {
+      case "long":
+        return this.long(item)
+      case "short":
+        return this.short(item)
+    }
+  };
+
+  long = (item) => {
+    let title2 = item.title;
+    return <div>
+      <span className={styles.body}>{title2}</span>
+
+      {strNotNull(item.cover_link) ? <div
+        className={styles.long_cover}
+      >
+        <img
+
+          src={item.cover_link}/>
+      </div> : null}
+
+
+    </div>
+  };
+
+  short = (item) => {
+    const {images, body} = item;
+    let des = body.replace(/\n/g, <br/>);
+    return <div>
+      {strNotNull(body) ? <span
+
+        className={styles.body}>{body}</span> : null}
+
+      {images && images.length > 0 ? this.shortImage(images) : null}
+
+    </div>
+  };
+  shortImage = (images) => {
+    if (images.length === 1) {
+      return (
+        <div className={styles.long_cover}>
+
+          <img
+            className={styles.short_image}
+            src={images[0].url}/>
+        </div>
+      )
+
+    }
+
+    let imageViews = images.map((item, key) => {
+      return <div
+        key={'short' + key}>
+        <img
+          className={styles.short_image}
+          src={item.url}/>
+      </div>
+
+    });
+
+    return <div style={{
+      display: 'flex', flexWrap: 'wrap', flexDirection: 'row',
+      alignItems: 'center', marginLeft: 8
+    }}>
+      {imageViews}
+    </div>
+
+  }
+
   render() {
     const row = (rowData, sectionID, rowID) => {
-      let user = rowData.user;
+      let linkPath = `/topics/${rowData.id}`;
+      const {
+        user, created_at, total_likes, total_comments, id, body_type, location, current_user_liked,
+        excellent
+      } = rowData;
+      const {address_title} = location;
       return (
-        <div key={rowID} style={{ padding: '35px' }}>
-          {user.nick_name}
-        </div>
+        <Link to={linkPath} key={rowID} className={styles.itemPage}>
+          <div className={styles.userItem}>
+            <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
+            <span className={styles.nick_name}>{user.nick_name}</span>
+            <div style={{display: 'flex', flex: 1}}/>
+            {excellent ?
+              <span className={styles.txt_long} style={{color: '#F24A4A', borderColor: '#F24A4A'}}>精选</span> : null}
+            {body_type === 'long' ? <span className={styles.txt_long}>长帖</span> : null}
+
+            <div style={{paddingTop: 5, paddingBottom: 5, paddingRight: 5, paddingLeft: 5}} onClick={() => {
+            }}>
+              <img
+                className={styles.more_3}
+                src={Images.social.more_3}/>
+            </div>
+          </div>
+
+          {this.bodyTypes(rowData)}
+
+          <div className={styles.bottomView}>
+            <span
+              className={styles.time}>{getDateDiff(created_at)}{strNotNull(address_title) ? `·${address_title}` : ""}</span>
+
+            <div style={{display: 'flex', flex: 1}}/>
+            <div
+              className={styles.btn_like}>
+              <img
+                className={styles.like}
+                src={current_user_liked ? Images.social.like_red : Images.social.like_gray}/>
+              <span className={styles.time} style={{marginLeft: 4, marginRight: 25}}>{total_likes}</span>
+            </div>
+
+            <div
+              className={styles.btn_like}>
+              <img
+                className={styles.comment}
+                src={Images.social.comment_gray}/>
+              <span className={styles.time} style={{marginLeft: 4}}>{total_comments}</span>
+            </div>
+          </div>
+
+        </Link>
       );
     };
+
+    const separator = (sectionID, rowID) => (
+      <div
+        key={`${sectionID}-${rowID}`}
+        style={{
+          backgroundColor: '#F5F5F9',
+          height: 8,
+          borderTop: '1px solid #ECECED',
+          borderBottom: '1px solid #ECECED',
+        }}
+      />
+    );
 
     return (
       <div>
         <ListView
           ref={el => this.lv = el}
           dataSource={this.state.dataSource}
-          renderFooter={() => (<div style={{ padding: 30, textAlign: 'center' }}>
+          renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
             {this.state.isLoading ? 'Loading...' : 'Loaded'}
           </div>)}
           renderRow={row}
@@ -76,6 +214,7 @@ export default class Topics extends Component {
             height: this.state.height,
             overflow: 'auto',
           }}
+          renderSeparator={separator}
           pageSize={4}
           scrollRenderAheadDistance={500}
           onEndReached={this.onEndReached}

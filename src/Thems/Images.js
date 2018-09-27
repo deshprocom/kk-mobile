@@ -63,7 +63,11 @@ const images = {
     hotline: '/images/navigation/hotline.png'
   },
   social: {
-    like_gray: '/images/social/like_gray.png'
+    like_gray: '/images/social/like_gray.png',
+    more_3: '/images/social/more_3.png',
+    article_delete: '/images/social/delete.png',
+    like_red: '/images/social/like_red.png',
+    comment_gray: '/images/social/comment_gray.png'
   },
 
   out_exit: '/images/out_exit.png'
