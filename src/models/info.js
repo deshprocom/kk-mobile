@@ -2,15 +2,16 @@ import {
   queryInfoDetail,
   queryInfos,
 } from '../services/info';
+import {logMsg} from "../utils/utils";
 
 export default {
   namespace: 'info',
-  
+
   state: {
     infoDetail: {},
     infos: [],
   },
-  
+
   effects: {
     *fetchInfoDetail({ payload }, { call, put }) {
       const response = yield call(queryInfoDetail, payload);
@@ -27,9 +28,10 @@ export default {
       });
     },
   },
-  
+
   reducers: {
     setInfoDetail(state, action) {
+      logMsg('models/info 数据redux处理',state,action)
       return {
         ...state,
         infoDetail: action.payload,

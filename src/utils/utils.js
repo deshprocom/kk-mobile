@@ -8,13 +8,20 @@ export function isUrl(path) {
   return reg.test(path);
 }
 
+/**
+ * 日志输出
+ * @param msgs
+ */
+export function logMsg(...msgs) {
+   console.log(...msgs)
+}
 export function toSnakeToJson(object) {
   return stringify(objectKeyToSnake(object))
 }
 
 export function objectKeyToSnake(oldObject) {
   let newObject;
-  
+
   if (
     !oldObject ||
     typeof oldObject !== "object" ||
@@ -22,7 +29,7 @@ export function objectKeyToSnake(oldObject) {
   ) {
     return oldObject;
   }
-  
+
   if (Array.isArray(oldObject)) {
     newObject = oldObject.map(element =>
       objectKeyToSnake(element, snakeCase)
@@ -34,6 +41,6 @@ export function objectKeyToSnake(oldObject) {
       newObject[newKey] = objectKeyToSnake(oldObject[oldKey], snakeCase);
     });
   }
-  
+
   return newObject;
 }
