@@ -1,6 +1,7 @@
 import fetch from 'dva/fetch';
 import { Toast } from 'antd-mobile';
 import pathToRegexp from 'path-to-regexp';
+import {logMsg} from "./utils";
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -37,9 +38,9 @@ function checkStatus(response) {
 function basicUrl() {
   const apiEnv = process.env.API_ENV;
   if (apiEnv === 'prod') return 'https://kkapi.deshpro.com/v1';
-  
+
   if (apiEnv === 'test') return 'http://test.kkapi.deshpro.com/v1';
-  
+
   return 'http://127.0.0.1:3000/v1';
 }
 
@@ -69,18 +70,22 @@ export default function request(url, options = {}) {
       };
     }
   }
-  
+
+  logMsg('request方法，请求参数:'+url,options)
   console.log('paddedUrl');
-  console.log(options);
+
   console.log(urlData);
-  
+
   const paddedUrl = pathToRegexp.compile(url)(urlData);
   console.log(paddedUrl);
-  
+
   return fetch(`${BASIC_URL}${paddedUrl}`, options)
     .then(checkStatus)
     .then(response => {
-      return response.json();
+      logMsg('request方法 数据的源头',response)
+      let data = response.json()
+      logMsg('request方法 数据的源头 JSON',data)
+      return data;
     })
     .catch(err => ({ err }));
 }

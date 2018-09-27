@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TabBar } from 'antd-mobile';
 import HomePage from "./HomePage";
 import Discovery from "./Discovery";
+import {Images} from '../../Thems'
 
 export default class IndexPage extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class IndexPage extends Component {
       hidden: false,
     };
   }
-  
+
   render() {
     return (
       <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
@@ -29,13 +30,13 @@ export default class IndexPage extends Component {
             icon={<div style={{
               width: '22px',
               height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
+              background: `url(http://kkh5.deshpro.com/images/gray_home.png) center center /  21px 21px no-repeat` }}
             />
             }
             selectedIcon={<div style={{
               width: '22px',
               height: '22px',
-              background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
+              background: `url(http://kkh5.deshpro.com/images/red_home.png) center center /  21px 21px no-repeat` }}
             />
             }
             selected={this.state.selectedTab === 'homePage'}
@@ -48,10 +49,10 @@ export default class IndexPage extends Component {
             <HomePage />
           </TabBar.Item>
           <TabBar.Item
-            title="发现"
+            title="澳门圈"
             key="discovery"
-            icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-            selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+            icon={{uri:'http://kkh5.deshpro.com/images/gray_explore.png'}}
+            selectedIcon={{uri:'http://kkh5.deshpro.com/images/red_explore.png'}}
             selected={this.state.selectedTab === 'discovery'}
             onPress={() => {
               this.setState({
