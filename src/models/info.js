@@ -1,6 +1,7 @@
 import {
   queryInfoDetail,
   queryInfos,
+  queryInfoComments
 } from '../services/info';
 import {logMsg} from "../utils/utils";
 
@@ -10,9 +11,18 @@ export default {
   state: {
     infoDetail: {},
     infos: [],
+    info_comments:[]
   },
 
   effects: {
+    *fetchInfoComments({ payload }, { call, put }) {
+      const response = yield call(queryInfoComments, payload);
+      logMsg('评论',response.data)
+      yield put({
+        type: 'setInfoComments',
+        payload: response.data.items,
+      });
+    },
     *fetchInfoDetail({ payload }, { call, put }) {
       const response = yield call(queryInfoDetail, payload);
       yield put({
@@ -30,8 +40,15 @@ export default {
   },
 
   reducers: {
+    setInfoComments(state, action) {
+      logMsg('评论Model',action.payload)
+      return {
+        ...state,
+        info_comments: action.payload,
+      };
+    },
     setInfoDetail(state, action) {
-      logMsg('models/info 数据redux处理',state,action)
+      logMsg('models/info 数据redux处理',action.payload)
       return {
         ...state,
         infoDetail: action.payload,
