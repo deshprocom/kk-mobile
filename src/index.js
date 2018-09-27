@@ -11,6 +11,7 @@ const app = dva({});
 app.model(require('./models/homePage').default);
 app.model(require('./models/topic').default);
 app.model(require('./models/info').default);
+app.model(require('./models/exchangeRate').default);
 
 // 4. Router
 app.router(require('./router').default);
