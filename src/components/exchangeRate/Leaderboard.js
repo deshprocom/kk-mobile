@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './index.less';
-import {mul, strNotNull} from '../../utils/utils';
+import {add, strNotNull} from '../../utils/utils';
 import {Images} from '../../Thems'
 import RateInfo from './RateInfo';
 import {Tabs} from 'antd-mobile';
@@ -56,7 +56,7 @@ export default class Leaderboard extends Component {
     } else if (index == 2) {
       return <img className={styles.show_index} src={Images.three}/>
     } else {
-      return <span className={styles.txt_num} style={{width: 18}}>{mul(index, 1)}</span>
+      return <span className={styles.txt_num} style={{width: 18}}>{add(index, 1)}</span>
     }
   };
 

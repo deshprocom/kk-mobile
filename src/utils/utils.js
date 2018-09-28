@@ -125,6 +125,21 @@ export function mul(num1, num2) {
   return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
 }
 
+export function add(a, b) {
+  var c, d, e;
+  try {
+    c = a.toString().split(".")[1].length;
+  } catch (f) {
+    c = 0;
+  }
+  try {
+    d = b.toString().split(".")[1].length;
+  } catch (f) {
+    d = 0;
+  }
+  return e = Math.pow(10, Math.max(c, d)), (mul(a, e) + mul(b, e)) / e;
+}
+
 Date.prototype.Format = function (fmt) { //author: meizz
   var o = {
     "M+": this.getMonth() + 1, //月份
