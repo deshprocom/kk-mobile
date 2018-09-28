@@ -1,5 +1,6 @@
 import {
   queryRealTime,
+  queryLocal,
 } from '../services/exchangeRate';
 
 export default {
@@ -7,6 +8,7 @@ export default {
   
   state: {
     realTimeRates: {},
+    localRates: {},
   },
   
   effects: {
@@ -17,6 +19,13 @@ export default {
         payload: response.data,
       });
     },
+    *fetchLocal(_, { call, put }) {
+      const response = yield call(queryLocal);
+      yield put({
+        type: 'setLocal',
+        payload: response.data,
+      });
+    },
   },
   
   reducers: {
@@ -24,6 +33,12 @@ export default {
       return {
         ...state,
         realTimeRates: action.payload,
+      };
+    },
+    setLocal(state, action) {
+      return {
+        ...state,
+        localRates: action.payload,
       };
     },
   },
