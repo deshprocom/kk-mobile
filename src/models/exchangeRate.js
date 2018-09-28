@@ -8,18 +8,18 @@ export default {
 
   state: {
     realTimeRates: {},
-    localRates:{}
+    localRates: {}
   },
 
   effects: {
-    *fetchRealTime(_, { call, put }) {
+    * fetchRealTime(_, {call, put}) {
       const response = yield call(queryRealTime);
       yield put({
         type: 'setRealTime',
         payload: response.data,
       });
     },
-    *fetchLocalRate(_, { call, put }) {
+    * fetchLocalRate(_, {call, put}) {
       const response = yield call(queryLocal);
       yield put({
         type: 'setLocalRate',

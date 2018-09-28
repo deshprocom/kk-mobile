@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {List,InputItem} from 'antd-mobile';
-import {Link} from 'dva/router';
 import styles from './index.less';
 import {strNotNull, div, utcDate, mul, formatCurrency, isEmptyObject} from '../../utils/utils';
 import {Images} from '../../Thems';
@@ -177,7 +176,7 @@ export default class RateInfo extends Component {
 
   clean_txt = () => {
     let rate = [100, 0, 0];
-    const {price_changed, receiving_rate} = this.state;
+    const {price_changed} = this.state;
     const {exchangeRate} = this.props;
     rate[1] = mul(exchangeRate.cny_to_hkd_rate.rate, rate[0]);
     rate[2] = mul(exchangeRate.cny_to_mop_rate.rate, rate[0]);
