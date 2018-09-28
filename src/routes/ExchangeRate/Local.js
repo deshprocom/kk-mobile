@@ -4,7 +4,7 @@ import { connect } from 'dva';
 @connect(({ exchangeRate }) => ({
   exchangeRate
 }))
-export default class RealTime extends Component {
+export default class Local extends Component {
   componentDidMount() {
     this.props.dispatch({
       type: 'exchangeRate/fetchLocal'

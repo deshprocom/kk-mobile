@@ -33,7 +33,7 @@ export default class HomeCarousel extends Component {
           />
         </Link>
       )
-    })
+    });
     return (
       <div>
         <Carousel
