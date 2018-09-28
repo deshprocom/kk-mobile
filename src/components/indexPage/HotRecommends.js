@@ -41,7 +41,7 @@ export default class HotRecommends extends Component {
         let sourceInfo = recommend[sourceType];
         let linkPath = `/${typeMap[sourceType]}/${sourceInfo.id}`;
         return (
-          <Item key={index}>
+          <Item key={index} >
             <Link to={linkPath} className={styles.itemView}>
 
               <div className={styles.row_center}>
