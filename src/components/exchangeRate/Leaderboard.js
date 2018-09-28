@@ -33,7 +33,16 @@ export default class Leaderboard extends Component {
         trader_type: this.state.trader_type,
       }
     })
-  }
+  };
+  onEndReached = () => {
+    this.setState({isLoading: true});
+    this.props.dispatch({
+      type: 'exchangeRate/fetchRateLeader',
+      payload: {
+        page: this.state.nextPage
+      }
+    })
+  };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.rateLeaders !== this.props.rateLeaders) {
@@ -115,6 +124,7 @@ export default class Leaderboard extends Component {
           pageSize={4}
           useBodyScroll
           scrollRenderAheadDistance={500}
+          onEndReached={this.onEndReached}
           onEndReachedThreshold={10}
         />
       </div>
