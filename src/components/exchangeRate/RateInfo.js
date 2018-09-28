@@ -76,20 +76,9 @@ export default class RateInfo extends Component {
                 <div style={{display: 'flex', flex: 1}}/>
 
                 <div className={styles.inputView}>
-                  {/*<input className={styles.rateInput} type="text"*/}
-                         {/*style={{color: show ? '#444444' : '#F3F3F3'}}*/}
-                         {/*placeholder={strNotNull(item.price) ? '' : item.price2 + ''}*/}
-                         {/*onChange={(input) => {*/}
-                           {/*this.state.show = true;*/}
-                           {/*this.changing_price(item, index, input)*/}
-                         {/*}}*/}
-                         {/*onFocus={() => {*/}
-                           {/*this.clean_txt()*/}
-                         {/*}}*/}
-                         {/*value={item.price + ''}/>*/}
                   <InputItem
                     style={{borderBottomWidth:0,borderBottom:'none',textAlign:'right'}}
-                    type="number"
+                    type="digit"
                     placeholder={strNotNull(item.price) ? '' : item.price2 + ''}
                     onChange={(input) => {
                       this.state.show = true;
