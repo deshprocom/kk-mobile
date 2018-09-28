@@ -37,7 +37,7 @@ export default class RealTimeRate extends Component {
           exchangeRate={exchangeRate}/>
 
         <Link className={styles.localView}
-              to={'/exchange_traders'}>
+              to={'/exchange_rates/local'}>
           <span className={styles.localSpan}>澳门本地汇率参考</span>
 
         </Link>
