@@ -13,7 +13,8 @@ export default class RealTime extends Component {
   }
   render() {
     console.log('fetchRealTime',this.props.exchangeRate)
-    const {realTimeRates} = this.props.exchangeRate;
+    const { realTimeRates } = this.props.exchangeRate;
+
     return (
       <div style={{overflowX: 'hidden'}}>
         <RealTimeRate exchangeRate={realTimeRates}/>

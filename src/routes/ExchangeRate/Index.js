@@ -7,7 +7,7 @@ function InfoIndex() {
   return (
     <Switch>
       <Route path="/exchange_rates" exact component={RealTime} />
-      <Route path="/exchange_traders" exact component={LocalRate} />
+      <Route path="/exchange_rates/local" exact component={LocalRate} />
     </Switch>
   )
 }
