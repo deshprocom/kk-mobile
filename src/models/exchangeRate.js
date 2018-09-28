@@ -1,6 +1,7 @@
 import {
   queryRealTime,
-  queryLocal
+  queryLocal,
+  queryRateLeader
 } from '../services/exchangeRate';
 
 export default {
@@ -8,7 +9,8 @@ export default {
 
   state: {
     realTimeRates: {},
-    localRates: {}
+    localRates: {},
+    rateLeaders: []
   },
 
   effects: {
@@ -26,6 +28,13 @@ export default {
         payload: response.data,
       });
     },
+    * fetchRateLeader({payload}, {call, put}) {
+      const response = yield call(queryRateLeader, payload);
+      yield put({
+        type: 'setRateLeader',
+        payload: response.data.items,
+      });
+    },
   },
 
   reducers: {
@@ -39,6 +48,12 @@ export default {
       return {
         ...state,
         localRates: action.payload,
+      };
+    },
+    setRateLeader(state, action) {
+      return {
+        ...state,
+        rateLeaders: action.payload,
       };
     },
   },

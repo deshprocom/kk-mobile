@@ -28,6 +28,10 @@ const images = {
   cny: '/images/cny.png',
   hkd: '/images/hkd.png',
   mop: '/images/mop.png',
+  one1: '/images/one1.png',
+  two: '/images/two.png',
+  three: '/images/three.png',
+  adr_right: '/images/adr_right.png',
 
   macau: {
     search: '/images/macau/search.png',
