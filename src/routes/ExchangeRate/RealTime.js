@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import RealTimeRate from "../../components/exchangeRate/RealTimeRate";
 
 @connect(({ exchangeRate }) => ({
   exchangeRate
@@ -11,10 +12,11 @@ export default class RealTime extends Component {
     })
   }
   render() {
-    console.log(this.props.exchangeRate)
+    console.log('exchangeRate',this.props.exchangeRate)
+    const {realTimeRates} = this.props.exchangeRate;
     return (
-      <div>
-        realTimeRates
+      <div style={{overflowX: 'hidden'}}>
+        <RealTimeRate exchangeRate={realTimeRates}/>
       </div>
     );
   }

@@ -25,6 +25,9 @@ const images = {
   red_home: '/images/navigation/red_home.png',
   gray_explore: '/images/navigation/gray_explore.png',
   red_explore: '/images/navigation/red_explore.png',
+  cny: '/images/cny.png',
+  hkd: '/images/hkd.png',
+  mop: '/images/mop.png',
 
   macau: {
     search: '/images/macau/search.png',
