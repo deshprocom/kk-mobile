@@ -27,7 +27,9 @@ export default class RateInfo extends Component {
     let rate = [100, 0, 0];
     const {price_changed} = this.state;
     const {type, exchangeRate} = this.props;
-
+    if(isEmptyObject(exchangeRate)){
+      return;
+    }
     rate[1] = mul(exchangeRate.cny_to_hkd_rate.rate, rate[0]);
     rate[2] = mul(exchangeRate.cny_to_mop_rate.rate, rate[0]);
     let group2 = price_changed;
@@ -66,6 +68,13 @@ export default class RateInfo extends Component {
           </div>
 
         </div>
+
+        {this.props.type === 'local' ?
+          <div className={styles.page3}>
+            <span className={styles.txt} style={{marginTop: 5,backgroundColor: '#F3F3F3'}}>
+              更新时间：{utcDate(cny_to_hkd_rate.updated_at, 'yyyy-MM-dd hh:mm:ss')}
+            </span>
+          </div>: null}
 
         {price_changed.map((item, index) => {
           return (

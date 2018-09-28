@@ -3,6 +3,7 @@ import styles from './index.less';
 import {isEmptyObject} from '../../utils/utils';
 import {Images} from '../../Thems'
 import RateInfo from './RateInfo';
+import {Link, routerRedux} from 'dva/router';
 
 export default class RealTimeRate extends Component {
 
@@ -16,9 +17,14 @@ export default class RealTimeRate extends Component {
     })
   }
 
+  componentDidMount() {
+    window.document.title = "实时汇率";
+  };
+
+
   render() {
     const {exchangeRate} = this.props;
-    if(isEmptyObject(exchangeRate)){
+    if (isEmptyObject(exchangeRate)) {
       return (
         <div/>
       )
@@ -30,13 +36,11 @@ export default class RealTimeRate extends Component {
           change_time={this.change_time}
           exchangeRate={exchangeRate}/>
 
-        <div className={styles.localView}>
-          {/*<img*/}
-            {/*src={Images.macau.rate2}*/}
-            {/*className={styles.localImg}/>*/}
+        <Link className={styles.localView}
+              to={'/exchange_traders'}>
           <span className={styles.localSpan}>澳门本地汇率参考</span>
 
-        </div>
+        </Link>
         <span className={styles.intro}>
           本数据来源于中国银行官网，仅供参考{'\n'}
           更新时间：{this.state.update_time}

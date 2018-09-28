@@ -11,6 +11,7 @@ function RouterConfig({ history }) {
         <Route path="/" exact component={IndexPage} />
         <Route path="/infos" component={InfoIndex} />
         <Route path="/exchange_rates" component={ExchangeRateIndex} />
+        <Route path="/exchange_traders" component={ExchangeRateIndex} />
       </Switch>
     </Router>
   );
