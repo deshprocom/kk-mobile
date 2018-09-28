@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Calendar } from 'antd-mobile';
+import styles from './index.less';
 
 export default class HotelCalendar extends Component {
   render() {
@@ -7,7 +8,7 @@ export default class HotelCalendar extends Component {
     const now = new Date();
   
     return (
-      <div>
+      <div className={styles.hotelCalendar}>
         <Calendar
           defaultDate={now}
           visible={show}

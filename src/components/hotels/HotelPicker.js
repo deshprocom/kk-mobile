@@ -36,6 +36,8 @@ export default class HotelPicker extends Component {
     });
   };
   
+  formatDate = (date) => { return date.format('YYYY-MM-DD') };
+  
   render() {
     const { checkinDate, checkoutDate, showCalendar } = this.state;
     const diffDay = checkoutDate.diff(checkinDate, 'days');
@@ -61,7 +63,7 @@ export default class HotelPicker extends Component {
               </List>
             </div>
             <div>
-              <Link to={`/hotels/search?checkinDate=${checkinDate}&checkoutDate=${checkoutDate}`}>
+              <Link to={`/hotels/search?checkinDate=${this.formatDate(checkinDate)}&checkoutDate=${this.formatDate(checkoutDate)}`}>
                 开始搜索
               </Link>
             </div>

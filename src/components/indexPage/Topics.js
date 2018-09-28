@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'dva/router';
-import {ListView, Grid} from 'antd-mobile';
+import {ListView} from 'antd-mobile';
 import ReactDOM from 'react-dom';
 import styles from './index.less';
 import {strNotNull, getDateDiff} from "../../utils/utils";
@@ -41,7 +41,7 @@ export default class Topics extends Component {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(this._topicsData),
         isLoading: false,
-        height: height,
+        height,
         nextPage
       });
     }
