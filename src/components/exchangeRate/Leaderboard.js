@@ -49,12 +49,11 @@ export default class Leaderboard extends Component {
   };
 
   show_index = (index) => {
-    console.log("index", index)
-    if (index === 0) {
+    if (index == 0) {
       return <img className={styles.show_index} src={Images.one1}/>
-    } else if (index === 1) {
+    } else if (index == 1) {
       return <img className={styles.show_index} src={Images.two}/>
-    } else if (index === 2) {
+    } else if (index == 2) {
       return <img className={styles.show_index} src={Images.three}/>
     } else {
       return <span className={styles.txt_num} style={{width: 18}}>{mul(index, 1)}</span>
