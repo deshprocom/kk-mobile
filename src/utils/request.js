@@ -72,12 +72,7 @@ export default function request(url, options = {}) {
   }
 
   logMsg('request方法，请求参数:'+url,options)
-  console.log('paddedUrl');
-
-  console.log(urlData);
-
   const paddedUrl = pathToRegexp.compile(url)(urlData);
-  console.log(paddedUrl);
 
   return fetch(`${BASIC_URL}${paddedUrl}`, options)
     .then(checkStatus)
