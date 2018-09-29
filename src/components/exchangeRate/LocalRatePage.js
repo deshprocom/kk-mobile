@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import styles from './index.less';
-import {isEmptyObject} from '../../utils/utils';
-import {Images} from '../../Thems'
 import RateInfo from './RateInfo';
 import {Tabs} from 'antd-mobile';
 import Leaderboard from './Leaderboard';

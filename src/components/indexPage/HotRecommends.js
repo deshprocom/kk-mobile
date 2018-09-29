@@ -51,6 +51,7 @@ export default class HotRecommends extends Component {
 
               </div>
               <img
+                alt=''
                 src={this.isEmptyImg(sourceInfo.image)}
                 style={{minHeight:164,width: '100%'}}/>
 
@@ -59,11 +60,13 @@ export default class HotRecommends extends Component {
                 <span className={styles.total_views}>{sourceInfo.total_views}</span>
                 <div style={{display: 'flex', flex: 1}}/>
                 <img
+                  alt=''
                   style={{height: 12, width: 12}}
                   src={Images.social.like_gray}/>
                 <span className={styles.total_views} style={{marginRight: 20}}>{this.show_count(sourceInfo.likes_count)}</span>
 
                 <img
+                  alt=''
                   style={{height: 12, width: 12}}
                   src={Images.reply}/>
                 <span className={styles.total_views}>{this.show_count(sourceInfo.comments_count)}</span>

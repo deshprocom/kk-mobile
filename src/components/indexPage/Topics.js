@@ -82,9 +82,7 @@ export default class Topics extends Component {
       {strNotNull(item.cover_link) ? <div
         className={styles.long_cover}
       >
-        <img
-
-          src={item.cover_link}/>
+        <img alt='' src={item.cover_link}/>
       </div> : null}
 
 
@@ -93,7 +91,6 @@ export default class Topics extends Component {
 
   short = (item) => {
     const {images, body} = item;
-    let des = body.replace(/\n/g, <br/>);
     return <div>
       {strNotNull(body) ? <span
 
@@ -109,6 +106,7 @@ export default class Topics extends Component {
         <div className={styles.long_cover}>
 
           <img
+            alt=''
             className={styles.short_image}
             src={images[0].url}/>
         </div>
@@ -120,6 +118,7 @@ export default class Topics extends Component {
       return <div
         key={'short' + key}>
         <img
+          alt=''
           className={styles.short_image}
           src={item.url}/>
       </div>
@@ -145,7 +144,7 @@ export default class Topics extends Component {
       return (
         <Link to={linkPath} key={rowID} className={styles.itemPage}>
           <div className={styles.userItem}>
-            <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
+            <img alt='' className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
             <span className={styles.nick_name}>{user.nick_name}</span>
             <div style={{display: 'flex', flex: 1}}/>
             {excellent ?
@@ -155,6 +154,7 @@ export default class Topics extends Component {
             <div style={{paddingTop: 5, paddingBottom: 5, paddingRight: 5, paddingLeft: 5}} onClick={() => {
             }}>
               <img
+                alt=''
                 className={styles.more_3}
                 src={Images.social.more_3}/>
             </div>
@@ -170,6 +170,7 @@ export default class Topics extends Component {
             <div
               className={styles.btn_like}>
               <img
+                alt=''
                 className={styles.like}
                 src={current_user_liked ? Images.social.like_red : Images.social.like_gray}/>
               <span className={styles.time} style={{marginLeft: 4, marginRight: 25}}>{total_likes}</span>
@@ -178,6 +179,7 @@ export default class Topics extends Component {
             <div
               className={styles.btn_like}>
               <img
+                alt=''
                 className={styles.comment}
                 src={Images.social.comment_gray}/>
               <span className={styles.time} style={{marginLeft: 4}}>{total_comments}</span>

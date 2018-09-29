@@ -24,6 +24,7 @@ export default class HomeCarousel extends Component {
         >
           <img
             src={banner.image}
+            alt=''
             style={{ width: '100%', verticalAlign: 'top' }}
             onLoad={() => {
               // fire window resize event to change height

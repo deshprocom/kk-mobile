@@ -8,6 +8,7 @@ export default class HotelDetail extends Component {
     const imagesLayout = hotel.images.map(image => {
       return(
         <img
+          alt=''
           key={image.id}
           src={image.image}
           style={{ width: '100%', verticalAlign: 'top' }}
