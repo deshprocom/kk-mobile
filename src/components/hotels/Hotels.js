@@ -1,18 +1,31 @@
 import React, {Component} from 'react';
-import {ListView} from 'antd-mobile';
+import {ListView, Tabs} from 'antd-mobile';
 import {Link} from 'dva/router';
 import ReactDOM from 'react-dom';
 import styles from './index.less';
 import {Images} from '../../Thems';
-import {strNotNull, sub} from '../../utils/utils'
+import {logMsg, strNotNull, sub} from '../../utils/utils'
 
-const categorie1 = [{id: 0, name: '全部', type: '', isSelect: true},
-  {id: 1, name: '氹仔区', type: 'dangzai', isSelect: false}, {
+const categorie_select = [{id: 0, title: '全部', type: '', isSelect: true},
+  {id: 1, title: '氹仔区', type: 'dangzai', isSelect: false}, {
     id: 2,
-    name: '澳门半岛',
+    title: '澳门半岛',
     type: 'aomenbandao',
     isSelect: false
   }];
+const categorie_price = [{
+  id: 0,
+  title: 'price_asc',
+  img: Images.macau.price1,
+  img2: Images.macau.price1_red,
+  isSelect: false
+}, {
+  id: 1,
+  title: 'price_desc',
+  img: Images.macau.price2,
+  img2: Images.macau.price2_red,
+  isSelect: false
+}];
 
 export default class Hotels extends Component {
   constructor(props) {
@@ -25,7 +38,7 @@ export default class Hotels extends Component {
       dataSource,
       height: document.documentElement.clientHeight * 3 / 4,
     };
-  }
+  };
 
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -74,16 +87,49 @@ export default class Hotels extends Component {
       return price
     }
   };
-  setLogo=(logo)=>{
-    if(strNotNull(logo)){
+  setLogo = (logo) => {
+    if (strNotNull(logo)) {
       return logo;
-    }else{
+    } else {
       return Images.empty_image
     }
   }
 
   render() {
-    const {isLoading, onEndReached} = this.props;
+    return (
+      <div>
+        <div className={styles.rankingView}>
+          <Tabs tabs={categorie_select}
+                initalPage={1}
+                renderTab={tab => <span className={styles.selectTitle}>{tab.title}</span>}
+                tabBarActiveTextColor={'#E54A2E'}
+                tabBarInactiveTextColor={'#000000'}
+                onTabClick={(e,index)=>{
+                  this.props.changeTab && this.props.changeTab(e)
+                  logMsg('Tab切换',e,index)
+                }}
+                tabBarUnderlineStyle={{border: 'none'}}>
+            {this.areaContent}
+          </Tabs>
+        </div>
+      </div>
+    );
+  }
+
+  areaContent = (area) => {
+
+    const separator = (sectionID, rowID) => (
+      <div
+        key={`${sectionID}-${rowID}`}
+        style={{
+          backgroundColor: '#F5F5F9',
+          height: 2,
+          borderTop: '1px solid #ECECED',
+          borderBottom: '1px solid #ECECED',
+        }}
+      />
+    );
+
     const row = (hotel, sectionID, rowID) => {
       let linkPath = `/hotels/${hotel.id}`;
       const {title, address, location, logo, start_price, star_level, discount_amount} = hotel;
@@ -91,7 +137,7 @@ export default class Hotels extends Component {
         <Link key={rowID} to={linkPath}>
           <div style={{padding: '14px 17px'}} className={styles.hotelItemView}>
             <img
-              style={{width: 67, height: 95}}
+              style={{width: 70, height: 95}}
               src={this.setLogo(logo)}/>
 
             <div className={styles.message}>
@@ -117,20 +163,9 @@ export default class Hotels extends Component {
       );
     };
 
-    const separator = (sectionID, rowID) => (
-      <div
-        key={`${sectionID}-${rowID}`}
-        style={{
-          backgroundColor: '#F5F5F9',
-          height: 2,
-          borderTop: '1px solid #ECECED',
-          borderBottom: '1px solid #ECECED',
-        }}
-      />
-    );
-
+    const {isLoading, onEndReached} = this.props;
     return (
-      <div>
+      <div style={{width:'100%'}}>
         <ListView
           ref={el => this.lv = el}
           style={{
@@ -149,6 +184,6 @@ export default class Hotels extends Component {
           onEndReachedThreshold={10}
         />
       </div>
-    );
+    )
   }
 }
