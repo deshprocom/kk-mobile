@@ -50,10 +50,12 @@ export default class HotRecommends extends Component {
                 {strNotNull(sourceInfo.type.name) ? <span className={styles.hotel}>{sourceInfo.type.name}</span> : null}
 
               </div>
-              <img
-                alt=''
-                src={this.isEmptyImg(sourceInfo.image)}
-                style={{minHeight:164,width: '100%'}}/>
+              <div style={{height:164,width:'100%'}}>
+                <img
+                  alt=''
+                  src={this.isEmptyImg(sourceInfo.image)}
+                  style={{minHeight:164,width: '100%'}}/>
+              </div>
 
               <div className={styles.itemBtn}>
                 <span className={styles.readSpan}>阅读</span>

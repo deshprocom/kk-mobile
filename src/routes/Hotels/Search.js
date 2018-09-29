@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'dva';
+import React, {Component} from 'react';
+import {connect} from 'dva';
 import queryString from 'query-string';
 import moment from 'moment';
 import HotelCalendar from "../../components/hotels/HotelCalendar";
 import HotelNav from "../../components/hotels/HotelNav";
 import Hotels from "../../components/hotels/Hotels";
 
-@connect(({ hotel }) => ({
+@connect(({hotel}) => ({
   hotel
 }))
 export default class Search extends Component {
@@ -31,13 +31,13 @@ export default class Search extends Component {
       },
     };
   }
-  
+
   componentDidMount() {
     this.fetchHotels(this.state.searchParams);
   }
-  
+
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { hotels } = nextProps.hotel;
+    const {hotels} = nextProps.hotel;
     const hasMore = hotels.size === this.state.searchParams.page_size;
     const hotelsData = this.state.hotelsData.concat(hotels);
     this.setState({
@@ -46,19 +46,19 @@ export default class Search extends Component {
       hotelsData
     });
   }
-  
+
   onCancel = () => {
     this.setState({
       showCalendar: false,
     });
   };
-  
+
   clickShowCalendar = () => {
     this.setState({
       showCalendar: true,
     });
   };
-  
+
   onConfirm = (startTime, endTime) => {
     const checkinDate = moment(startTime);
     const checkoutDate = moment(endTime);
@@ -75,13 +75,13 @@ export default class Search extends Component {
       hotelsData: [],
       searchParams: newSearchParams,
     });
-    
+
     this.fetchHotels(newSearchParams);
   };
-  
+
   changeKeyword = (val) => {
     const newSearchParams = {...this.state.searchParams, keyword: val};
-  
+
     this.setState({
       searchParams: newSearchParams,
       isLoading: true,
@@ -90,12 +90,12 @@ export default class Search extends Component {
     });
     this.fetchHotels(newSearchParams);
   };
-  
+
   onEndReached = () => {
     console.log('onEndReached');
     if (!this.state.hasMore) return;
-    
-    const { searchParams } = this.state;
+
+    const {searchParams} = this.state;
     const newSearchParams = {...searchParams, page: searchParams.page++};
     this.setState({
       searchParams: newSearchParams,
@@ -103,17 +103,27 @@ export default class Search extends Component {
     });
     this.fetchHotels(newSearchParams);
   };
-  
+
   fetchHotels = (searchParams) => {
     this.props.dispatch({
       type: 'hotel/fetchHotels',
       payload: searchParams
     })
   };
-  
+
+  changeTab = (tab) => {
+    const newSearchParams = {...this.state.searchParams, region: tab.type};
+    this.setState({
+      searchParams: newSearchParams,
+      isLoading: true,
+      hasMore: true,
+      hotelsData: [],
+    })
+    this.fetchHotels(newSearchParams);
+  };
+
   render() {
-    const { checkinDate, checkoutDate, showCalendar, isLoading } = this.state;
-  
+    const {checkinDate, checkoutDate, showCalendar, isLoading} = this.state;
     return (
       <div>
         <HotelNav checkinDate={checkinDate} checkoutDate={checkoutDate}
@@ -123,6 +133,7 @@ export default class Search extends Component {
         />
         <Hotels hotels={this.state.hotelsData}
                 isLoading={isLoading}
+                changeTab={this.changeTab}
                 checkinDate={checkinDate}
                 checkoutDate={checkoutDate}
                 onEndReached={this.onEndReached}/>
