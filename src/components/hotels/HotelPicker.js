@@ -55,7 +55,7 @@ export default class HotelPicker extends Component {
     return (
       <div className={styles.selectTimePage}>
 
-        <Link to={'/'}
+        <Link to={'./'}
              style={{
                zIndex: 99,
                position: 'fixed',
