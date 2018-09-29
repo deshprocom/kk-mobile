@@ -1,5 +1,10 @@
-.dateShow{
-  padding: 20px 10px;
+.dateShow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
   :global {
     .am-list-extra {
       flex-basis: auto !important;
@@ -7,8 +12,19 @@
     }
   }
 
-  .wdayShow{
-    font-size: 12px;
+  .wdayShow {
+    font-size: 10px;
+  }
+  .txt1{
+    color: #444444;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 3px;
+  }
+  .right{
+    width: 10px;
+    height: 20px;
+    margin-left: 9px;
   }
 }
 
@@ -20,11 +36,78 @@
 
 .hotelCalendar {
   :global {
-    .am-calendar .content{
+    .am-calendar .content {
       height: 85%;
       top: auto;
       bottom: 0;
     }
   }
 }
+
+.selectTimePage{
+  ::before {
+    content: none !important;
+    border: 0 !important;
+  }
+}
+
+.selectTimePage {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(#E54A2E, #F5F5F5, #FFFFFF);
+}
+
+.timeView {
+  margin-top: 60px;
+  height: 294px;
+  width:90%;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 3px;
+  shadow-color: #E54A2E;
+  shadow-opacity: 0.6px;
+  shadow-radius: 5px;
+}
+
+.location {
+  color: #E54A2E;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-bottom: 27px;
+}
+
+.listTime {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.searchView{
+  width: 90%;
+  height: 42px;
+  margin-left: 17px;
+  margin-right: 17px;
+  background-color: #F96348;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 43px;
+  border-radius: 3px;
+  shadow-color: #F96348;
+  shadow-opacity: 0.5px;
+}
+.searchSpan{
+  color: #FFFFFF;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
 
