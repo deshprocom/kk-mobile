@@ -10,3 +10,8 @@ export async function queryTopicDetail(params) {
 }
 
 
+export async function queryTopicComments(params) {
+  return request(`/comments?${toSnakeToJson(params)}`);
+}
+
+
