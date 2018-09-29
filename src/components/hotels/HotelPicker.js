@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import moment from 'moment';
 import {WingBlank, Card, List} from 'antd-mobile';
-import {Link} from 'dva/router';
+import {Link, routerRedux} from 'dva/router';
 import HotelCalendar from "./HotelCalendar";
 import styles from './index.less';
 import {Images} from '../../Thems'
@@ -54,6 +54,18 @@ export default class HotelPicker extends Component {
     const diffDay = checkoutDate.diff(checkinDate, 'days');
     return (
       <div className={styles.selectTimePage}>
+
+        <Link to={'/'}
+             style={{
+               zIndex: 99,
+               position: 'fixed',
+               top: 20,
+               left: 17
+             }}>
+          <img className={styles.sign_retrun} src={Images.sign_retrun}/>
+        </Link>
+        <span style={{alignSelf: 'center', fontSize: 16, color: 'white',marginTop:20}}>选择入住时间</span>
+
         <WingBlank size='md' className={styles.timeView} style={{shadowOffset: {width: 2, height: 2}}}>
           <Card style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <span className={styles.location}>位置：澳门</span>
