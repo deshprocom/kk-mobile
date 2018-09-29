@@ -133,8 +133,7 @@ export default class Search extends Component {
         />
         <Hotels hotels={this.state.hotelsData}
                 isLoading={isLoading}
-                onEndReached={this.onEndReached}
-                changeTab={this.changeTab}/>
+                changeTab={this.changeTab}
                 checkinDate={checkinDate}
                 checkoutDate={checkoutDate}
                 onEndReached={this.onEndReached}/>
