@@ -117,7 +117,7 @@ export default class Leaderboard extends Component {
         <ListView
           dataSource={this.state.dataSource}
           renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
-            {this.state.isLoading ? 'Loading...' : 'Loaded'}
+            {this.state.isLoading ? 'Loading...' : '已经没有啦!'}
           </div>)}
           renderRow={row}
           renderSeparator={separator}
