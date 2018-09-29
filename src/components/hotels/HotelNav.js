@@ -14,7 +14,7 @@ export default class HotelNav extends Component {
     return (
       <div className={styles.navbar}>
         <Flex className={styles.flex}>
-          <div onClick={() => dispatch(routerRedux.goBack()) } style={{width: '10%'}}>
+          <div onClick={() => dispatch(routerRedux.goBack()) } style={{marginRight:10}}>
             <img className={styles.sign_retrun} src={Images.sign_retrun}/>
           </div>
           <SearchBar placeholder="地名 / 酒店"
@@ -25,13 +25,11 @@ export default class HotelNav extends Component {
           <div style={{display:'flex',flex:1}}/>
           <div onClick={onClick}>
             <Flex>
-              <div style={{fontSize: '13px', width: 65}}>
-                <span className={styles.dateSpan}>住{checkinDate.format('MMMDo')}</span>
+              <div style={{fontSize: '13px',marginRight:3}}>
+                <span className={styles.dateSpan}>住{checkinDate.format('MMMDo')}</span><br/>
                 <span className={styles.dateSpan}>离{checkoutDate.format('MMMDo')}</span>
               </div>
-              <div>
-                <img className={styles.down2} src={Images.macau.down2}/>
-              </div>
+              <img className={styles.down2} src={Images.macau.down2}/>
             </Flex>
 
           </div>

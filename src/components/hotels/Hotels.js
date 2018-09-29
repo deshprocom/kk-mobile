@@ -4,7 +4,7 @@ import {Link} from 'dva/router';
 import ReactDOM from 'react-dom';
 import styles from './index.less';
 import {Images} from '../../Thems';
-import {logMsg, strNotNull, sub} from '../../utils/utils'
+import {logMsg, strNotNull, sub,add} from '../../utils/utils'
 
 const categorie_select = [{id: 0, title: '全部', type: '', isSelect: true},
   {id: 1, title: '氹仔区', type: 'dangzai', isSelect: false}, {
@@ -46,7 +46,7 @@ export default class Hotels extends Component {
       const height = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(nextProps.hotels),
-        height,
+        height:height,
       });
     }
   };
@@ -97,7 +97,7 @@ export default class Hotels extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{width:'100%'}}>
         <div className={styles.rankingView}>
           <Tabs tabs={categorie_select}
                 initalPage={1}

@@ -125,7 +125,7 @@ export default class Search extends Component {
   render() {
     const {checkinDate, checkoutDate, showCalendar, isLoading} = this.state;
     return (
-      <div style={{overflowX: 'hidden'}}>
+      <div>
         <HotelNav checkinDate={checkinDate} checkoutDate={checkoutDate}
                   dispatch={this.props.dispatch}
                   onClick={this.clickShowCalendar}

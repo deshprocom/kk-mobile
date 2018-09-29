@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import moment from 'moment';
-import { WingBlank, Card, List } from 'antd-mobile';
+import {WingBlank, Card, List} from 'antd-mobile';
 import {Link} from 'dva/router';
 import HotelCalendar from "./HotelCalendar";
 import styles from './index.less';
@@ -19,12 +19,12 @@ export default class HotelPicker extends Component {
     };
   };
 
-  componentDidMount(){
+  componentDidMount() {
     document.title = "选择入住时间"
   }
 
   itemOnclick = () => {
-    this.setState({ showCalendar: true });
+    this.setState({showCalendar: true});
   };
 
   onConfirm = (startTime, endTime) => {
@@ -41,19 +41,21 @@ export default class HotelPicker extends Component {
     });
   };
 
-  formatDate = (date) => { return date.format('YYYY-MM-DD') };
+  formatDate = (date) => {
+    return date.format('YYYY-MM-DD')
+  };
 
-  line=()=>{
-    return <div style={{width:'90%',height:1,backgroundColor:"#F3F3F3"}}/>;
+  line = () => {
+    return <div style={{width: '90%', height: 1, backgroundColor: "#F3F3F3"}}/>;
   };
 
   render() {
-    const { checkinDate, checkoutDate, showCalendar } = this.state;
+    const {checkinDate, checkoutDate, showCalendar} = this.state;
     const diffDay = checkoutDate.diff(checkinDate, 'days');
     return (
       <div className={styles.selectTimePage}>
-        <WingBlank size='md' className={styles.timeView} style={{shadowOffset: {width: 2,height: 2}}}>
-          <Card style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center'}}>
+        <WingBlank size='md' className={styles.timeView} style={{shadowOffset: {width: 2, height: 2}}}>
+          <Card style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <span className={styles.location}>位置：澳门</span>
             {this.line()}
             <div className={styles.dateShow}
@@ -63,23 +65,22 @@ export default class HotelPicker extends Component {
                 <span className={styles.wdayShow}>{checkinDate.format('ddd')}入住</span>
               </span>
 
-              <span  className={styles.txt1}>
+              <span className={styles.txt1}>
                     {checkoutDate.format('MMMDo')}
                 <span className={styles.wdayShow}>{checkoutDate.format('ddd')}离店</span>
                   </span>
 
-              <div style={{display:'flex',flex:1}}/>
+              <div style={{display: 'flex', flex: 1}}/>
 
-              <span className={styles.wdayShow} style={{marginLeft:5}}>{`共${diffDay}晚`}</span>
+              <span className={styles.wdayShow} style={{marginLeft: 5}}>{`共${diffDay}晚`}</span>
               <img className={styles.right} src={Images.right}/>
             </div>
             {this.line()}
-            <div className={styles.searchView}  style={{shadowOffset: {width: 2,height: 2}}}>
-              <Link to={`/hotels/search?checkinDate=${this.formatDate(checkinDate)}&checkoutDate=${this.formatDate(checkoutDate)}`}
-              className={styles.searchSpan}>
-                开始搜索
-              </Link>
-            </div>
+            <Link
+              to={`/hotels/search?checkinDate=${this.formatDate(checkinDate)}&checkoutDate=${this.formatDate(checkoutDate)}`}
+              className={styles.searchView} style={{shadowOffset: {width: 2, height: 2}}}>
+              开始搜索
+            </Link>
           </Card>
         </WingBlank>
         <HotelCalendar show={showCalendar} onCancel={this.onCancel} onConfirm={this.onConfirm}/>
