@@ -29,11 +29,12 @@ export default class Hotels extends Component {
 
 
   render() {
-    const { isLoading, onEndReached } = this.props;
+    const { isLoading, onEndReached, checkinDate, checkoutDate } = this.props;
     const row = (hotel, sectionID, rowID) => {
-      let linkPath = `/hotels/${hotel.id}`;
+      let pathname = `/hotels/${hotel.id}`;
+      let search= `?checkinDate=${checkinDate.format('YYYY-MM-DD')}&checkoutDate=${checkoutDate.format('YYYY-MM-DD')}`;
       return (
-        <Link key={rowID} to={linkPath}>
+        <Link key={rowID} to={{pathname, search}}>
           <div style={{padding: '50px 20px'}}>
             {hotel.title}
           </div>

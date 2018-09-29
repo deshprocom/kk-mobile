@@ -9,8 +9,6 @@ import {logMsg} from "../../utils/utils";
 export default class Info extends Component {
   componentDidMount() {
     const { params } = this.props.match;
-    logMsg('Info 开始',this)
-    logMsg('Info 请求数据')
     this.props.dispatch({
       type: 'info/fetchInfoDetail',
       payload: { id: params.id },

@@ -123,6 +123,8 @@ export default class Search extends Component {
         />
         <Hotels hotels={this.state.hotelsData}
                 isLoading={isLoading}
+                checkinDate={checkinDate}
+                checkoutDate={checkoutDate}
                 onEndReached={this.onEndReached}/>
         <HotelCalendar show={showCalendar} onCancel={this.onCancel} onConfirm={this.onConfirm}/>
       </div>
