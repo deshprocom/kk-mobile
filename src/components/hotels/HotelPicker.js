@@ -56,7 +56,8 @@ export default class HotelPicker extends Component {
           <Card style={{width:'100%',display:'flex',flexDirection:'column',alignItems:'center'}}>
             <span className={styles.location}>位置：澳门</span>
             {this.line()}
-            <div className={styles.dateShow}>
+            <div className={styles.dateShow}
+                 onClick={this.itemOnclick}>
               <span style={{marginRight: 15}} className={styles.txt1}>
                     {checkinDate.format('MMMDo')}
                 <span className={styles.wdayShow}>{checkinDate.format('ddd')}入住</span>
