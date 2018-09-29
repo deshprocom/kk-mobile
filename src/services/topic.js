@@ -5,4 +5,8 @@ export async function queryTopics(params) {
   return request(`/topics?${toSnakeToJson(params)}`);
 }
 
+export async function queryTopicDetail(params) {
+  return request(`/topics/${params.id}`);
+}
+
 

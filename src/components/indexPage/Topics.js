@@ -139,8 +139,7 @@ export default class Topics extends Component {
     const row = (rowData, sectionID, rowID) => {
       let linkPath = `/topics/${rowData.id}`;
       const {
-        user, created_at, total_likes, total_comments, id, body_type, location, current_user_liked,
-        excellent
+        user, created_at, total_likes, total_comments, body_type, location, current_user_liked, excellent
       } = rowData;
       const {address_title} = location;
       return (
