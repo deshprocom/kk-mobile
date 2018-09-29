@@ -33,6 +33,7 @@ const images = {
   three: '/images/three.png',
   adr_right: '/images/adr_right.png',
   right: '/images/is>.png',
+  sign_retrun: '/images/sign_retrun.png',
 
   macau: {
     search: '/images/macau/search.png',

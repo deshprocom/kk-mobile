@@ -31,11 +31,11 @@ export default class Search extends Component {
       },
     };
   }
-  
+
   componentDidMount() {
     this.fetchHotels(this.state.searchParams);
   }
-  
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     const { hotels } = nextProps.hotel;
     const hasMore = hotels.size === this.state.searchParams.page_size;
@@ -46,19 +46,19 @@ export default class Search extends Component {
       hotelsData
     });
   }
-  
+
   onCancel = () => {
     this.setState({
       showCalendar: false,
     });
   };
-  
+
   clickShowCalendar = () => {
     this.setState({
       showCalendar: true,
     });
   };
-  
+
   onConfirm = (startTime, endTime) => {
     const checkinDate = moment(startTime);
     const checkoutDate = moment(endTime);
@@ -75,13 +75,13 @@ export default class Search extends Component {
       hotelsData: [],
       searchParams: newSearchParams,
     });
-    
+
     this.fetchHotels(newSearchParams);
   };
-  
+
   changeKeyword = (val) => {
     const newSearchParams = {...this.state.searchParams, keyword: val};
-  
+
     this.setState({
       searchParams: newSearchParams,
       isLoading: true,
@@ -90,11 +90,11 @@ export default class Search extends Component {
     });
     this.fetchHotels(newSearchParams);
   };
-  
+
   onEndReached = () => {
     console.log('onEndReached');
     if (!this.state.hasMore) return;
-    
+
     const { searchParams } = this.state;
     const newSearchParams = {...searchParams, page: searchParams.page++};
     this.setState({
@@ -103,19 +103,18 @@ export default class Search extends Component {
     });
     this.fetchHotels(newSearchParams);
   };
-  
+
   fetchHotels = (searchParams) => {
     this.props.dispatch({
       type: 'hotel/fetchHotels',
       payload: searchParams
     })
   };
-  
+
   render() {
     const { checkinDate, checkoutDate, showCalendar, isLoading } = this.state;
-  
     return (
-      <div>
+      <div style={{overflowX:'hidden'}}>
         <HotelNav checkinDate={checkinDate} checkoutDate={checkoutDate}
                   dispatch={this.props.dispatch}
                   onClick={this.clickShowCalendar}
