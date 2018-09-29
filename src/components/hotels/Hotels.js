@@ -116,7 +116,19 @@ export default class Hotels extends Component {
     );
   }
 
-  areaContent = (area) => {
+  areaContent = () => {
+    const { isLoading, onEndReached, checkinDate, checkoutDate } = this.props;
+    const row = (hotel, sectionID, rowID) => {
+      let pathname = `/hotels/${hotel.id}`;
+      let search= `?checkinDate=${checkinDate.format('YYYY-MM-DD')}&checkoutDate=${checkoutDate.format('YYYY-MM-DD')}`;
+      return (
+        <Link key={rowID} to={{pathname, search}}>
+          <div style={{padding: '50px 20px'}}>
+            {hotel.title}
+          </div>
+        </Link>
+      );
+    };
 
     const separator = (sectionID, rowID) => (
       <div

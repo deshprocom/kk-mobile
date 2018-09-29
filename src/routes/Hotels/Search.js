@@ -135,6 +135,9 @@ export default class Search extends Component {
                 isLoading={isLoading}
                 onEndReached={this.onEndReached}
                 changeTab={this.changeTab}/>
+                checkinDate={checkinDate}
+                checkoutDate={checkoutDate}
+                onEndReached={this.onEndReached}/>
         <HotelCalendar show={showCalendar} onCancel={this.onCancel} onConfirm={this.onConfirm}/>
       </div>
     );

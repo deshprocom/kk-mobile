@@ -1,5 +1,6 @@
 import {
   queryHotels,
+  queryHotelDetail,
 } from '../services/hotel';
 
 export default {
@@ -7,6 +8,7 @@ export default {
   
   state: {
     hotels: [],
+    hotelDetail: null,
   },
   
   effects: {
@@ -17,6 +19,13 @@ export default {
         payload: response.data.items,
       });
     },
+    *fetchHotelDetail({ payload }, { call, put }) {
+      const response = yield call(queryHotelDetail, payload);
+      yield put({
+        type: 'setHotelDetail',
+        payload: response.data.hotel,
+      });
+    },
   },
   
   reducers: {
@@ -24,6 +33,12 @@ export default {
       return {
         ...state,
         hotels: action.payload,
+      };
+    },
+    setHotelDetail(state, action) {
+      return {
+        ...state,
+        hotelDetail: action.payload,
       };
     },
   },

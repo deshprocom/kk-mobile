@@ -1,5 +1,6 @@
 import {
   queryTopics,
+  queryTopicDetail,
 } from '../services/topic';
 
 export default {
@@ -7,6 +8,7 @@ export default {
   
   state: {
     topics: [],
+    topicDetail: null,
   },
   
   effects: {
@@ -17,6 +19,13 @@ export default {
         payload: response.data.items,
       });
     },
+    *fetchTopicDetail({ payload }, { call, put }) {
+      const response = yield call(queryTopicDetail, payload);
+      yield put({
+        type: 'setTopicDetail',
+        payload: response.data,
+      });
+    },
   },
   
   reducers: {
@@ -24,6 +33,12 @@ export default {
       return {
         ...state,
         topics: action.payload,
+      };
+    },
+    setTopicDetail(state, action) {
+      return {
+        ...state,
+        topicDetail: action.payload,
       };
     },
   },

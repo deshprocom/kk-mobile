@@ -7,7 +7,6 @@ export async function queryInfoComments(params) {
 }
 
 export async function queryInfoDetail(params) {
-  logMsg('Info 的请求 url;/infos/:id,参数', params)
   let ret = request('/infos/:id', {urlData: params});
   logMsg('Info 的services 接口响应:', ret)
   return ret
