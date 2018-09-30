@@ -29,11 +29,12 @@ export default class BodyType extends Component {
         className={styles.body} dangerouslySetInnerHTML={{__html: des}}/> : null}
 
       {strNotNull(item.cover_link) ? <div
-        className={styles.long_cover}>
+        className={styles.long_cover}  style={{marginRight:17}}>
         <img src={item.cover_link}
              onClick={() => {
                // this.props.changeState(true,0,item)
-             }}/>
+             }}
+             className={styles.short_image_one}/>
       </div> : null}
 
 
