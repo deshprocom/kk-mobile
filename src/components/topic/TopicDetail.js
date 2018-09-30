@@ -8,6 +8,23 @@ import BodyType from "./BodyType";
 
 export default class TopicDetail extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      max: false,
+      index: 0,
+      item:{}
+    };
+  }
+
+  changeState = (max,index,item) => {
+    this.setState({
+      max,
+      index,
+      item
+    })
+  }
+
   set_avatar = (avatar) => {
     if (strNotNull(avatar)) {
       return avatar;
@@ -44,11 +61,31 @@ export default class TopicDetail extends Component {
           </div>
         </div>
 
-        <BodyType rowData={topicDetail}/>
+        <BodyType rowData={topicDetail}  changeState={this.changeState}/>
 
 
         <Comments detail={topicDetail} comments={topicComments.items} total_comments={topicDetail.total_comments}/>
 
+
+        {this.state.max ? <div style={{
+          backgroundColor: 'rgb(20,20,20)',
+          position: 'fixed',
+          zIndex:999,
+          top: 0,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          textAlign:'center',
+          display:'flex'
+
+        }}
+                               onClick={() => {
+                                 this.setState({
+                                   max: false
+                                 })
+                               }}>
+          <img style={{width:'100%',height:'auto',alignSelf:'center'}}   src={images[this.state.index].url}/>
+        </div> : null}
       </div>
     )
   }

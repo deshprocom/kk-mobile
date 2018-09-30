@@ -19,9 +19,20 @@ export default class Topics extends Component {
       isLoading: true,
       nextPage: 1,
       height: document.documentElement.clientHeight * 3 / 4,
+      max: false,
+      index: 0,
+      item:{}
     };
 
     this._topicsData = [];
+  };
+
+  changeState = (max, index,item) => {
+    this.setState({
+      max,
+      index,
+      item
+    })
   }
 
   componentDidMount() {
@@ -70,13 +81,14 @@ export default class Topics extends Component {
   render() {
     const row = (rowData, sectionID, rowID) => {
       let linkPath = `/topics/${rowData.id}`;
+      console.log("jskjdksds",this.state.item.id)
       const {
-        user, created_at, total_likes, total_comments, body_type, location, current_user_liked, excellent
+        user, created_at, images, total_likes, total_comments, body_type, location, current_user_liked, excellent
       } = rowData;
       const {address_title} = location;
       return (
-        <Link to={linkPath} key={rowID} className={styles.itemPage}>
-          <div className={styles.userItem}>
+        <div className={styles.itemPage}>
+          <Link to={linkPath} key={rowID} className={styles.userItem}>
             <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
             <span className={styles.nick_name}>{user.nick_name}</span>
             <div style={{display: 'flex', flex: 1}}/>
@@ -90,9 +102,9 @@ export default class Topics extends Component {
                 className={styles.more_3}
                 src={Images.social.more_3}/>
             </div>
-          </div>
+          </Link>
 
-          <BodyType rowData={rowData}/>
+          <BodyType rowData={rowData} changeState={this.changeState}/>
 
           <div className={styles.bottomView}>
             <span
@@ -116,7 +128,30 @@ export default class Topics extends Component {
             </div>
           </div>
 
-        </Link>
+          {this.state.max && this.state.item.id == rowData.id ? <div style={{
+            backgroundColor: 'rgb(20,20,20)',
+            position: 'fixed',
+            zIndex: 999,
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            display: 'flex'
+
+          }}
+                                 onClick={() => {
+                                   this.setState({
+                                     max: false
+                                   })
+                                 }}>
+            {strNotNull(images[this.state.index]) ?
+              <img style={{width: '100%', height: 'auto', alignSelf: 'center'}}
+                   src={images[this.state.index].url}/> : null}
+
+          </div> : null}
+
+        </div>
       );
     };
 
