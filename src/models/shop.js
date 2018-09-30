@@ -1,6 +1,7 @@
 import {
   queryCategories,
   queryProducts,
+  queryProductDetail,
 } from '../services/shop';
 
 export default {
@@ -9,6 +10,7 @@ export default {
   state: {
     categories: null,
     products: null,
+    productDetail: null,
   },
   
   effects: {
@@ -26,6 +28,13 @@ export default {
         payload: response.data.items,
       });
     },
+    *fetchProductDetail({ payload }, { call, put }) {
+      const response = yield call(queryProductDetail, payload);
+      yield put({
+        type: 'setProductDetail',
+        payload: response.data.product,
+      });
+    },
   },
   
   reducers: {
@@ -39,6 +48,12 @@ export default {
       return {
         ...state,
         products: action.payload,
+      };
+    },
+    setProductDetail(state, action) {
+      return {
+        ...state,
+        productDetail: action.payload,
       };
     },
   },
