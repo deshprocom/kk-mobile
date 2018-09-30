@@ -4,7 +4,7 @@ import {strNotNull, getDateDiff} from '../../utils/utils';
 import {Images} from '../../Thems';
 import styles from './index.less';
 
-export default class Content extends Component {
+export default class Comments extends Component {
 
   show_count = (item) => {
     if (strNotNull(item)) {

@@ -3,7 +3,7 @@ import {Card} from 'antd-mobile';
 import {strNotNull, getDateDiff} from '../../utils/utils';
 import {Images} from '../../Thems';
 import styles from './index.less';
-import Content from "./Content";
+import Comments from "./Comments";
 
 export default class InfoDetail extends Component {
 
@@ -28,6 +28,6 @@ export default class InfoDetail extends Component {
   };
 
   content = (infoDetail,info_comments) => {
-    return <Content detail={infoDetail} comments={info_comments} total_comments={infoDetail.comments_count}/>
+    return <Comments detail={infoDetail} comments={info_comments} total_comments={infoDetail.comments_count}/>
   }
 }

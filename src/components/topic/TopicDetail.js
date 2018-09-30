@@ -3,7 +3,8 @@ import {Card} from 'antd-mobile';
 import {strNotNull, getDateDiff,isEmptyObject} from '../../utils/utils';
 import {Images} from '../../Thems';
 import styles from './index.less';
-import Content from "../info/Content";
+import Comments from "../info/Comments";
+import BodyType from "./BodyType";
 
 export default class TopicDetail extends Component {
 
@@ -43,9 +44,10 @@ export default class TopicDetail extends Component {
           </div>
         </div>
 
-        {strNotNull(body) ? <div className={styles.introduceGame} dangerouslySetInnerHTML={{__html: body}}/> : null}
+        <BodyType rowData={topicDetail}/>
 
-        <Content detail={topicDetail} comments={topicComments.items} total_comments={topicDetail.total_comments}/>
+
+        <Comments detail={topicDetail} comments={topicComments.items} total_comments={topicDetail.total_comments}/>
 
       </div>
     )

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import styles from './index.less';
 import {strNotNull, getDateDiff} from "../../utils/utils";
 import {Images} from "../../Thems";
+import BodyType from '../topic/BodyType'
 
 export default class Topics extends Component {
   constructor(props) {
@@ -65,71 +66,6 @@ export default class Topics extends Component {
     }
   };
 
-  bodyTypes = (item) => {
-    switch (item.body_type) {
-      case "long":
-        return this.long(item)
-      case "short":
-        return this.short(item)
-    }
-  };
-
-  long = (item) => {
-    let title2 = item.title;
-    return <div  style={{paddingRight:25}}>
-      <span className={styles.body}>{title2}</span>
-
-      {strNotNull(item.cover_link) ? <div
-        className={styles.long_cover}
-      >
-        <img
-
-          src={item.cover_link}/>
-      </div> : null}
-
-
-    </div>
-  };
-
-  short = (item) => {
-    const {images, body} = item;
-    let des = body.replace(/\n/g, <br/>);
-    return <div style={{paddingRight:25}}>
-      {strNotNull(body) ? <span
-
-        className={styles.body}>{body}</span> : null}
-
-      {images && images.length > 0 ? this.shortImage(images) : null}
-
-    </div>
-  };
-  shortImage = (images) => {
-    if (images.length === 1) {
-      return (
-        <div className={styles.long_cover} style={{height:200,width:200}}>
-
-          <img
-            className={styles.short_image_one}
-            src={images[0].url}/>
-        </div>
-      )
-    }
-
-    let imageViews = images.map((item, key) => {
-      return <img
-        className={styles.short_image}
-        style={{}}
-        src={item.url}/>
-
-    });
-
-    return <div style={{
-      display: 'flex', flexWrap: 'wrap', flexDirection: 'row',width:'100%',justifyContent:'space-between'
-    }}>
-      {imageViews}
-    </div>
-
-  }
 
   render() {
     const row = (rowData, sectionID, rowID) => {
@@ -156,7 +92,7 @@ export default class Topics extends Component {
             </div>
           </div>
 
-          {this.bodyTypes(rowData)}
+          <BodyType rowData={rowData}/>
 
           <div className={styles.bottomView}>
             <span
