@@ -21,13 +21,13 @@ export default class Topics extends Component {
       height: document.documentElement.clientHeight * 3 / 4,
       max: false,
       index: 0,
-      item: {}
+      item:{}
     };
 
     this._topicsData = [];
   };
 
-  changeState = (max, index, item) => {
+  changeState = (max, index,item) => {
     this.setState({
       max,
       index,
@@ -88,7 +88,7 @@ export default class Topics extends Component {
       return (
         <div className={styles.itemPage}>
           <Link to={linkPath} key={rowID}>
-            <div className={styles.userItem}>
+            <div  className={styles.userItem}>
               <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
               <span className={styles.nick_name}>{user.nick_name}</span>
               <div style={{display: 'flex', flex: 1}}/>
@@ -103,7 +103,6 @@ export default class Topics extends Component {
                   src={Images.social.more_3}/>
               </div>
             </div>
-
             <BodyType rowData={rowData} changeState={this.changeState}/>
           </Link>
 
@@ -141,11 +140,11 @@ export default class Topics extends Component {
             display: 'flex'
 
           }}
-                                                                     onClick={() => {
-                                                                       this.setState({
-                                                                         max: false
-                                                                       })
-                                                                     }}>
+                                 onClick={() => {
+                                   this.setState({
+                                     max: false
+                                   })
+                                 }}>
             {strNotNull(images[this.state.index]) ?
               <img style={{width: '100%', height: 'auto', alignSelf: 'center'}}
                    src={images[this.state.index].url}/> : null}

@@ -73,7 +73,6 @@ export default class BodyType extends Component {
              style={{height: imgHeight < 200 ? imgHeight : 200,
                width: imgWidth < window.screen.width - 34 ? imgWidth : 200}}>
           <img className={styles.short_image_one}
-               id="imgWH"
                onClick={() => {
                  this.props.changeState(true, 0, rowData)
                }}
