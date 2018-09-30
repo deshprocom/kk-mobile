@@ -81,7 +81,6 @@ export default class Topics extends Component {
   render() {
     const row = (rowData, sectionID, rowID) => {
       let linkPath = `/topics/${rowData.id}`;
-      console.log("jskjdksds", this.state.item.id)
       const {
         user, created_at, images, total_likes, total_comments, body_type, location, current_user_liked, excellent
       } = rowData;
