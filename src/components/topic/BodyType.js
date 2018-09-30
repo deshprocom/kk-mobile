@@ -23,8 +23,10 @@ export default class BodyType extends Component {
 
   long = (item) => {
     let title2 = item.title;
+    let des = title2.replace(/[\n\r]/g, '<br/>');
     return <div>
-      <span className={styles.body}>{title2}</span>
+      {strNotNull(des) ? <div
+        className={styles.body} dangerouslySetInnerHTML={{__html: des}}/>: null}
 
       {strNotNull(item.cover_link) ? <div
         className={styles.long_cover}>
@@ -39,7 +41,7 @@ export default class BodyType extends Component {
     const {images, body} = item;
     let des = body.replace(/[\n\r]/g, '<br/>');
     return <div>
-      {strNotNull(body) ? <div
+      {strNotNull(des) ? <div
         className={styles.body} dangerouslySetInnerHTML={{__html: des}}/>: null}
 
       {images && images.length > 0 ? this.shortImage(images) : null}
