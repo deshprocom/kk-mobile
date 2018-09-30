@@ -21,13 +21,13 @@ export default class Topics extends Component {
       height: document.documentElement.clientHeight * 3 / 4,
       max: false,
       index: 0,
-      item:{}
+      item: {}
     };
 
     this._topicsData = [];
   };
 
-  changeState = (max, index,item) => {
+  changeState = (max, index, item) => {
     this.setState({
       max,
       index,
@@ -81,30 +81,32 @@ export default class Topics extends Component {
   render() {
     const row = (rowData, sectionID, rowID) => {
       let linkPath = `/topics/${rowData.id}`;
-      console.log("jskjdksds",this.state.item.id)
+      console.log("jskjdksds", this.state.item.id)
       const {
         user, created_at, images, total_likes, total_comments, body_type, location, current_user_liked, excellent
       } = rowData;
       const {address_title} = location;
       return (
         <div className={styles.itemPage}>
-          <Link to={linkPath} key={rowID} className={styles.userItem}>
-            <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
-            <span className={styles.nick_name}>{user.nick_name}</span>
-            <div style={{display: 'flex', flex: 1}}/>
-            {excellent ?
-              <span className={styles.txt_long} style={{color: '#F24A4A', borderColor: '#F24A4A'}}>精选</span> : null}
-            {body_type === 'long' ? <span className={styles.txt_long}>长帖</span> : null}
+          <Link to={linkPath} key={rowID}>
+            <div className={styles.userItem}>
+              <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
+              <span className={styles.nick_name}>{user.nick_name}</span>
+              <div style={{display: 'flex', flex: 1}}/>
+              {excellent ?
+                <span className={styles.txt_long} style={{color: '#F24A4A', borderColor: '#F24A4A'}}>精选</span> : null}
+              {body_type === 'long' ? <span className={styles.txt_long}>长帖</span> : null}
 
-            <div style={{paddingTop: 5, paddingBottom: 5, paddingRight: 5, paddingLeft: 5}} onClick={() => {
-            }}>
-              <img
-                className={styles.more_3}
-                src={Images.social.more_3}/>
+              <div style={{paddingTop: 5, paddingBottom: 5, paddingRight: 5, paddingLeft: 5}} onClick={() => {
+              }}>
+                <img
+                  className={styles.more_3}
+                  src={Images.social.more_3}/>
+              </div>
             </div>
-          </Link>
 
-          <BodyType rowData={rowData} changeState={this.changeState}/>
+            <BodyType rowData={rowData} changeState={this.changeState}/>
+          </Link>
 
           <div className={styles.bottomView}>
             <span
@@ -140,11 +142,11 @@ export default class Topics extends Component {
             display: 'flex'
 
           }}
-                                 onClick={() => {
-                                   this.setState({
-                                     max: false
-                                   })
-                                 }}>
+                                                                     onClick={() => {
+                                                                       this.setState({
+                                                                         max: false
+                                                                       })
+                                                                     }}>
             {strNotNull(images[this.state.index]) ?
               <img style={{width: '100%', height: 'auto', alignSelf: 'center'}}
                    src={images[this.state.index].url}/> : null}
