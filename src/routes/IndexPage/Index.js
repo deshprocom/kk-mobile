@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { TabBar } from 'antd-mobile';
 import HomePage from "./HomePage";
 import Discovery from "./Discovery";
-import {Images} from '../../Thems'
 
 export default class IndexPage extends Component {
   constructor(props) {

@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import styles from './index.less';
 import {add, strNotNull} from '../../utils/utils';
 import {Images} from '../../Thems'
-import RateInfo from './RateInfo';
-import {Tabs} from 'antd-mobile';
 import {ListView} from "antd-mobile/lib/index";
 
 
@@ -58,12 +56,12 @@ export default class Leaderboard extends Component {
   };
 
   show_index = (index) => {
-    if (index == 0) {
-      return <img className={styles.show_index} src={Images.one1}/>
-    } else if (index == 1) {
-      return <img className={styles.show_index} src={Images.two}/>
-    } else if (index == 2) {
-      return <img className={styles.show_index} src={Images.three}/>
+    if (index === 0) {
+      return <img alt='' className={styles.show_index} src={Images.one1}/>
+    } else if (index === 1) {
+      return <img alt='' className={styles.show_index} src={Images.two}/>
+    } else if (index === 2) {
+      return <img alt='' className={styles.show_index} src={Images.three}/>
     } else {
       return <span className={styles.txt_num} style={{width: 18}}>{add(index, 1)}</span>
     }
@@ -79,12 +77,13 @@ export default class Leaderboard extends Component {
 
   render() {
     const row = (rowData, sectionID, rowID) => {
-      const {avatar, mobile, nick_name, signature, user_id} = rowData;
+      const {avatar, nick_name, signature} = rowData;
       return (
         <div className={styles.rankingPage}>
           {this.show_index(rowID)}
 
           <img className={styles.avatar}
+               alt=''
                src={this.set_avatar(avatar)}/>
 
           <div style={{width: '50%', display: 'flex', flexDirection: 'column'}}>
@@ -97,6 +96,7 @@ export default class Leaderboard extends Component {
           <span className={styles.txt_decs}>联系他</span>
 
           <img className={styles.img_left}
+               alt=''
                src={Images.adr_right}/>
         </div>
       )

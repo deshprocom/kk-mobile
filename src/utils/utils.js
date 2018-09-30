@@ -59,7 +59,7 @@ export function getDateDiff(dateTimeStamp) {
   let minute = 1000 * 60;
   let hour = minute * 60;
   let day = hour * 24;
-  let halfamonth = day * 15;
+  // let halfamonth = day * 15;
   let month = day * 30;
   let now = new Date().getTime();
 
@@ -74,19 +74,19 @@ export function getDateDiff(dateTimeStamp) {
   let minC = diffValue / minute;
   let result = '';
   if (monthC >= 1) {
-    result = "" + parseInt(monthC) + '月前';
+    result = "" + parseInt(monthC, 10) + '月前';
   }
   else if (weekC >= 1) {
-    result = "" + parseInt(weekC) + '周前';
+    result = "" + parseInt(weekC, 10) + '周前';
   }
   else if (dayC >= 1) {
-    result = "" + parseInt(dayC) + '天前';
+    result = "" + parseInt(dayC, 10) + '天前';
   }
   else if (hourC >= 1) {
-    result = "" + parseInt(hourC) + '小时前';
+    result = "" + parseInt(hourC, 10) + '小时前';
   }
   else if (minC >= 1) {
-    result = "" + parseInt(minC) + '分钟前';
+    result = "" + parseInt(minC, 10) + '分钟前';
   } else
     result = '刚刚';
   return result;
@@ -167,7 +167,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
   };
   if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
   for (var k in o)
-    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
   return fmt;
 }
 
@@ -181,7 +181,7 @@ export function formatCurrency(num) {
   num = num.toString().replace(/\$|\,/g, '');
   if (isNaN(num))
     num = "0";
-  let sign = (num == (num = Math.abs(num)));
+  let sign = (num === (num = Math.abs(num)));
   num = Math.floor(num * 100 + 0.50000000001);
   let cents = num % 100;
   num = Math.floor(num / 100).toString();

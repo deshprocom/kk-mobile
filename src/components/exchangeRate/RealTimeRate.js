@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import styles from './index.less';
 import {isEmptyObject} from '../../utils/utils';
-import {Images} from '../../Thems'
 import RateInfo from './RateInfo';
-import {Link, routerRedux} from 'dva/router';
+import {Link} from 'dva/router';
 
 export default class RealTimeRate extends Component {
 

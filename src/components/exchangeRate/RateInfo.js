@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {List,InputItem} from 'antd-mobile';
-import {Link} from 'dva/router';
+import {InputItem} from 'antd-mobile';
 import styles from './index.less';
 import {strNotNull, div, utcDate, mul, formatCurrency, isEmptyObject} from '../../utils/utils';
 import {Images} from '../../Thems';
@@ -34,7 +33,7 @@ export default class RateInfo extends Component {
     rate[2] = mul(exchangeRate.cny_to_mop_rate.rate, rate[0]);
     let group2 = price_changed;
     group2.map((item, index) => {
-      item.price2 = rate[index]
+      return item.price2 = rate[index]
     });
 
     this.setState({
@@ -48,7 +47,7 @@ export default class RateInfo extends Component {
   }
 
   render() {
-    const {price_changed, show} = this.state;
+    const {price_changed} = this.state;
     const {exchangeRate} = this.props;
     if(isEmptyObject(exchangeRate)){
       return (
@@ -80,7 +79,7 @@ export default class RateInfo extends Component {
           return (
             <div style={{display:'flex',flexDirection: 'column',marginLeft: 17, marginRight: 17}} key={index}>
               <div className={styles.itemPage} key={index}>
-                <img className={styles.img} src={item.img}/>
+                <img alt='' className={styles.img} src={item.img}/>
                 <span className={styles.abb}>{item.abb}</span>
                 <div style={{display: 'flex', flex: 1}}/>
 
@@ -159,12 +158,11 @@ export default class RateInfo extends Component {
 
     }
     group2.map((x, index) => {
-      x.price = rate[index]
+      return x.price = rate[index]
     });
     this.setState({
       price_changed: group2
-    })
-    console.log("price_changed:", group2)
+    });
   };
 
   isZero = (price) => {
@@ -185,7 +183,7 @@ export default class RateInfo extends Component {
     let group2 = price_changed;
     group2.map((x, index) => {
       x.price = '';
-      x.price2 = rate[index]
+      return x.price2 = rate[index]
     });
     this.setState({
       price_changed: group2

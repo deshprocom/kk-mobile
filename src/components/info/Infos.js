@@ -92,6 +92,7 @@ export default class Infos extends Component {
                     <span className={styles.total_views}>{info.total_views}</span>
 
                     <img
+                      alt=''
                       className={styles.likes_count}
                       src={Images.social.like_gray}/>
                     <span className={styles.total_views}>{this.show_count(info.likes_count)}</span>
@@ -105,6 +106,7 @@ export default class Infos extends Component {
 
             <div style={{display: 'flex', flex: 1}}/>
             <img
+              alt=''
               src={info.image}
               className={styles.rightImg}/>
           </div>
