@@ -38,8 +38,6 @@ export default class BodyType extends Component {
   short = (item) => {
     const {images, body} = item;
     let des = body.replace(/[\n\r]/g, '<br/>');
-    console.log("body",body)
-    console.log("des",des)
     return <div>
       {strNotNull(body) ? <div
         className={styles.body} dangerouslySetInnerHTML={{__html: des}}/>: null}
