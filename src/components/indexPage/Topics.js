@@ -76,7 +76,7 @@ export default class Topics extends Component {
 
   long = (item) => {
     let title2 = item.title;
-    return <div>
+    return <div  style={{paddingRight:25}}>
       <span className={styles.body}>{title2}</span>
 
       {strNotNull(item.cover_link) ? <div
@@ -94,7 +94,7 @@ export default class Topics extends Component {
   short = (item) => {
     const {images, body} = item;
     let des = body.replace(/\n/g, <br/>);
-    return <div>
+    return <div style={{paddingRight:25}}>
       {strNotNull(body) ? <span
 
         className={styles.body}>{body}</span> : null}
@@ -106,29 +106,25 @@ export default class Topics extends Component {
   shortImage = (images) => {
     if (images.length === 1) {
       return (
-        <div className={styles.long_cover}>
+        <div className={styles.long_cover} style={{height:200,width:200}}>
 
           <img
-            className={styles.short_image}
+            className={styles.short_image_one}
             src={images[0].url}/>
         </div>
       )
-
     }
 
     let imageViews = images.map((item, key) => {
-      return <div
-        key={'short' + key}>
-        <img
-          className={styles.short_image}
-          src={item.url}/>
-      </div>
+      return <img
+        className={styles.short_image}
+        style={{}}
+        src={item.url}/>
 
     });
 
     return <div style={{
-      display: 'flex', flexWrap: 'wrap', flexDirection: 'row',
-      alignItems: 'center', marginLeft: 8
+      display: 'flex', flexWrap: 'wrap', flexDirection: 'row',width:'100%',justifyContent:'space-between'
     }}>
       {imageViews}
     </div>
