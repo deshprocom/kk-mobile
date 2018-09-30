@@ -39,18 +39,6 @@ export default class BodyType extends Component {
 
     </div>
   };
-  getNaturalWidth=(url)=> {
-    let image = new Image();
-    image.src = url;
-    let naturalWidth = image.width;
-    return naturalWidth
-  };
-  getNaturalHeight=(url)=> {
-    let image = new Image();
-    image.src = url;
-    let naturalHidth = image.height;
-    return naturalHidth
-  };
 
 
   short = (item) => {
@@ -64,26 +52,21 @@ export default class BodyType extends Component {
 
     </div>
   };
+
   shortImage = (rowData) => {
-    if (rowData.images.length === 1) {
-      let imgHeight = this.getNaturalHeight(rowData.images[0].url);
-      let imgWidth = (200 * this.getNaturalWidth(rowData.images[0].url)) / imgHeight;
+    if (rowData.images.length === 1 && strNotNull(rowData.images[0].url)) {
       return (
-        <div className={styles.long_cover}
-             style={{height: imgHeight < 200 ? imgHeight : 200,
-               width: imgWidth < window.screen.width - 34 ? imgWidth : 200}}>
-          <img className={styles.short_image_one}
-               onClick={() => {
-                 this.props.changeState(true, 0, rowData)
-               }}
-               src={rowData.images[0].url}/>
-        </div>
+        <img className={styles.short_image_one}
+             onClick={() => {
+               this.props.changeState(true, 0, rowData)
+             }}
+             src={rowData.images[0].url}/>
       )
     }
 
     let imageViews = rowData.images.map((item, key) => {
-      return <div key={key} className={styles.imgView}>
-        <img className={styles.short_image}
+      return <div key={item.url} className={styles.imgView}>
+        <img  className={styles.short_image}
              onClick={() => {
                this.props.changeState(true, key, rowData)
              }}
@@ -99,4 +82,9 @@ export default class BodyType extends Component {
     </div>
 
   }
+}
+
+
+class CoverImage extends Component{
+
 }
