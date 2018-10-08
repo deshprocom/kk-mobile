@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Card, Grid, Flex} from 'antd-mobile';
 import styles from './index.less';
 import {Images} from '../../Thems';
-import { routerRedux } from 'dva/router';
+import {routerRedux} from 'dva/router';
 
 
 const actions = [
@@ -62,6 +62,8 @@ const services = [
     icon: Images.navigation2.weather,
     text: '天气',
     size: {height: 23, width: 23},
+    path: 'http://wx.weather.com.cn/mweather/101330101.shtml#1',
+    externalPath: true
   },
   {
     icon: Images.navigation2.fast_food,
@@ -83,7 +85,7 @@ const services = [
 
 export default class HomeCardNav extends Component {
   clickToPath = (el) => {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     if (el.externalPath)
       window.location.href = el.path;
     else
@@ -98,10 +100,14 @@ export default class HomeCardNav extends Component {
               onClick={this.clickToPath}
 
         />
-        <Card.Body >
+
+        <Card.Body>
           <Flex className={styles.customFlex}>
             {services.map(dataItem => (
-              <Flex.Item key={dataItem.text} className={styles.customView}>
+              <Flex.Item key={dataItem.text} className={styles.customView}
+                         onClick={() => {
+                           // this.clickToPath(dataItem)
+                         }}>
                 <img style={dataItem.size} src={dataItem.icon} alt="" className={styles.customImg}/>
                 <span>{dataItem.text}</span>
               </Flex.Item>
