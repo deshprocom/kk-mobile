@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Card, Grid, Flex} from 'antd-mobile';
 import styles from './index.less';
 import {Images} from '../../Thems';
-import { routerRedux } from 'dva/router';
+import {routerRedux} from 'dva/router';
 
 
 const actions = [
@@ -83,13 +83,13 @@ const services = [
     text: '便民',
     size: {height: 18, width: 18},
     path: '/services/publicservice',
-  
+
   },
 ];
 
 export default class HomeCardNav extends Component {
   clickToPath = (el) => {
-    const { dispatch } = this.props;
+    const {dispatch} = this.props;
     if (el.externalPath)
       window.location.href = el.path;
     else
@@ -103,9 +103,11 @@ export default class HomeCardNav extends Component {
         <Grid data={actions} hasLine={false}
               onClick={this.clickToPath}
         />
-        <Card.Body >
+
+        <Card.Body>
           <Flex className={styles.customFlex}>
             {services.map(dataItem => (
+
               <Flex.Item key={dataItem.text}
                          onClick={() =>this.clickToPath(dataItem)}
                          className={styles.customView}>

@@ -1,22 +1,75 @@
 import React, {Component} from 'react';
-import { Carousel, Card, WhiteSpace, Flex } from 'antd-mobile';
+import {Carousel, Card, WhiteSpace, Flex} from 'antd-mobile';
 import styles from './index.less';
+import {Images} from "../../Thems";
+import {routerRedux} from "dva/router";
+import {strNotNull, sub} from "../../utils/utils";
 
 export default class HotelDetail extends Component {
+
+  state = {
+    opacity: 0
+  };
+
+  componentDidMount(){
+    if(true){
+      let offsetY = document.getElementById('detailPage').offsetTop;
+      if (offsetY <= 200) {
+        let opacity = offsetY / 200;
+        this.setState({opacity: opacity});
+      } else {
+        this.setState({opacity: 1});
+      }
+    }
+  }
+
+
+  _star = (star) => {
+    let stars = [];
+    for (let i = 1; i <= star; i++) {
+      stars.push(i);
+    }
+    return stars;
+  };
+
+  _discount = (price, discount_amount) => {
+    if (strNotNull(discount_amount)) {
+      if (Number.parseFloat(discount_amount) > Number.parseFloat(price)) {
+        return price;
+      } else {
+        return sub(Number.parseFloat(price), Number.parseFloat(discount_amount))
+      }
+    } else {
+      return price
+    }
+  };
+
   render() {
-    const { hotel } = this.props;
+    const {hotel} = this.props;
     const imagesLayout = hotel.images.map(image => {
-      return(
+      return (
         <img
           alt=''
           key={image.id}
           src={image.image}
-          style={{ width: '100%', verticalAlign: 'top' }}
+          style={{width: '100%', verticalAlign: 'top', height: 200}}
         />
       )
     });
-    return(
-      <div>
+    const {images, location, title, description, telephone, amap_poiid, amap_navigation_url, amap_location} = hotel;
+    return (
+      <div className={styles.detailPage}
+           id={'detailPage'}>
+        <div onClick={() => this.props.dispatch(routerRedux.goBack())}
+             style={{
+               zIndex: 99,
+               position: 'fixed',
+               top: 20,
+               left: 17,
+               backgroundColor: 'rgba(229,74,46,' + this.state.opacity + ')'
+             }}>
+          <img className={styles.sign_retrun} src={Images.sign_retrun}/>
+        </div>
         <Carousel
           autoplay={true}
           autoplayInterval={2000}
@@ -24,23 +77,51 @@ export default class HotelDetail extends Component {
         >
           {imagesLayout}
         </Carousel>
+
+        <div className={styles.nav_view}>
+
+          <div style={{width: '70%'}}>
+            <span className={styles.titleHotel}>{title}</span>
+            <div style={{display: 'flex', flexDirection: 'row', marginTop: 5, alignItems: 'center'}}>
+              <span style={{color: '#999999', fontSize: 12}}>酒店星级：</span>
+              {this._star(hotel.star_level).map((index) => {
+                return <img key={index} className={styles.stars} src={Images.macau.star}/>
+              })}
+            </div>
+            <span className={styles.location2}>地址：{location}</span>
+          </div>
+          <div style={{display: 'flex', flex: 1}}/>
+
+          <div style={{marginRight: 22, display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
+            {hotel.start_price !== '0.0' ? <span className={styles.price3}><span
+              style={{
+                color: '#FF3F3F',
+                fontSize: 12
+              }}>¥</span>{this._discount(hotel.start_price, hotel.discount_amount)}<span
+              style={{color: '#AAAAAA', fontSize: 12}}>起</span></span> : null}
+            <div style={{display: 'flex', flex: 1}}/>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+              <img style={{height: 14, width: 10}}
+                   src={Images.macau.location}/>
+              <span style={{color: "#4A90E2", fontSize: 12, marginLeft: 4}}>地图</span>
+            </div>
+
+          </div>
+        </div>
+        <WhiteSpace size="sm"/>
         <Card full>
-          <Card.Body >
-            {hotel.title}
-            <p>￥{hotel.start_price - hotel.discount_amount}</p>
-          </Card.Body>
-        </Card>
-        <WhiteSpace size="sm" />
-        <Card full>
-          <Card.Body >
+          <Card.Body>
             <div className="renderHtmlData"
                  dangerouslySetInnerHTML={{__html: hotel.description}}/>
           </Card.Body>
         </Card>
-        
+
+        <div style={{height: 50, backgroundColor: 'white'}}/>
+
         <Flex className={styles.detailFooter}>
           <div className={styles.leftFooter}>
-            联系客服
+            <img style={{width: 27, height: 23}} src={Images.macau.callPhone}/>
+            <span style={{color: "#666666", fontSize: 14, marginLeft: 11}}>联系客服</span>
           </div>
           <div className={styles.rightFooter}>
             预定房间

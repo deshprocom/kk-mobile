@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import styles from './index.less';
 import {strNotNull, getDateDiff} from "../../utils/utils";
 import {Images} from "../../Thems";
+import BodyType from '../topic/BodyType'
 
 export default class Topics extends Component {
   constructor(props) {
@@ -18,9 +19,20 @@ export default class Topics extends Component {
       isLoading: true,
       nextPage: 1,
       height: document.documentElement.clientHeight * 3 / 4,
+      max: false,
+      index: 0,
+      item:{}
     };
 
     this._topicsData = [];
+  };
+
+  changeState = (max, index,item) => {
+    this.setState({
+      max,
+      index,
+      item
+    })
   }
 
   componentDidMount() {
@@ -65,102 +77,34 @@ export default class Topics extends Component {
     }
   };
 
-  bodyTypes = (item) => {
-    switch (item.body_type) {
-      case "long":
-        return this.long(item)
-      case "short":
-        return this.short(item)
-    }
-  };
-
-  long = (item) => {
-    let title2 = item.title;
-    return <div>
-      <span className={styles.body}>{title2}</span>
-
-      {strNotNull(item.cover_link) ? <div
-        className={styles.long_cover}
-      >
-        <img alt='' src={item.cover_link}/>
-      </div> : null}
-
-
-    </div>
-  };
-
-  short = (item) => {
-    const {images, body} = item;
-    return <div>
-      {strNotNull(body) ? <span
-
-        className={styles.body}>{body}</span> : null}
-
-      {images && images.length > 0 ? this.shortImage(images) : null}
-
-    </div>
-  };
-  shortImage = (images) => {
-    if (images.length === 1) {
-      return (
-        <div className={styles.long_cover}>
-
-          <img
-            alt=''
-            className={styles.short_image}
-            src={images[0].url}/>
-        </div>
-      )
-
-    }
-
-    let imageViews = images.map((item, key) => {
-      return <div
-        key={'short' + key}>
-        <img
-          alt=''
-          className={styles.short_image}
-          src={item.url}/>
-      </div>
-
-    });
-
-    return <div style={{
-      display: 'flex', flexWrap: 'wrap', flexDirection: 'row',
-      alignItems: 'center', marginLeft: 8
-    }}>
-      {imageViews}
-    </div>
-
-  }
 
   render() {
     const row = (rowData, sectionID, rowID) => {
       let linkPath = `/topics/${rowData.id}`;
       const {
-        user, created_at, total_likes, total_comments, body_type, location, current_user_liked, excellent
+        user, created_at, images, total_likes, total_comments, body_type, location, current_user_liked, excellent
       } = rowData;
       const {address_title} = location;
       return (
-        <Link to={linkPath} key={rowID} className={styles.itemPage}>
-          <div className={styles.userItem}>
-            <img alt='' className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
-            <span className={styles.nick_name}>{user.nick_name}</span>
-            <div style={{display: 'flex', flex: 1}}/>
-            {excellent ?
-              <span className={styles.txt_long} style={{color: '#F24A4A', borderColor: '#F24A4A'}}>精选</span> : null}
-            {body_type === 'long' ? <span className={styles.txt_long}>长帖</span> : null}
+        <div className={styles.itemPage}>
+          <Link to={linkPath} key={rowID}>
+            <div  className={styles.userItem}>
+              <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
+              <span className={styles.nick_name}>{user.nick_name}</span>
+              <div style={{display: 'flex', flex: 1}}/>
+              {excellent ?
+                <span className={styles.txt_long} style={{color: '#F24A4A', borderColor: '#F24A4A'}}>精选</span> : null}
+              {body_type === 'long' ? <span className={styles.txt_long}>长帖</span> : null}
 
-            <div style={{paddingTop: 5, paddingBottom: 5, paddingRight: 5, paddingLeft: 5}} onClick={() => {
-            }}>
-              <img
-                alt=''
-                className={styles.more_3}
-                src={Images.social.more_3}/>
+              <div style={{paddingTop: 5, paddingBottom: 5, paddingRight: 5, paddingLeft: 5}} onClick={() => {
+              }}>
+                <img
+                  className={styles.more_3}
+                  src={Images.social.more_3}/>
+              </div>
             </div>
-          </div>
-
-          {this.bodyTypes(rowData)}
+            <BodyType rowData={rowData} changeState={this.changeState}/>
+          </Link>
 
           <div className={styles.bottomView}>
             <span
@@ -170,7 +114,6 @@ export default class Topics extends Component {
             <div
               className={styles.btn_like}>
               <img
-                alt=''
                 className={styles.like}
                 src={current_user_liked ? Images.social.like_red : Images.social.like_gray}/>
               <span className={styles.time} style={{marginLeft: 4, marginRight: 25}}>{total_likes}</span>
@@ -179,14 +122,36 @@ export default class Topics extends Component {
             <div
               className={styles.btn_like}>
               <img
-                alt=''
                 className={styles.comment}
                 src={Images.social.comment_gray}/>
               <span className={styles.time} style={{marginLeft: 4}}>{total_comments}</span>
             </div>
           </div>
 
-        </Link>
+          {this.state.max && this.state.item.id == rowData.id ? <div style={{
+            backgroundColor: 'rgb(20,20,20)',
+            position: 'fixed',
+            zIndex: 999,
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+            textAlign: 'center',
+            display: 'flex'
+
+          }}
+                                 onClick={() => {
+                                   this.setState({
+                                     max: false
+                                   })
+                                 }}>
+            {strNotNull(images[this.state.index]) ?
+              <img style={{width: '100%', height: 'auto', alignSelf: 'center'}}
+                   src={images[this.state.index].url}/> : null}
+
+          </div> : null}
+
+        </div>
       );
     };
 

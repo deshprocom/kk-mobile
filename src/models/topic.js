@@ -1,16 +1,18 @@
 import {
   queryTopics,
   queryTopicDetail,
+  queryTopicComments
 } from '../services/topic';
 
 export default {
   namespace: 'topic',
-  
+
   state: {
     topics: [],
     topicDetail: null,
+    topicComments:[]
   },
-  
+
   effects: {
     *fetchTopics({ payload }, { call, put }) {
       const response = yield call(queryTopics, payload);
@@ -26,8 +28,15 @@ export default {
         payload: response.data,
       });
     },
+    *fetchTopicComments({ payload }, { call, put }) {
+      const response = yield call(queryTopicComments, payload);
+      yield put({
+        type: 'setTopicComments',
+        payload: response.data,
+      });
+    },
   },
-  
+
   reducers: {
     setTopics(state, action) {
       return {
@@ -39,6 +48,12 @@ export default {
       return {
         ...state,
         topicDetail: action.payload,
+      };
+    },
+    setTopicComments(state, action) {
+      return {
+        ...state,
+        topicComments: action.payload,
       };
     },
   },

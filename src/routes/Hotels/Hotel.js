@@ -10,13 +10,13 @@ export default class Hotel extends Component {
   constructor(props) {
     super(props);
     const params = queryString.parse(props.location.search);
-  
+
     this.state = {
       checkinDate: params.checkinDate,
       checkoutDate: params.checkoutDate,
     };
   }
-  
+
   componentDidMount() {
     const { params } = this.props.match;
     console.log('componentDidMount')
@@ -25,12 +25,12 @@ export default class Hotel extends Component {
       payload: { id: params.id, date: this.state.checkinDate },
     });
   }
-  
+
   render() {
     const { hotelDetail } = this.props.hotel;
     return (
       <div>
-        {hotelDetail && <HotelDetail hotel={hotelDetail}/>}
+        {hotelDetail && <HotelDetail hotel={hotelDetail} dispatch={this.props.dispatch}/>}
       </div>
     );
   }
