@@ -12,12 +12,12 @@ export default class HotelDetail extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll,true);
   }
 
   handleScroll = () => {
     let detailPage = document.getElementById('detailPage');
-    let offsetY = detailPage.offsetTop;
+    let offsetY = detailPage && detailPage.offsetTop;
     console.log("ppp", offsetY)
     if (offsetY <= 200) {
       let opacity = offsetY / 200;
