@@ -8,3 +8,8 @@ export async function queryCategories() {
 export async function queryProducts(params) {
   return request(`/shop/products?${toSnakeToJson(params)}`);
 }
+
+export async function queryProductDetail(params) {
+  return request(`/shop/products/${params.id}`);
+}
+

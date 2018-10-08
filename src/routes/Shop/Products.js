@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
-import classnames from "classnames";
-import {Link} from 'dva/router';
 import ProductList from "../../components/Shop/ProductList";
 
 @connect(({ shop }) => ({
