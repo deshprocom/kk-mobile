@@ -77,7 +77,7 @@ export default class BodyType extends Component {
     });
 
     return <div style={{
-      display: 'flex', flexWrap: 'wrap', flexDirection: 'row', width: '100%', justifyContent: 'space-between'
+      display: 'flex', flexWrap: 'wrap', flexDirection: 'row', width: '100%'
     }}>
       {imageViews}
     </div>
