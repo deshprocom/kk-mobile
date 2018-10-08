@@ -45,7 +45,7 @@ export default class ArriveAndDepart extends Component {
 
         <div style={{
           marginLeft: 17, marginRight: 17, paddingBottom: 40,
-          display: 'flex', flexDirection: 'column',
+          display: 'flex', flexDirection: 'column',marginTop:50
         }}>
           <span className={styles.txt1} style={{marginTop: 15}}>一、过境准备</span>
           <span className={styles.txt2} style={{marginTop: 6}}>{txt1}</span>

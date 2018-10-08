@@ -5,7 +5,7 @@ import {strNotNull} from "../utils/utils";
 
 export default class NavBar extends Component {
   render() {
-    const {title,dispatch} = this.props;
+    const {title} = this.props;
     return (
       <div
         style={{
@@ -28,7 +28,7 @@ export default class NavBar extends Component {
         <div style={{display:'flex',flex:1}}/>
         {strNotNull(title) ? <span style={{color: 'white', fontSize: 15}}>{title}</span> : null}
         <div style={{display:'flex',flex:1}}/>
-        <div/>
+        <div style={{marginRight:17}}/>
       </div>
     );
   }
