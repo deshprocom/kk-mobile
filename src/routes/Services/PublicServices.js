@@ -11,12 +11,12 @@ export default class PublicServices extends Component {
       type: 'hotline/fetchPublicServices'
     })
   }
-  
+
   render() {
     const { publicServices } = this.props.hotline;
     return(
       <div>
-        { publicServices && <ServiceList items={publicServices}/> }
+        { publicServices && <ServiceList items={publicServices} type={'public'} dispatch={this.props.dispatch}/> }
       </div>
     );
   }

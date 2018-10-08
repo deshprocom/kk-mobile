@@ -11,15 +11,19 @@ export default class HotelDetail extends Component {
     opacity: 0
   };
 
-  componentDidMount(){
-    if(true){
-      let offsetY = document.getElementById('detailPage').offsetTop;
-      if (offsetY <= 200) {
-        let opacity = offsetY / 200;
-        this.setState({opacity: opacity});
-      } else {
-        this.setState({opacity: 1});
-      }
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll,true);
+  }
+
+  handleScroll = () => {
+    let detailPage = document.getElementById('detailPage');
+    let offsetY = detailPage && detailPage.offsetTop;
+    console.log("ppp", offsetY)
+    if (offsetY <= 200) {
+      let opacity = offsetY / 200;
+      this.setState({opacity: opacity});
+    } else {
+      this.setState({opacity: 1});
     }
   }
 
@@ -58,17 +62,23 @@ export default class HotelDetail extends Component {
     });
     const {images, location, title, description, telephone, amap_poiid, amap_navigation_url, amap_location} = hotel;
     return (
-      <div className={styles.detailPage}
-           id={'detailPage'}>
-        <div onClick={() => this.props.dispatch(routerRedux.goBack())}
-             style={{
-               zIndex: 99,
-               position: 'fixed',
-               top: 20,
-               left: 17,
-               backgroundColor: 'rgba(229,74,46,' + this.state.opacity + ')'
-             }}>
-          <img className={styles.sign_retrun} src={Images.sign_retrun}/>
+      <div className={styles.detailPage}>
+        <div
+          style={{
+            height: 50,
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            zIndex: 99,
+            position: 'fixed',
+            backgroundColor: 'rgba(229,74,46,' + this.state.opacity + ')'
+          }}>
+          <img onClick={() => this.props.dispatch(routerRedux.goBack())}
+               style={{
+                 marginLeft: 17
+               }}
+               className={styles.sign_retrun} src={Images.sign_retrun}/>
         </div>
         <Carousel
           autoplay={true}
@@ -78,7 +88,8 @@ export default class HotelDetail extends Component {
           {imagesLayout}
         </Carousel>
 
-        <div className={styles.nav_view}>
+        <div className={styles.nav_view}
+             id="detailPage">
 
           <div style={{width: '70%'}}>
             <span className={styles.titleHotel}>{title}</span>

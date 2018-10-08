@@ -11,12 +11,12 @@ export default class FastFoods extends Component {
       type: 'hotline/fetchFastFoods'
     })
   }
-  
+
   render() {
     const { fastFoods } = this.props.hotline;
     return(
       <div>
-        { fastFoods && <ServiceList items={fastFoods}/> }
+        { fastFoods && <ServiceList items={fastFoods} type={'fastFoods'} dispatch={this.props.dispatch}/> }
       </div>
     );
   }
