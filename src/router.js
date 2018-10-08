@@ -6,6 +6,7 @@ import ExchangeRateIndex from './routes/ExchangeRate/Index';
 import HotelsIndex from './routes/Hotels/Index';
 import TopicIndex from './routes/Topic/Index';
 import ShopIndex from './routes/Shop/Index';
+import servicesIndex from './routes/Services/Index';
 
 function RouterConfig({ history }) {
   return (
@@ -17,6 +18,7 @@ function RouterConfig({ history }) {
         <Route path="/hotels" component={HotelsIndex} />
         <Route path="/topics" component={TopicIndex} />
         <Route path="/shop" component={ShopIndex} />
+        <Route path="/services" component={servicesIndex} />
       </Switch>
     </Router>
   );

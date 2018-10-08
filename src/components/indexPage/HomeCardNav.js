@@ -62,22 +62,28 @@ const services = [
     icon: Images.navigation2.weather,
     text: '天气',
     size: {height: 23, width: 23},
+    path: 'http://wx.weather.com.cn/mweather/101330101.shtml#1',
+    externalPath: true
   },
   {
     icon: Images.navigation2.fast_food,
     text: '快餐',
     size: {height: 22, width: 22},
+    path: '/services/fastfood',
   },
   {
 
     icon: Images.navigation2.round_trip,
-    text: '人闻',
+    text: '往返',
     size: {height: 20, width: 20},
+    path: '/services/arrive_and_depart'
   },
   {
     icon: Images.navigation2.convenient,
     text: '便民',
-    size: {height: 18, width: 18}
+    size: {height: 18, width: 18},
+    path: '/services/publicservice',
+  
   },
 ];
 
@@ -96,12 +102,13 @@ export default class HomeCardNav extends Component {
 
         <Grid data={actions} hasLine={false}
               onClick={this.clickToPath}
-
         />
         <Card.Body >
           <Flex className={styles.customFlex}>
             {services.map(dataItem => (
-              <Flex.Item key={dataItem.text} className={styles.customView}>
+              <Flex.Item key={dataItem.text}
+                         onClick={() =>this.clickToPath(dataItem)}
+                         className={styles.customView}>
                 <img style={dataItem.size} src={dataItem.icon} alt="" className={styles.customImg}/>
                 <span>{dataItem.text}</span>
               </Flex.Item>
