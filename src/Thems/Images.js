@@ -78,6 +78,14 @@ const images = {
     like_red: '/images/social/like_red.png',
     comment_gray: '/images/social/comment_gray.png'
   },
+  fastBtn: {
+    round1: '/images/fastBtn/round1.jpeg',
+    round2: '/images/fastBtn/round2.jpeg',
+    round3: '/images/fastBtn/round3.jpeg',
+    round4: '/images/fastBtn/round4.jpeg',
+    round5: '/images/fastBtn/round5.jpeg',
+    round6: '/images/fastBtn/round6.jpeg'
+  },
 
   out_exit: '/images/out_exit.png'
 }
