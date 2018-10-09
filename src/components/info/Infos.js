@@ -69,9 +69,9 @@ export default class Infos extends Component {
     }
   };
 
-  goBack=()=>{
+  goBack = () => {
     this.props.dispatch && this.props.dispatch(routerRedux.goBack());
-  }
+  };
 
   render() {
     const row = (info, sectionID, rowID) => {
@@ -132,8 +132,8 @@ export default class Infos extends Component {
     );
 
     return (
-      <div style={{display:'flex',width:'100%',flexDirection:'column'}}>
-        <NavBar title={'美食'} goBack={this.goBack}/>
+      <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
+        <NavBar title={this.infoType(this.props.infoType)} goBack={this.goBack}/>
         <ListView
           dataSource={this.state.dataSource}
           renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
@@ -149,5 +149,20 @@ export default class Infos extends Component {
         />
       </div>
     );
+  }
+
+
+  infoType = (infoType) => {
+    if (infoType === 'cate') {
+      return '美食'
+    } else if (infoType === 'recreation') {
+      return '娱乐'
+    } else if (infoType === 'scenic') {
+      return '景点'
+    } else if (infoType === 'humanities') {
+      return '人文'
+    } else {
+      return '资讯'
+    }
   }
 }
