@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import {List} from "antd-mobile";
 import styles from './index.less'
-import NavBar from "../NavBar";
+import GoBack from "../GoBack";
 import {Images} from '../../Thems'
-import {routerRedux} from "dva/router";
 
 const Item = List.Item;
 
-
 export default class ServiceList extends Component {
 
-  goBack=()=>{
-    this.props.dispatch && this.props.dispatch(routerRedux.goBack());
-  }
-
   render() {
-    const { items,type } = this.props;
+    const { items, type } = this.props;
     const itemsLayout = items.map((item, index) => {
       return(
         <Item key={index}>
@@ -45,8 +39,7 @@ export default class ServiceList extends Component {
 
     return(
       <div className={styles.total_page}>
-        <NavBar title={type === 'fastFoods' ? '快餐热线' : '便民电话'}
-                goBack={this.goBack}/>
+        <GoBack title={type === 'fastFoods' ? '快餐热线' : '便民电话'}/>
         <List style={{marginTop:50,paddingBottom:80}}>
           {itemsLayout}
         </List>

@@ -4,7 +4,7 @@ import {Link} from 'dva/router';
 import ReactDOM from 'react-dom';
 import styles from './index.less';
 import {Images} from '../../Thems';
-import {logMsg, strNotNull, sub,add} from '../../utils/utils'
+import {logMsg, strNotNull, sub} from '../../utils/utils'
 
 const categorie_select = [{id: 0, title: '全部', type: '', isSelect: true},
   {id: 1, title: '氹仔区', type: 'dangzai', isSelect: false}, {
@@ -131,7 +131,7 @@ export default class Hotels extends Component {
 
     const row = (hotel, sectionID, rowID) => {
       let linkPath = `/hotels/${hotel.id}`;
-      const {title, address, location, logo, start_price, star_level, discount_amount} = hotel;
+      const {title, location, logo, start_price, discount_amount} = hotel;
       return (
         <Link key={rowID} to={linkPath}>
           <div style={{padding: '14px 17px'}} className={styles.hotelItemView}>

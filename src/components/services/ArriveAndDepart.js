@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import styles from './index.less';
 import {Images} from '../../Thems'
-import {strNotNull} from "../../utils/utils";
-import NavBar from "../NavBar";
+import GoBack from "../GoBack";
 
 const txt1 = '从深圳过境至澳门主要的交通方式就是乘船过境，在购买船票过境前，首先得确保自身的港澳同行证及身份证仍在有效期内，船票采用实名制购买，以上两证请随身携带以防遗漏。购票时间则建议最好在过境当日的前1~3日进行预定，避免出现临时订票没空位的情况。'
 const txt2 = '游客可以乘坐深圳地铁 2号线（蛇口线）至 蛇口港地铁站，并从蛇口港C出口出去，转乘328/M105等公交（1个站，约15分钟）到达新招商蛇口邮轮码头； 从蛇口港地铁站到蛇口邮轮中心，全程约2.3公里，预计10分钟能到。 '
@@ -32,16 +31,11 @@ export default class ArriveAndDepart extends Component {
     })
   }
 
-  goBack = () => {
-    this.props.history.goBack()
-  };
-
-
   render() {
 
     return (
       <div style={{display: 'flex', flex: 1}}>
-        <NavBar title={'邮轮往返指南'} goBack={this.goBack}/>
+        <GoBack title={'邮轮往返指南'}/>
 
         <div style={{
           marginLeft: 17, marginRight: 17, paddingBottom: 40,

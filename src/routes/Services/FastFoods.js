@@ -16,7 +16,7 @@ export default class FastFoods extends Component {
     const { fastFoods } = this.props.hotline;
     return(
       <div>
-        { fastFoods && <ServiceList items={fastFoods} type={'fastFoods'} dispatch={this.props.dispatch}/> }
+        { fastFoods && <ServiceList items={fastFoods} type={'fastFoods'}/> }
       </div>
     );
   }
