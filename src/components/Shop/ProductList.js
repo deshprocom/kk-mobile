@@ -39,7 +39,6 @@ export default class ProductList extends Component {
       <div style={{width:'100%',paddingBottom:80}}>
         <Grid data={products} columnNum={2}
               hasLine={false}
-              // className={styles.gridView}
               itemStyle={{ height: '264px', background: 'rgba(0,0,0,.05)' }}
               renderItem={this.renderItem}/>
       </div>
