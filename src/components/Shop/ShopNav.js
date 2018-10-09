@@ -10,8 +10,8 @@ export default class ShopNav extends Component {
       return(
         <div key={category.id}
              onClick={() => onClick(category.id)}
-             className={classnames({active: category.id === navId})}
-             style={{padding: '10px'}}>
+             style={{padding: '10px',fontSize:14}}
+             className={classnames({active: category.id === navId})}>
           {category.name}
         </div>
       )

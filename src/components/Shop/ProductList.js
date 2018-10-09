@@ -13,7 +13,6 @@ export default class ProductList extends Component {
 
                              }}>
       <img
-        // style={{resizeMode:'contain'}}
         className={styles.imgThem}
         src={icon}/>
 
