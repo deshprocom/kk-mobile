@@ -22,6 +22,7 @@ export default class BodyType extends Component {
   };
 
   long = (item) => {
+
     let title2 = item.title;
     let des = title2.replace(/[\n\r]/g, '<br/>');
     return <div>
@@ -32,7 +33,7 @@ export default class BodyType extends Component {
         className={styles.long_cover} style={{marginRight: 17}}>
         <img src={item.cover_link}
              onClick={() => {
-               // this.props.changeState(true,0,item)
+               this.props.changeState(true,0,item)
              }}
              className={styles.short_image_one}/>
       </div> : null}
@@ -48,7 +49,7 @@ export default class BodyType extends Component {
     return <div>
       {strNotNull(des) ? <div
         className={styles.body}
-        style={{marginBottom:0}}
+        style={{marginBottom:9}}
         dangerouslySetInnerHTML={{__html: des}}/> : null}
 
       {images && images.length > 0 ? this.shortImage(item) : null}
@@ -78,12 +79,10 @@ export default class BodyType extends Component {
              src={rowData.images[0].url}/>
       )
     }else{
-      return <div style={{width: '100%'}}>
-        <Grid data={rowData.images} columnNum={3}
-              hasLine={false}
-              itemStyle={{ height: '108px'}}
-              renderItem={this.shortRenderItem}/>
-      </div>
+      return <Grid data={rowData.images} columnNum={3}
+                   hasLine={false}
+                   itemStyle={{ height: '108px'}}
+                   renderItem={this.shortRenderItem}/>
     }
   }
 }
