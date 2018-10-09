@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Flex} from 'antd-mobile';
 import classnames from 'classnames';
 import styles from './index.less';
+import NavBar from '../NavBar'
+import {routerRedux} from "dva/router";
 
 export default class ShopNav extends Component {
   render() {
@@ -18,10 +20,14 @@ export default class ShopNav extends Component {
     });
     return (
       <div className={styles.shopNav}>
+        <NavBar title={'商城'} goBack={this.goBack}/>
         <Flex wrap='wrap'>
           {categoriesLayout}
         </Flex>
       </div>
     );
+  }
+  goBack=()=>{
+    this.props.dispatch && this.props.dispatch(routerRedux.goBack());
   }
 }

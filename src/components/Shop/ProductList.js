@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'dva/router';
 import {Grid} from  'antd-mobile';
-import styles from './index.less'
+import styles from './index.less';
+
 
 export default class ProductList extends Component {
 
