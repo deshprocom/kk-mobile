@@ -21,7 +21,7 @@ export default class Topic extends Component {
 
   render() {
     const {topicDetail,topicComments} = this.props.topic;
-    console.log("dshjkdjskds,",this.props.topic)
+    console.log("topics",this.props.topic)
     return (
       <div style={{backgroundColor:'white'}}>
         <TopicDetail topicDetail={topicDetail} topicComments={topicComments}/>

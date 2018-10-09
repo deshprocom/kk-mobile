@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card} from 'antd-mobile';
+import {Card, Grid} from 'antd-mobile';
 import {strNotNull, getDateDiff} from '../../utils/utils';
 import {Images} from '../../Thems';
 import styles from '../indexPage/index.less';
@@ -22,6 +22,7 @@ export default class BodyType extends Component {
   };
 
   long = (item) => {
+
     let title2 = item.title;
     let des = title2.replace(/[\n\r]/g, '<br/>');
     return <div>
@@ -29,10 +30,10 @@ export default class BodyType extends Component {
         className={styles.body} dangerouslySetInnerHTML={{__html: des}}/> : null}
 
       {strNotNull(item.cover_link) ? <div
-        className={styles.long_cover}  style={{marginRight:17}}>
+        className={styles.long_cover} style={{marginRight: 17}}>
         <img src={item.cover_link}
              onClick={() => {
-               // this.props.changeState(true,0,item)
+               this.props.changeState(true,0,item)
              }}
              className={styles.short_image_one}/>
       </div> : null}
@@ -47,11 +48,25 @@ export default class BodyType extends Component {
     let des = body.replace(/[\n\r]/g, '<br/>');
     return <div>
       {strNotNull(des) ? <div
-        className={styles.body} dangerouslySetInnerHTML={{__html: des}}/> : null}
+        className={styles.body}
+        style={{marginBottom:9}}
+        dangerouslySetInnerHTML={{__html: des}}/> : null}
 
       {images && images.length > 0 ? this.shortImage(item) : null}
 
     </div>
+  };
+
+  shortRenderItem = (item, index) => {
+    return (
+      <div key={item.url} className={styles.imgView}>
+        <img className={styles.short_image}
+             onClick={() => {
+               this.props.changeState(true, index, item)
+             }}
+             src={item.url}/>
+      </div>
+    )
   };
 
   shortImage = (rowData) => {
@@ -63,29 +78,11 @@ export default class BodyType extends Component {
              }}
              src={rowData.images[0].url}/>
       )
+    }else{
+      return <Grid data={rowData.images} columnNum={3}
+                   hasLine={false}
+                   itemStyle={{ height: '108px'}}
+                   renderItem={this.shortRenderItem}/>
     }
-
-    let imageViews = rowData.images.map((item, key) => {
-      return <div key={item.url} className={styles.imgView}>
-        <img  className={styles.short_image}
-             onClick={() => {
-               this.props.changeState(true, key, rowData)
-             }}
-             src={item.url}/>
-      </div>
-
-    });
-
-    return <div style={{
-      display: 'flex', flexWrap: 'wrap', flexDirection: 'row', width: '100%'
-    }}>
-      {imageViews}
-    </div>
-
   }
-}
-
-
-class CoverImage extends Component{
-
 }

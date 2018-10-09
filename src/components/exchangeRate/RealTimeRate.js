@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import styles from './index.less';
 import {isEmptyObject} from '../../utils/utils';
 import RateInfo from './RateInfo';
-import {Link} from 'dva/router';
+import {Link, routerRedux} from 'dva/router';
+import NavBar from "../NavBar";
 
 export default class RealTimeRate extends Component {
 
@@ -16,10 +17,9 @@ export default class RealTimeRate extends Component {
     })
   }
 
-  componentDidMount() {
-    window.document.title = "实时汇率";
+  goBack = () => {
+    this.props.dispatch && this.props.dispatch(routerRedux.goBack());
   };
-
 
   render() {
     const {exchangeRate} = this.props;
@@ -30,6 +30,8 @@ export default class RealTimeRate extends Component {
     }
     return (
       <div className={styles.ratePage}>
+        <NavBar title={'实时汇率'} goBack={this.goBack}/>
+
         <RateInfo
           type={'real_time'}
           change_time={this.change_time}
