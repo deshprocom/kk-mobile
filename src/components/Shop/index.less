@@ -1,4 +1,7 @@
-.shopNav{
+.shopNav {
+  width:100%;
+  display: flex;
+  flex-direction: column;
   background: white;
   :global {
     .active {
@@ -6,3 +9,209 @@
     }
   }
 }
+
+.gridView {
+  margin-left: 17px;
+  margin-right: 17px;
+}
+
+.listItem {
+  height: 264px;
+  background-color: white;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.imgThem {
+  height: 178px;
+  min-width: 100%;
+}
+
+.txtName {
+  font-size: 14px;
+  color: #444444;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
+.viewPrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+  margin-bottom: 8px;
+}
+
+.txtNum {
+  font-size: 12px;
+  color: #AAAAAA;
+  margin-right: 15px;
+}
+
+.detail_page {
+  width: 100%;
+  height: 54px;
+  background-color: #FFFFFF;
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 999
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 54px;
+}
+
+.bottomLeftView {
+  width: 31%;
+  height: 40px;
+  margin-left: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #CCCCCC;
+  border-radius: 3px;
+}
+
+.bottomLeft {
+  width: 98%;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border-width: 1px;
+  border-radius: 3px;
+}
+
+.bottomLeftImg {
+  width: 24px;
+  height: 24px;
+}
+
+.bottomRight {
+  width: 55%;
+  height: 40px;
+  border-radius: 3px;
+  margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  background-color: #F34A4A
+}
+
+.bottomRightTxt {
+  font-size: 18px;
+  color: white
+}
+
+.bottom_page {
+  display: flex;
+  padding-left: 17px;
+  padding-right: 17px;
+  padding-top: 14px;
+  padding-bottom: 22px;
+  flex-direction: column;
+  background-color: white;
+
+  .title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #333333
+  }
+  .bottom_viewPrice {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-items: flex-end
+  }
+
+  .price1 {
+    font-size: 18px;
+    color: #F34A4A;
+    margin-bottom: 2px;
+  }
+  .price2 {
+    font-size: 24px;
+    color: #F34A4A;
+    margin-left: 5px;
+  }
+  .price3 {
+    font-size: 14px;
+    color: #CCCCCC;
+    margin-left: 10px;
+    text-decoration-line: line-through;
+    margin-bottom: 3px;
+    -moz-text-decoration-line: line-through;
+    -o-text-decoration-line: line-through;
+    text-decoration-line: line-through;
+  }
+  .price4 {
+    font-size: 14px;
+    color: #CCCCCC;
+    margin-left: 10px;
+    margin-bottom: 3px;
+  }
+  .viewLogistics {
+    display: flex;
+    align-items: center
+  }
+  .logistics1 {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: #FF6C6C;
+    border-radius: 2px;
+    color: white;
+    font-size: 12px;
+  }
+  .logistics2 {
+    font-size: 14px;
+    color: #CCCCCC;
+    margin-left: 13px;
+  }
+  .logistics3 {
+    font-size: 14px;
+    color: #666666;
+  }
+}
+
+.spec_View{
+  margin-top: 7px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 48px;
+  margin-bottom: 7px;
+}
+
+.spec{
+  font-size: 14px;
+  color: #333333;
+  margin-left: 17px;
+  font-weight: bold
+}
+.unSelected{
+  font-size: 14px;
+  color: #AAAAAA;
+  margin-left: 24px;
+}
+.right_img{
+  width: 8px;
+  height: 16px;
+  margin-right: 16px;
+}
+

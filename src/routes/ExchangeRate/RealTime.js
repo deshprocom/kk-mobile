@@ -17,7 +17,7 @@ export default class RealTime extends Component {
 
     return (
       <div style={{overflowX: 'hidden'}}>
-        <RealTimeRate exchangeRate={realTimeRates}/>
+        <RealTimeRate exchangeRate={realTimeRates} dispatch={this.props.dispatch}/>
       </div>
     );
   }

@@ -3,6 +3,7 @@ import styles from './index.less';
 import RateInfo from './RateInfo';
 import {Tabs} from 'antd-mobile';
 import Leaderboard from './Leaderboard';
+import GoBack from '../GoBack'
 
 const categories = [{sub: 1, title: '汇率咨询达人', type: 'ex_rate'}, {sub: 2, title: '积分达人', type: 'integral'}, {
   sub: 3,
@@ -12,14 +13,11 @@ const categories = [{sub: 1, title: '汇率咨询达人', type: 'ex_rate'}, {sub
 
 export default class LocalRatePage extends Component {
 
-  componentDidMount() {
-    window.document.title = "澳门本地汇率参考";
-  }
-
   render() {
     const {exchangeRate} = this.props;
     return (
       <div className={styles.ratePage}>
+        <GoBack title={'澳门本地汇率参考'} />
         <RateInfo
           type={'local'}
           exchangeRate={exchangeRate}/>

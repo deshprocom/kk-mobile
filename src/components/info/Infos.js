@@ -3,7 +3,8 @@ import {ListView} from 'antd-mobile';
 import {Link} from 'dva/router';
 import styles from './index.less';
 import {Images} from '../../Thems';
-import {strNotNull} from '../../utils/utils'
+import {strNotNull} from '../../utils/utils';
+import GoBack from '../GoBack'
 
 export default class Infos extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ export default class Infos extends Component {
     } else {
       return 0
     }
-  }
+  };
 
   render() {
     const row = (info, sectionID, rowID) => {
@@ -127,7 +128,8 @@ export default class Infos extends Component {
     );
 
     return (
-      <div>
+      <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
+        <GoBack title={this.infoType(this.props.infoType)}/>
         <ListView
           dataSource={this.state.dataSource}
           renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
@@ -143,5 +145,20 @@ export default class Infos extends Component {
         />
       </div>
     );
+  }
+
+
+  infoType = (infoType) => {
+    if (infoType === 'cate') {
+      return '美食'
+    } else if (infoType === 'recreation') {
+      return '娱乐'
+    } else if (infoType === 'scenic') {
+      return '景点'
+    } else if (infoType === 'humanities') {
+      return '人文'
+    } else {
+      return '资讯'
+    }
   }
 }

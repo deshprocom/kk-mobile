@@ -40,7 +40,7 @@ export default class ServiceList extends Component {
     return(
       <div className={styles.total_page}>
         <GoBack title={type === 'fastFoods' ? '快餐热线' : '便民电话'}/>
-        <List style={{marginTop:50,paddingBottom:80}}>
+        <List style={{paddingBottom:80}}>
           {itemsLayout}
         </List>
       </div>

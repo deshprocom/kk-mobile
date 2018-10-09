@@ -3,6 +3,7 @@ import styles from './index.less';
 import {isEmptyObject} from '../../utils/utils';
 import RateInfo from './RateInfo';
 import {Link} from 'dva/router';
+import GoBack from "../GoBack";
 
 export default class RealTimeRate extends Component {
 
@@ -16,11 +17,6 @@ export default class RealTimeRate extends Component {
     })
   }
 
-  componentDidMount() {
-    window.document.title = "实时汇率";
-  };
-
-
   render() {
     const {exchangeRate} = this.props;
     if (isEmptyObject(exchangeRate)) {
@@ -30,6 +26,8 @@ export default class RealTimeRate extends Component {
     }
     return (
       <div className={styles.ratePage}>
+        <GoBack title={'实时汇率'}/>
+
         <RateInfo
           type={'real_time'}
           change_time={this.change_time}

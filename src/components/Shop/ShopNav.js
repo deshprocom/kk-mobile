@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Flex} from 'antd-mobile';
 import classnames from 'classnames';
 import styles from './index.less';
+import GoBack from '../GoBack'
 
 export default class ShopNav extends Component {
   render() {
@@ -10,14 +11,15 @@ export default class ShopNav extends Component {
       return(
         <div key={category.id}
              onClick={() => onClick(category.id)}
-             className={classnames({active: category.id === navId})}
-             style={{padding: '10px'}}>
+             style={{padding: '10px',fontSize:14}}
+             className={classnames({active: category.id === navId})}>
           {category.name}
         </div>
       )
     });
     return (
       <div className={styles.shopNav}>
+        <GoBack title={'商城'}/>
         <Flex wrap='wrap'>
           {categoriesLayout}
         </Flex>
