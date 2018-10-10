@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import HomeCarousel from "../../components/indexPage/HomeCarousel";
 import HomeCardNav from "../../components/indexPage/HomeCardNav";
 import HotRecommends from "../../components/indexPage/HotRecommends";
+
 @connect(({ homePage }) => ({
   homePage
 }))

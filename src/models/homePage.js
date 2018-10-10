@@ -47,7 +47,7 @@ export default {
     setup({ dispatch, history }) {
 
       history.listen(({pathname}) => {
-        if (pathname === '/') {
+        if (pathname === '/homepage') {
           dispatch({
             type: 'fetchBanners',
           });
