@@ -5,7 +5,8 @@
     "start-test": "cross-env API_ENV=test roadhog dev",
     "build": "cross-env API_ENV=prod roadhog build",
     "lint": "eslint --ext .js src test",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "deploy-test": "npm run build && scp -r dist/ test-1-deploy:/deploy/test/kk-mobile/"
   },
   "dependencies": {
     "antd-mobile": "^2.2.5",

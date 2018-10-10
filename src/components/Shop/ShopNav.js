@@ -9,17 +9,19 @@ export default class ShopNav extends Component {
     const {categories, onClick, navId} = this.props;
     const categoriesLayout = categories.map(category => {
       return(
+        // 用== 不用 ===， 因为navId有可能是字母串
         <div key={category.id}
              onClick={() => onClick(category.id)}
              style={{padding: '10px',fontSize:14}}
-             className={classnames({active: category.id === navId})}>
+             className={classnames({active: category.id == navId})}>
           {category.name}
         </div>
       )
     });
+  
     return (
       <div className={styles.shopNav}>
-        <GoBack title={'商城'}/>
+        <GoBack title={'商城'} goBackPath='/'/>
         <Flex wrap='wrap'>
           {categoriesLayout}
         </Flex>

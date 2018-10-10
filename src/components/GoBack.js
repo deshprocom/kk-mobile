@@ -6,12 +6,14 @@ import {routerRedux} from 'dva/router';
 
 @connect()
 export default class GoBack extends Component {
-  goBack=()=>{
-    this.props.dispatch(routerRedux.goBack());
+  goBack=(path)=>{
+    const {dispatch} = this.props;
+    if (!path) dispatch(routerRedux.goBack());
+    else dispatch(routerRedux.push(path));
   };
   
   render() {
-    const {title} = this.props;
+    const {title, goBackPath} = this.props;
     return (
       <div style={{marginBottom:50}}>
         <div
@@ -25,7 +27,7 @@ export default class GoBack extends Component {
             zIndex:99,
             backgroundColor: 'rgba(229,74,46,' + 1 + ')'
           }}>
-          <img onClick={this.goBack}
+          <img onClick={() => this.goBack(goBackPath)}
                style={{
                  marginLeft: 17,
                  height: 19,
