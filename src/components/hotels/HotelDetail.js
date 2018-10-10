@@ -13,7 +13,7 @@ export default class HotelDetail extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll,true);
+    window.addEventListener('scroll', this.handleScroll, true);
   }
 
   handleScroll = () => {
@@ -115,13 +115,15 @@ export default class HotelDetail extends Component {
         <div style={{height: 50, backgroundColor: 'white'}}/>
 
         <Flex className={styles.detailFooter}>
-          <div className={styles.leftFooter} >
-            <a  href={`tel:${telephone}`}>
+          <div className={styles.leftFooter}>
+            <a href={`tel:${telephone}`}>
               <img style={{width: 27, height: 23}} src={Images.macau.callPhone}/>
               <span style={{color: "#666666", fontSize: 14, marginLeft: 11}}>联系客服</span>
             </a>
           </div>
-          <div className={styles.rightFooter}>
+          <div className={styles.rightFooter} onClick={() => {
+            window.location.href = 'https://kkh5.deshpro.com/loadApp'
+          }}>
             预定房间
           </div>
         </Flex>
