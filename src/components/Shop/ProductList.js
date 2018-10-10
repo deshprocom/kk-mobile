@@ -9,14 +9,9 @@ export default class ProductList extends Component {
   renderItem = (item, index) => {
     let linkPath = `/shop/products/${item.id}`;
     const {title, price, all_stock, icon} = item;
-    return <Link key={index} to={linkPath} className={styles.listItem} style={index % 2 === 0 ? {} : {marginLeft: 8}}
-                             onClick={() => {
-
-                             }}>
-      <img
-        className={styles.imgThem}
-        src={icon}/>
-
+    return <Link key={index} to={linkPath} className={styles.listItem}
+                 style={index % 2 === 0 ? {} : {marginLeft: 8}}>
+      <img alt='' className={styles.imgThem} src={icon} />
       <span className={styles.txtName}>{title}</span>
       <div style={{display:'flex',flex: 1}}/>
       <div className={styles.viewPrice}>

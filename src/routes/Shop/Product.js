@@ -12,6 +12,7 @@ export default class Info extends Component {
       type: 'shop/fetchProductDetail',
       payload: { id: params.id },
     });
+    window.scrollTo(0, 0);
   }
   render() {
     const { productDetail } = this.props.shop;
