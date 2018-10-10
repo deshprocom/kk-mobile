@@ -34,14 +34,13 @@ export default class WebView extends Component {
     if (strNotNull(title) || strNotNull(src)) {
       return (
         <div style={{
-          width: window.screen.availWidth,
+          width: '100%',
           display: 'flex',
           flex: 1,
-          flexDirection: 'column',
-          paddingBottom: 50
+          flexDirection: 'column'
         }}>
           <GoBack title={this.state.title}/>
-          <iframe style={{border: 0, marginTop:0,width: window.screen.availWidth, height: window.screen.availHeight}}
+          <iframe style={{marginTop:0,width: '100%', height: window.screen.availHeight}}
                   src={this.state.src}/>
         </div>
       )
