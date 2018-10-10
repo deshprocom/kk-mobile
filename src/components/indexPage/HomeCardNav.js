@@ -28,7 +28,7 @@ const actions = [
     icon: Images.out_exit,
     text: '出入境',
     size: {height: 29, width: 31},
-    path: 'http://www.fsm.gov.mo/psp/pspmonitor/mobile/PortasdoCerco.aspx',
+    path: '/web_view/ex',
     externalPath: true
   },
   {
@@ -62,7 +62,7 @@ const services = [
     icon: Images.navigation2.weather,
     text: '天气',
     size: {height: 23, width: 23},
-    path: 'http://wx.weather.com.cn/mweather/101330101.shtml#1',
+    path: '/web_view/weather',
     externalPath: true
   },
   {
