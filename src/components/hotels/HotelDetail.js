@@ -4,6 +4,7 @@ import styles from './index.less';
 import {Images} from "../../Thems";
 import {routerRedux} from "dva/router";
 import {strNotNull, sub} from "../../utils/utils";
+import GoBack from "../GoBack";
 
 export default class HotelDetail extends Component {
 
@@ -12,7 +13,7 @@ export default class HotelDetail extends Component {
   };
 
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll,true);
+    window.addEventListener('scroll', this.handleScroll, true);
   }
 
   handleScroll = () => {
@@ -62,23 +63,8 @@ export default class HotelDetail extends Component {
     const {images, location, title, description, telephone, amap_poiid, amap_navigation_url, amap_location} = hotel;
     return (
       <div className={styles.detailPage}>
-        <div
-          style={{
-            height: 50,
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            zIndex: 99,
-            position: 'fixed',
-            backgroundColor: 'rgba(229,74,46,' + this.state.opacity + ')'
-          }}>
-          <img onClick={() => this.props.dispatch(routerRedux.goBack())}
-               style={{
-                 marginLeft: 17
-               }}
-               className={styles.sign_retrun} src={Images.sign_retrun}/>
-        </div>
+        <GoBack title={title} dispatch={this.props.dispatch}/>
+
         <Carousel
           autoplay={true}
           autoplayInterval={2000}
@@ -130,10 +116,14 @@ export default class HotelDetail extends Component {
 
         <Flex className={styles.detailFooter}>
           <div className={styles.leftFooter}>
-            <img style={{width: 27, height: 23}} src={Images.macau.callPhone}/>
-            <span style={{color: "#666666", fontSize: 14, marginLeft: 11}}>联系客服</span>
+            <a href={`tel:${telephone}`}>
+              <img style={{width: 27, height: 23}} src={Images.macau.callPhone}/>
+              <span style={{color: "#666666", fontSize: 14, marginLeft: 11}}>联系客服</span>
+            </a>
           </div>
-          <div className={styles.rightFooter}>
+          <div className={styles.rightFooter} onClick={() => {
+            window.location.href = 'https://kkh5.deshpro.com/loadApp'
+          }}>
             预定房间
           </div>
         </Flex>

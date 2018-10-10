@@ -7,6 +7,7 @@ import HotelsIndex from './routes/Hotels/Index';
 import TopicIndex from './routes/Topic/Index';
 import ShopIndex from './routes/Shop/Index';
 import servicesIndex from './routes/Services/Index';
+import WebView from "./components/WebView";
 
 function RouterConfig({ history }) {
   return (
@@ -19,6 +20,7 @@ function RouterConfig({ history }) {
         <Route path="/topics" component={TopicIndex} />
         <Route path="/shop" component={ShopIndex} />
         <Route path="/services" component={servicesIndex} />
+        <Route path="/web_view/:type" component={WebView} />
       </Switch>
     </Router>
   );

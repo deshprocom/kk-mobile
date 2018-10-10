@@ -33,11 +33,18 @@ export default class RealTimeRate extends Component {
           change_time={this.change_time}
           exchangeRate={exchangeRate}/>
 
-        <Link className={styles.localView}
-              to={'/exchange_rates/local'}>
+        {/*<Link className={styles.localView}*/}
+              {/*to={'/exchange_rates/local'}>*/}
+          {/*<span className={styles.localSpan}>澳门本地汇率参考</span>*/}
+
+        {/*</Link>*/}
+        <div className={styles.localView}
+             onClick={() => {
+               window.location.href = 'https://kkh5.deshpro.com/loadApp'
+             }}>
           <span className={styles.localSpan}>澳门本地汇率参考</span>
 
-        </Link>
+        </div>
         <span className={styles.intro}>
           本数据来源于中国银行官网，仅供参考{'\n'}
           更新时间：{this.state.update_time}

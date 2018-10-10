@@ -4,9 +4,10 @@ import {Images} from '../../Thems';
 import styles from './index.less';
 import Comments from "../info/Comments";
 import BodyType from "./BodyType";
+import GoBack from "../GoBack";
 
 export default class TopicDetail extends Component {
-  
+
   constructor(props) {
     super(props)
     this.state = {
@@ -15,7 +16,7 @@ export default class TopicDetail extends Component {
       item: {}
     };
   }
-  
+
   changeState = (max, index, item) => {
     this.setState({
       max,
@@ -23,7 +24,7 @@ export default class TopicDetail extends Component {
       item
     })
   }
-  
+
   set_avatar = (avatar) => {
     if (strNotNull(avatar)) {
       return avatar;
@@ -31,7 +32,7 @@ export default class TopicDetail extends Component {
       return Images.home_avatar
     }
   };
-  
+
   render() {
     const {topicDetail, topicComments} = this.props;
     if (isEmptyObject(topicDetail)) {
@@ -42,11 +43,12 @@ export default class TopicDetail extends Component {
     } = topicDetail;
     const {avatar, created_at, nick_name} = user;
     return (
-      <div>
+      <div style={{display:'flex',flexDirection:'column',width:'100%'}}>
+        <GoBack title={'详情'}/>
         <div className={styles.detailPage}>
           <div className={styles.top}>
             <img className={styles.c_avatar} src={this.set_avatar(avatar)}/>
-      
+
             <div style={{display: 'flex', flexDirection: 'column', marginLeft: 10}}>
               <div style={{display: 'flex', flexDirection: 'row'}}>
                 <span style={{fontSize: 12, color: '#444444'}}>{nick_name}</span>
@@ -54,7 +56,7 @@ export default class TopicDetail extends Component {
                   backgroundColor: '#161718',
                   color: '#FFE9AD'
                 }}>官方</span> : null}
-          
+
                 {recommended ? <span className={styles.c_tag} style={{
                   backgroundColor: '#161718',
                   color: '#FFE9AD'
@@ -63,13 +65,13 @@ export default class TopicDetail extends Component {
               <span className={styles.c_time}>{getDateDiff(created_at)}</span>
             </div>
           </div>
-    
+
           <BodyType rowData={topicDetail} changeState={this.changeState}/>
-    
-    
+
+
           <Comments detail={topicDetail} comments={topicComments.items} total_comments={topicDetail.total_comments}/>
-    
-    
+
+
           {this.state.max ? <div style={{
             backgroundColor: 'rgb(20,20,20)',
             position: 'fixed',
@@ -80,7 +82,7 @@ export default class TopicDetail extends Component {
             right: 0,
             textAlign: 'center',
             display: 'flex'
-      
+
           }}
                                  onClick={() => {
                                    this.setState({
