@@ -45,7 +45,8 @@ export default {
   
   subscriptions: {
     setup({ dispatch, history }) {
-      history.listen(({ pathname }) => {
+
+      history.listen(({pathname}) => {
         if (pathname === '/') {
           dispatch({
             type: 'fetchBanners',

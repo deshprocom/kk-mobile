@@ -3,7 +3,7 @@
   "scripts": {
     "start": "cross-env API_ENV=prod roadhog server",
     "start-test": "cross-env API_ENV=test roadhog dev",
-    "build": "roadhog build",
+    "build": "cross-env API_ENV=prod roadhog build",
     "lint": "eslint --ext .js src test",
     "precommit": "npm run lint"
   },
@@ -13,6 +13,7 @@
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
     "dva": "^2.4.0",
+    "history": "^4.7.2",
     "moment": "^2.22.2",
     "path-to-regexp": "^2.4.0",
     "query-string": "^6.1.0",

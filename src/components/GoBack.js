@@ -1,9 +1,15 @@
 import React, {Component} from 'react';
-import {routerRedux} from "dva/router";
 import {Images} from "../Thems";
 import {strNotNull} from "../utils/utils";
+import { connect } from 'dva';
+import {routerRedux} from 'dva/router';
 
-export default class NavBar extends Component {
+@connect()
+export default class GoBack extends Component {
+  goBack=()=>{
+    this.props.dispatch(routerRedux.goBack());
+  };
+  
   render() {
     const {title} = this.props;
     return (
@@ -19,7 +25,7 @@ export default class NavBar extends Component {
             zIndex:99,
             backgroundColor: 'rgba(229,74,46,' + 1 + ')'
           }}>
-          <img onClick={() => this.props.goBack && this.props.goBack()}
+          <img onClick={this.goBack}
                style={{
                  marginLeft: 17,
                  height: 19,

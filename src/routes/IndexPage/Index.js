@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import { TabBar } from 'antd-mobile';
 import HomePage from "./HomePage";
 import Discovery from "./Discovery";
+import queryString from 'query-string';
 
 export default class IndexPage extends Component {
   constructor(props) {
     super(props);
+    const params = queryString.parse(props.location.search);
+  
     this.state = {
-      selectedTab: 'homePage',
+      selectedTab: params.tab || 'homePage',
       hidden: false,
     };
   }
 
   render() {
+    const urlState = {title:'', url: window.location.href};
+  
     return (
       <div style={{ position: 'fixed', height: '100%', width: '100%', top: 0 }}>
         <TabBar
@@ -20,7 +25,6 @@ export default class IndexPage extends Component {
           tintColor="#E54A2E"
           barTintColor="white"
           tabBarPosition="bottom"
-          hidden={this.state.hidden}
           prerenderingSiblingsNumber={0}
         >
           <TabBar.Item
@@ -40,10 +44,9 @@ export default class IndexPage extends Component {
             }
             selected={this.state.selectedTab === 'homePage'}
               onPress={() => {
-              this.setState({
-                selectedTab: 'homePage',
-              });
-            }}
+                this.setState({ selectedTab: 'homePage' });
+                window.history.pushState(urlState, '','?tab=homePage');
+              }}
           >
             <HomePage />
           </TabBar.Item>
@@ -54,9 +57,8 @@ export default class IndexPage extends Component {
             selectedIcon={{uri:'http://kkh5.deshpro.com/images/red_explore.png'}}
             selected={this.state.selectedTab === 'discovery'}
             onPress={() => {
-              this.setState({
-                selectedTab: 'discovery',
-              });
+              this.setState({ selectedTab: 'discovery' });
+              window.history.pushState(urlState, '','?tab=discovery');
             }}
           >
             <Discovery/>
