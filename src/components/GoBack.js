@@ -3,6 +3,7 @@ import {Images} from "../Thems";
 import {strNotNull} from "../utils/utils";
 import { connect } from 'dva';
 import {routerRedux} from 'dva/router';
+import styles from './index.less'
 
 @connect()
 export default class GoBack extends Component {
@@ -11,7 +12,7 @@ export default class GoBack extends Component {
     if (!path) dispatch(routerRedux.goBack());
     else dispatch(routerRedux.push(path));
   };
-  
+
   render() {
     const {title, goBackPath} = this.props;
     return (
@@ -35,7 +36,7 @@ export default class GoBack extends Component {
                }}
                src={Images.sign_retrun}/>
           <div style={{display:'flex',flex:1}}/>
-          {strNotNull(title) ? <span style={{color: 'white', fontSize: 15}}>{title}</span> : null}
+          {strNotNull(title) ? <span style={{color: 'white', fontSize: 15}} className={styles.navSpan}>{title}</span> : null}
           <div style={{display:'flex',flex:1}}/>
           <div style={{marginRight:17}}/>
         </div>

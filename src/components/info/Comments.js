@@ -47,7 +47,9 @@ export default class Comments extends Component {
                 className={styles.itemView}
                 key={`commtens+${index}`}>
                 <div style={{marginTop: 17, display: 'flex', marginRight: 17, flexDirection: 'row'}}>
-                  <img className={styles.c_avatar} src={this.set_avatar(user.avatar)}/>
+                  <img className={styles.c_avatar} src={this.set_avatar(user.avatar)} onClick={() => {
+                    window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                  }}/>
 
                   <div style={{display: 'flex', flexDirection: 'column', marginLeft: 8}}>
                     <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -57,12 +59,16 @@ export default class Comments extends Component {
                   </div>
 
                   <div style={{display: 'flex', flex: 1}}/>
-                  <img style={{height: 18, width: 20}} src={Images.reply}/>
+                  <img style={{height: 18, width: 20}} src={Images.reply} onClick={() => {
+                    window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                  }}/>
                 </div>
                 <span className={styles.c_body}>{item.body}</span>
 
                 {strNotNull(item.total_replies) && item.total_replies > 0 ?
-                  <div className={styles.replies}>
+                  <div className={styles.replies} onClick={() => {
+                    window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                  }}>
                     <span className={styles.c_nick2}>查看{item.total_replies}条回复</span>
                   </div> : null}
                 <div style={{marginTop: 10, width: '100%', height: 1.5, backgroundColor: '#F3F3F3'}}/>

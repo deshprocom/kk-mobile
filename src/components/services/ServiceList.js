@@ -24,14 +24,12 @@ export default class ServiceList extends Component {
           }}>
             <div style={{display:'flex',flexDirection: 'column', width: '80%'}}>
               <span className={styles.txt4}>{item.title}</span>
-              <span className={styles.txt1} style={{marginTop: 6}}>{item.telephone}</span>
+              <span style={{marginTop: 6}} className={styles.txt1}>{item.telephone}</span>
             </div>
             <div style={{display:'flex',flex: 1}}/>
-            <div onClick={() => {
-
-            }}>
+            <a href={`tel:${item.telephone}`}>
               <img className={styles.img} src={Images.navigation2.hotline}/>
-            </div>
+            </a>
           </div>
         </Item>
       )
