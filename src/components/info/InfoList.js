@@ -6,7 +6,7 @@ import {Images} from '../../Thems';
 import {strNotNull} from '../../utils/utils';
 import GoBack from '../GoBack'
 
-export default class Infos extends Component {
+export default class InfoList extends Component {
   constructor(props) {
     super(props);
     const dataSource = new ListView.DataSource({
@@ -15,47 +15,19 @@ export default class Infos extends Component {
 
     this.state = {
       dataSource,
-      isLoading: true,
-      nextPage: 1,
-      infoType: props.infoType,
     };
-
-    this._infosData = [];
   }
-
+  
   componentDidMount() {
-    this.props.dispatch({
-      type: 'info/fetchInfos',
-      payload: {
-        page: this.state.nextPage,
-        type: this.state.infoType,
-      }
-    })
+    this.lv.scrollTo(0, this.props.listViewTop);
   }
+
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.infos !== this.props.infos) {
-      let nextPage = this.state.nextPage + 1;
-
-      this._infosData = this._infosData.concat(nextProps.infos);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this._infosData),
-        isLoading: false,
-        nextPage
-      });
-    }
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.infos),
+    });
   }
-
-  onEndReached = () => {
-    this.setState({isLoading: true});
-    this.props.dispatch({
-      type: 'info/fetchInfos',
-      payload: {
-        page: this.state.nextPage,
-        type: this.state.infoType,
-      }
-    })
-  };
 
   show_count = (item) => {
     if (strNotNull(item)) {
@@ -70,10 +42,11 @@ export default class Infos extends Component {
   };
 
   render() {
+    const { isLoading, onEndReached, onClickItem} = this.props;
     const row = (info, sectionID, rowID) => {
       let linkPath = `/infos/${info.id}`;
       return (
-        <Link key={rowID} to={linkPath}>
+        <Link key={rowID} to={linkPath} onClick={onClickItem}>
           <div className={styles.viewItem}>
             <div className={styles.itemLeft}>
 
@@ -131,17 +104,19 @@ export default class Infos extends Component {
       <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
         <GoBack title={this.infoType(this.props.infoType)}/>
         <ListView
+          ref={el => this.lv = el}
           dataSource={this.state.dataSource}
           renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
-            {this.state.isLoading ? 'Loading...' : 'Loaded'}
+            {isLoading ? 'Loading...' : 'Loaded'}
           </div>)}
           renderRow={row}
           renderSeparator={separator}
           pageSize={4}
           useBodyScroll
           scrollRenderAheadDistance={500}
-          onEndReached={this.onEndReached}
+          onEndReached={onEndReached}
           onEndReachedThreshold={10}
+          initialListSize={100}
         />
       </div>
     );

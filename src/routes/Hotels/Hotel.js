@@ -19,7 +19,6 @@ export default class Hotel extends Component {
 
   componentDidMount() {
     const { params } = this.props.match;
-    console.log('componentDidMount')
     this.props.dispatch({
       type: 'hotel/fetchHotelDetail',
       payload: { id: params.id, date: this.state.checkinDate },

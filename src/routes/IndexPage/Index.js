@@ -8,8 +8,6 @@ export default class IndexPage extends Component {
 
   render() {
     const { location } = this.props;
-    console.log('this.props')
-    console.log(this.props)
     return (
       <div>
         <Switch>

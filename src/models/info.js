@@ -11,7 +11,10 @@ export default {
   state: {
     infoDetail: {},
     infos: [],
-    info_comments:[]
+    infosListView: [],
+    infosNextPage: 1,
+    listViewTop: 0,
+    info_comments:[],
   },
 
   effects: {
@@ -48,7 +51,6 @@ export default {
       };
     },
     setInfoDetail(state, action) {
-      logMsg('models/info 数据redux处理',action.payload)
       return {
         ...state,
         infoDetail: action.payload,
@@ -58,7 +60,36 @@ export default {
       return {
         ...state,
         infos: action.payload,
+        infosNextPage: ++state.infosNextPage,
+        infosListView: state.infosListView.concat(action.payload)
       };
+    },
+    setListViewTop(state, action) {
+      return {
+        ...state,
+        listViewTop: action.payload,
+      };
+    },
+    initInfosData(state){
+      return {
+        ...state,
+        infos: [],
+        infosListView: [],
+        infosNextPage: 1,
+        listViewTop: 0,
+      };
+    },
+  },
+  
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(({pathname}) => {
+        if (pathname === '/infos' && history.action === 'PUSH') {
+          dispatch({
+            type: 'initInfosData',
+          });
+        }
+      });
     },
   },
 };
