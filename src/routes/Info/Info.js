@@ -17,6 +17,7 @@ export default class Info extends Component {
       type: 'info/fetchInfoComments',
       payload: { target_id: params.id,target_type: 'info' },
     })
+    window.scrollTo(0, 0);
   }
   render() {
     const { infoDetail,info_comments } = this.props.info;

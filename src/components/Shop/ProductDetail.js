@@ -4,7 +4,6 @@ import ProductBottom from './ProductBottom';
 import ProductInfo from './ProductInfo';
 import {Images} from '../../Thems';
 import styles from './index.less';
-import {isEmptyObject} from "../../utils/utils";
 import GoBack from "../GoBack";
 
 export default class ProductDetail extends Component {
