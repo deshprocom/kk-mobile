@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import queryString from 'query-string';
 import InfoList from "../../components/info/InfoList";
-import {ListView} from "antd-mobile/lib/index";
 
 @connect(({ info }) => ({
   info
@@ -49,8 +48,6 @@ export default class Infos extends Component {
   };
   
   render() {
-    console.log('render')
-    console.log(this.props)
     const { listViewTop, infosListView } = this.props.info;
     return (
       <div>
