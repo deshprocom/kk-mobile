@@ -14,23 +14,23 @@ export default class InfoDetail extends Component {
     src: ''
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {infoDetail} = nextProps;
-    if(isEmptyObject(infoDetail)){
-      return;
-    }
-    const {description} = infoDetail;
-    let imgs = description.match(/<\W*img[^>]*>/ig);
-    imgs.map((image, index) => {
-      image.onClick = () => {
-        this.setState({
-          max: true,
-          index: index,
-          image: image.src
-        })
-      }
-    })
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   const {infoDetail} = nextProps;
+  //   if(isEmptyObject(infoDetail)){
+  //     return;
+  //   }
+  //   const {description} = infoDetail;
+  //   let imgs = description.match(/<\W*img[^>]*>/ig);
+  //   imgs.map((image, index) => {
+  //     image.onClick = () => {
+  //       this.setState({
+  //         max: true,
+  //         index: index,
+  //         image: image.src
+  //       })
+  //     }
+  //   })
+  // }
 
 
   render() {
