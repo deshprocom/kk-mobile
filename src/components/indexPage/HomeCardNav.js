@@ -102,9 +102,11 @@ export default class HomeCardNav extends Component {
 
         <Grid data={actions} hasLine={false}
               onClick={this.clickToPath}
+              itemStyle={{ height: '70px'}}
         />
+        <div style={{height:10}}/>
 
-        <Card.Body>
+        <Card.Body style={{minHeight:30}}>
           <Flex className={styles.customFlex}>
             {services.map(dataItem => (
 

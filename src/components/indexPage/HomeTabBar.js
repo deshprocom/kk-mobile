@@ -10,12 +10,16 @@ const Bars = [
     background: 'http://kkh5.deshpro.com/images/gray_home.png',
     red_background: 'http://kkh5.deshpro.com/images/red_home.png',
     path: '/homepage',
+    width:'22px',
+    height:'22px'
   },
   {
     title: '澳门圈',
     background: 'http://kkh5.deshpro.com/images/gray_explore.png',
     red_background: 'http://kkh5.deshpro.com/images/red_explore.png',
     path: '/homepage/discovery',
+    width:'20px',
+    height:'23px'
   },
 ];
 
@@ -24,7 +28,7 @@ export default class HomeTabBar extends Component {
   toPath = (path) => {
     this.props.dispatch(routerRedux.push(path));
   };
-  
+
   render() {
     console.log(this.props);
     const { currentPath } = this.props;
@@ -35,7 +39,7 @@ export default class HomeTabBar extends Component {
         <Flex.Item className={styles.homeItem} key={index} onClick={()=> this.toPath(bar.path)}>
           <Flex justify="center" >
             <div className={styles.icon}
-                 style={{background: `url(${background}) center center /  21px 21px no-repeat` }}/>
+                 style={{background: `url(${background}) center center /  ${bar.width} ${bar.height} no-repeat` }}/>
           </Flex>
           <div className={styles.tabBarText} style={fontStyle} >
             {bar.title}

@@ -86,7 +86,7 @@ export default class RateInfo extends Component {
                 <div className={styles.inputView}>
                   <InputItem
                     style={{borderBottomWidth:0,borderBottom:'none',textAlign:'right'}}
-                    type="digit"
+                    type="text"
                     placeholder={strNotNull(item.price) ? '' : item.price2 + ''}
                     onChange={(input) => {
                       this.state.show = true;

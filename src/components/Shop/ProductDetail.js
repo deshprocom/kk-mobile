@@ -47,7 +47,10 @@ export default class ProductDetail extends Component {
 
         <ProductInfo product={productDetail}/>
 
-        <div className={styles.spec_View}>
+        <div className={styles.spec_View}
+             onClick={() => {
+               window.location.href = 'https://kkh5.deshpro.com/loadApp'
+             }}>
           <span className={styles.spec}>产品规格</span>
           <span className={styles.unSelected}>未选</span>
           <div style={{display: 'flex', flex: 1}}/>
