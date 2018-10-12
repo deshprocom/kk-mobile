@@ -21,13 +21,13 @@ export default class Topics extends Component {
   componentDidMount() {
     this.lv.scrollTo(0, this.props.listViewTop);
   }
-  
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(nextProps.topics),
     });
   }
-  
+
   set_avatar = (avatar) => {
     if (strNotNull(avatar)) {
       return avatar;
@@ -73,14 +73,20 @@ export default class Topics extends Component {
 
             <div style={{display: 'flex', flex: 1}}/>
             <div
-              className={styles.btn_like}>
+              className={styles.btn_like}
+              onClick={() => {
+                window.location.href = 'https://kkh5.deshpro.com/loadApp'
+              }}>
               <img
                 className={styles.like}
                 src={current_user_liked ? Images.social.like_red : Images.social.like_gray}/>
               <span className={styles.time} style={{marginLeft: 4, marginRight: 25}}>{total_likes}</span>
             </div>
 
-            <div className={styles.btn_like}>
+            <div className={styles.btn_like}
+                 onClick={() => {
+                   window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                 }}>
               <img className={styles.comment}
                    alt={''}
                    src={Images.social.comment_gray}/>
