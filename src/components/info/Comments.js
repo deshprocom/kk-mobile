@@ -31,11 +31,21 @@ export default class Comments extends Component {
     return (
       <div className={styles.footerView}>
         <div className={styles.infoDetailBtn}>
-          <span className={styles.infoSpan}>{`全部评论(${this.show_count(detail.comments_count)})`}</span>
+          <span className={styles.infoSpan}
+                onClick={() => {
+                  window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                }}>{`全部评论(${this.show_count(detail.comments_count)})`}</span>
           <div style={{display: 'flex', flex: 1}}/>
-          <span className={styles.infoSpan}>阅读&nbsp;{`(${this.show_count(detail.total_views)})`}</span>
-          <img className={styles.like} src={Images.like_gray}/>
-          <span className={styles.infoSpan}>&nbsp;{`(${this.show_count(detail.total_likes)})`}</span>
+          <span className={styles.infoSpan}
+                onClick={() => {
+                  window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                }}>阅读&nbsp;{`(${this.show_count(detail.total_views)})`}</span>
+          <img className={styles.like} src={Images.like_gray} onClick={() => {
+            window.location.href = 'https://kkh5.deshpro.com/loadApp'
+          }}/>
+          <span className={styles.infoSpan} onClick={() => {
+            window.location.href = 'https://kkh5.deshpro.com/loadApp'
+          }}>&nbsp;{`(${this.show_count(detail.total_likes)})`}</span>
         </div>
         <div style={{marginTop: 10, width: '100%', height: 1.5, backgroundColor: '#F3F3F3'}}/>
 

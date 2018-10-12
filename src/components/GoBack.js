@@ -16,7 +16,7 @@ export default class GoBack extends Component {
   render() {
     const {title, goBackPath} = this.props;
     return (
-      <div style={{marginBottom:50}}>
+      <div style={{marginBottom:50,marginTop:0}}>
         <div
           style={{
             height: 50,
