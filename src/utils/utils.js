@@ -177,11 +177,10 @@ export function utcDate(time,formate){
 }
 
 export function formatCurrency(num) {
-  console.log("dhsjds",num)
   num = num.toString().replace(/\$|\,/g, '');
   if (isNaN(num))
     num = "0";
-  let sign = (num === (num = Math.abs(num)));
+  let sign = (num == (num = Math.abs(num)));
   num = Math.floor(num * 100 + 0.50000000001);
   let cents = num % 100;
   num = Math.floor(num / 100).toString();
