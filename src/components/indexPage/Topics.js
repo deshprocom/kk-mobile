@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'dva/router';
 import {ListView} from 'antd-mobile';
-import ReactDOM from 'react-dom';
 import styles from './index.less';
 import {strNotNull, getDateDiff} from "../../utils/utils";
 import {Images} from "../../Thems";
@@ -16,59 +15,19 @@ export default class Topics extends Component {
 
     this.state = {
       dataSource,
-      isLoading: true,
-      nextPage: 1,
-      height: document.documentElement.clientHeight * 3 / 4,
-      max: false,
-      index: 0,
-      item:{}
     };
-
-    this._topicsData = [];
   };
-
-  changeState = (max, index,item) => {
-    this.setState({
-      max,
-      index,
-      item
-    })
-  }
 
   componentDidMount() {
-    this.props.dispatch({
-      type: 'topic/fetchTopics',
-      payload: {
-        page: this.state.nextPage
-      }
-    })
+    this.lv.scrollTo(0, this.props.listViewTop);
   }
-
+  
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.topics !== this.props.topics) {
-      const height = document.documentElement.clientHeight - ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
-      let nextPage = this.state.nextPage + 1;
-
-      this._topicsData = this._topicsData.concat(nextProps.topics);
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(this._topicsData),
-        isLoading: false,
-        height,
-        nextPage
-      });
-    }
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.topics),
+    });
   }
-
-  onEndReached = () => {
-    this.setState({isLoading: true});
-    this.props.dispatch({
-      type: 'topic/fetchTopics',
-      payload: {
-        page: this.state.nextPage
-      }
-    })
-  };
-
+  
   set_avatar = (avatar) => {
     if (strNotNull(avatar)) {
       return avatar;
@@ -79,6 +38,7 @@ export default class Topics extends Component {
 
 
   render() {
+    const { isLoading, onEndReached, onClickItem} = this.props;
     const row = (rowData, sectionID, rowID) => {
       let linkPath = `/topics/${rowData.id}`;
       const {
@@ -87,7 +47,7 @@ export default class Topics extends Component {
       const {address_title} = location;
       return (
         <div className={styles.itemPage}>
-          <Link to={linkPath} key={rowID}>
+          <Link to={linkPath} key={rowID} onClick={onClickItem}>
             <div  className={styles.userItem}>
               <img className={styles.itemAvatar} src={this.set_avatar(user.avatar)}/>
               <span className={styles.nick_name}>{user.nick_name}</span>
@@ -99,11 +59,12 @@ export default class Topics extends Component {
               <div style={{paddingTop: 5, paddingBottom: 5, paddingRight: 5, paddingLeft: 5}} onClick={() => {
               }}>
                 <img
+                  alt={''}
                   className={styles.more_3}
                   src={Images.social.more_3}/>
               </div>
             </div>
-            <BodyType rowData={rowData} changeState={this.changeState}/>
+            <BodyType rowData={rowData}/>
           </Link>
 
           <div className={styles.bottomView}>
@@ -119,38 +80,13 @@ export default class Topics extends Component {
               <span className={styles.time} style={{marginLeft: 4, marginRight: 25}}>{total_likes}</span>
             </div>
 
-            <div
-              className={styles.btn_like}>
-              <img
-                className={styles.comment}
-                src={Images.social.comment_gray}/>
+            <div className={styles.btn_like}>
+              <img className={styles.comment}
+                   alt={''}
+                   src={Images.social.comment_gray}/>
               <span className={styles.time} style={{marginLeft: 4}}>{total_comments}</span>
             </div>
           </div>
-
-          {this.state.max && this.state.item.id == rowData.id ? <div style={{
-            backgroundColor: 'rgb(20,20,20)',
-            position: 'fixed',
-            zIndex: 999,
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            textAlign: 'center',
-            display: 'flex'
-
-          }}
-                                 onClick={() => {
-                                   this.setState({
-                                     max: false
-                                   })
-                                 }}>
-            {strNotNull(images[this.state.index]) ?
-              <img style={{width: '100%', height: 'auto', alignSelf: 'center'}}
-                   src={images[this.state.index].url}/> : null}
-
-          </div> : null}
-
         </div>
       );
     };
@@ -173,18 +109,16 @@ export default class Topics extends Component {
           ref={el => this.lv = el}
           dataSource={this.state.dataSource}
           renderFooter={() => (<div style={{padding: 30, textAlign: 'center'}}>
-            {this.state.isLoading ? 'Loading...' : 'Loaded'}
+            {isLoading ? 'Loading...' : '没有更多了...'}
           </div>)}
           renderRow={row}
-          style={{
-            height: this.state.height,
-            overflow: 'auto',
-          }}
+          useBodyScroll
           renderSeparator={separator}
           pageSize={4}
           scrollRenderAheadDistance={500}
-          onEndReached={this.onEndReached}
+          onEndReached={onEndReached}
           onEndReachedThreshold={10}
+          initialListSize={100}
         />
       </div>
     );

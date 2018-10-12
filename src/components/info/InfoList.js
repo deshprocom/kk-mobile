@@ -49,35 +49,24 @@ export default class InfoList extends Component {
         <Link key={rowID} to={linkPath} onClick={onClickItem}>
           <div className={styles.viewItem}>
             <div className={styles.itemLeft}>
-
               <span className={styles.title}>{info.title}</span>
-
               <div style={{display: 'flex', flex: 1}}/>
-
               <div className={styles.itemBtn}>
                 <span className={styles.infoSpan}>{info.date}</span>
-
                 <div className={styles.itemBtnRight}>
-
-
                   <div
                     className={styles.readView}>
                     <span className={styles.infoSpan}>阅读</span>
                     <span className={styles.total_views}>{info.total_views}</span>
-
                     <img
                       alt=''
                       className={styles.likes_count}
                       src={Images.social.like_gray}/>
                     <span className={styles.total_views}>{this.show_count(info.likes_count)}</span>
-
                   </div>
                 </div>
-
               </div>
-
             </div>
-
             <div style={{display: 'flex', flex: 1}}/>
             <img
               alt=''

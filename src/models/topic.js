@@ -9,6 +9,9 @@ export default {
 
   state: {
     topics: [],
+    topicsListView: [],
+    topicsNextPage: 1,
+    listViewTop: 0,
     topicDetail: null,
     topicComments:[]
   },
@@ -42,6 +45,8 @@ export default {
       return {
         ...state,
         topics: action.payload,
+        topicsNextPage: ++state.topicsNextPage,
+        topicsListView: state.topicsListView.concat(action.payload)
       };
     },
     setTopicDetail(state, action) {
@@ -55,6 +60,33 @@ export default {
         ...state,
         topicComments: action.payload,
       };
+    },
+    setListViewTop(state, action) {
+      return {
+        ...state,
+        listViewTop: action.payload,
+      };
+    },
+    initTopicsData(state){
+      return {
+        ...state,
+        topics: [],
+        topicsListView: [],
+        topicsNextPage: 1,
+        listViewTop: 0,
+      };
+    },
+  },
+  
+  subscriptions: {
+    setup({ dispatch, history }) {
+      history.listen(({pathname}) => {
+        if (pathname === '/homepage/discovery' && history.action === 'PUSH') {
+          dispatch({
+            type: 'initTopicsData',
+          });
+        }
+      });
     },
   },
 };
