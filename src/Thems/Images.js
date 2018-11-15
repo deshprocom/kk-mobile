@@ -78,7 +78,9 @@ const images = {
     rec_bg:'/images/navigation/rec_bg.png',
     shop_bg:'/images/navigation/shop_bg.png',
     visa:'/images/navigation/visa.png',
-    tehui:'/images/navigation/tehui.png'
+    tehui:'/images/navigation/tehui.png',
+    coupon_bg:'/images/navigation/coupon_bg.png',
+    car_bg:'/images/navigation/car_bg.png'
   },
   social: {
     like_gray: '/images/social/like_gray.png',
