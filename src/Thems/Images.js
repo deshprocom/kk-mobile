@@ -69,7 +69,16 @@ const images = {
     round_trip: '/images/navigation/round_trip.png',
     fast_food: '/images/navigation/fast_food.png',
     convenient: '/images/navigation/convenient.png',
-    hotline: '/images/navigation/hotline.png'
+    hotline: '/images/navigation/hotline.png',
+    hotel_bg:'/images/navigation/hotel_bg.png',
+    info_ng:'/images/navigation/info_ng.png',
+    mall_bg:'/images/navigation/mall_bg.png',
+    raiders_bg:'/images/navigation/raiders_bg.png',
+    rate_bg:'/images/navigation/rate_bg.png',
+    rec_bg:'/images/navigation/rec_bg.png',
+    shop_bg:'/images/navigation/shop_bg.png',
+    visa:'/images/navigation/visa.png',
+    tehui:'/images/navigation/tehui.png'
   },
   social: {
     like_gray: '/images/social/like_gray.png',

@@ -100,11 +100,11 @@ export default class HomeCardNav extends Component {
     return (
       <Card full className={styles.customCard}>
 
-        <Grid data={actions} hasLine={false}
-              onClick={this.clickToPath}
-              itemStyle={{ height: '70px'}}
-        />
-        <div style={{height:10}}/>
+        {/*<Grid data={actions} hasLine={false}*/}
+              {/*onClick={this.clickToPath}*/}
+              {/*itemStyle={{ height: '70px'}}*/}
+        {/*/>*/}
+        {/*<div style={{height:10}}/>*/}
 
         <Card.Body style={{minHeight:30}}>
           <Flex className={styles.customFlex}>
