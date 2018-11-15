@@ -98,7 +98,8 @@ const services2 = [{
     text: '签证',
     type: 'visa',
     size: {height: 19, width: 20},
-    icon: Images.navigation2.visa
+    icon: Images.navigation2.visa,
+    path: '/visa'
   },
   {
     text: '优惠',
@@ -147,7 +148,9 @@ export default class HomeCardNav extends Component {
             {services2.map((dataItem, index) => (
 
               <Flex.Item key={dataItem.text}
-                         onClick={() => this.clickToPath(dataItem)}
+                         onClick={() => {
+                           this.clickToPath(dataItem)
+                         }}
                          className={styles.customView}>
 
                 {dataItem.type === 'visa' ?
