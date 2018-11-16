@@ -17,7 +17,7 @@ export default class InfoList extends Component {
       dataSource,
     };
   }
-  
+
   componentDidMount() {
     this.lv.scrollTo(0, this.props.listViewTop);
   }
@@ -113,6 +113,7 @@ export default class InfoList extends Component {
 
 
   infoType = (infoType) => {
+    console.log("infoType",infoType)
     if (infoType === 'cate') {
       return '美食'
     } else if (infoType === 'recreation') {

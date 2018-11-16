@@ -8,6 +8,7 @@ import TopicIndex from './routes/Topic/Index';
 import ShopIndex from './routes/Shop/Index';
 import servicesIndex from './routes/Services/Index';
 import WebView from "./components/WebView";
+import VisaInfoPage from "./components/VisaInfoPage";
 
 function RouterConfig({ history }) {
   return (
@@ -21,6 +22,7 @@ function RouterConfig({ history }) {
         <Route path="/shop" component={ShopIndex} />
         <Route path="/services" component={servicesIndex} />
         <Route path="/web_view/:type" component={WebView} />
+        <Route path="/visa" component={VisaInfoPage} />
         <Redirect exact from="/" to='/homepage' />
       </Switch>
     </Router>

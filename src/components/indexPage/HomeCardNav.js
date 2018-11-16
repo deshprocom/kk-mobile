@@ -66,15 +66,16 @@ const services = [
     externalPath: true
   },
   {
-    icon: Images.navigation2.fast_food,
-    text: '快餐',
-    size: {height: 22, width: 22},
-    path: '/services/fastfood',
+    icon: Images.navigation2.car_bg,
+    text: '出入境',
+    size: {height: 20, width: 20},
+    path: 'http://www.fsm.gov.mo/psp/pspmonitor/mobile/PortasdoCerco.aspx',
+    externalPath: true
   },
   {
 
     icon: Images.navigation2.round_trip,
-    text: '往返',
+    text: '船务',
     size: {height: 20, width: 20},
     path: '/services/arrive_and_depart'
   },
@@ -86,6 +87,34 @@ const services = [
 
   },
 ];
+const services2 = [{
+  text: '攻略',
+  type: 'raiders',
+  size: {height: 19, width: 19},
+  icon: Images.navigation2.raiders_bg,
+  path: '/infos?type=strategy'
+},
+  {
+    text: '签证',
+    type: 'visa',
+    size: {height: 19, width: 20},
+    icon: Images.navigation2.visa,
+    path: '/visa'
+  },
+  {
+    text: '优惠',
+    type: 'coupon',
+    size: {height: 20, width: 20},
+    icon: Images.navigation2.coupon_bg,
+    path: '/infos?type=discounts'
+  },
+  {
+    text: '商城',
+    type: 'mall',
+    size: {height: 18, width: 18},
+    icon: Images.navigation2.mall_bg,
+    path: '/shop'
+  }];
 
 export default class HomeCardNav extends Component {
   clickToPath = (el) => {
@@ -100,21 +129,38 @@ export default class HomeCardNav extends Component {
     return (
       <Card full className={styles.customCard}>
 
-        <Grid data={actions} hasLine={false}
-              onClick={this.clickToPath}
-              itemStyle={{ height: '70px'}}
-        />
-        <div style={{height:10}}/>
-
-        <Card.Body style={{minHeight:30}}>
+        <Card.Body style={{minHeight: 30}}>
           <Flex className={styles.customFlex}>
-            {services.map(dataItem => (
+            {services.map((dataItem, index) => (
 
               <Flex.Item key={dataItem.text}
-                         onClick={() =>this.clickToPath(dataItem)}
+                         onClick={() => this.clickToPath(dataItem)}
                          className={styles.customView}>
                 <img style={dataItem.size} src={dataItem.icon} alt="" className={styles.customImg}/>
                 <span>{dataItem.text}</span>
+                {/*<div style={{width: index === services.length - 1 ? 0 : 1, height: 30, backgroundColor: '#F3F3F3'}}/>*/}
+              </Flex.Item>
+            ))}
+          </Flex>
+
+          <Flex className={styles.customFlex}
+                style={{marginTop: 10}}>
+            {services2.map((dataItem, index) => (
+
+              <Flex.Item key={dataItem.text}
+                         onClick={() => {
+                           this.clickToPath(dataItem)
+                         }}
+                         className={styles.customView}>
+
+                {dataItem.type === 'visa' ?
+                  <img style={{width: 28, height: 14, position: 'absolute', bottom:25, left: '29%',zIndex:99}}
+                         src={Images.navigation2.tehui}/> : null}
+
+                <img style={dataItem.size} src={dataItem.icon} alt="" className={styles.customImg}/>
+                <span>{dataItem.text}</span>
+
+                {/*<div style={{width: index === services.length - 1 ? 0 : 1, height: 30, backgroundColor: '#F3F3F3'}}/>*/}
               </Flex.Item>
             ))}
           </Flex>
