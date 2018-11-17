@@ -10,19 +10,19 @@ export default class Infos extends Component {
   state = {
     isLoading: true,
   };
-  
+
   componentDidMount() {
     if (this.props.info.infosListView.length > 0)
       this.setState({isLoading: false });
     else
       this.fetchInfos();
   }
-  
+
   onEndReached = () => {
     this.setState({isLoading: true});
     this.fetchInfos();
   };
-  
+
   fetchInfos = () => {
     const { info, location } = this.props;
     const params = queryString.parse(location.search);
@@ -34,11 +34,11 @@ export default class Infos extends Component {
       }
     })
   };
-  
+
   UNSAFE_componentWillReceiveProps() {
     this.setState({isLoading: false });
   }
-  
+
   onClickItem = () => {
     const scroll= document.body.scrollTop || document.documentElement.scrollTop;
     this.props.dispatch({
@@ -46,12 +46,16 @@ export default class Infos extends Component {
       payload: scroll
     })
   };
-  
+
   render() {
+    let infoType = queryString.parse(this.props.location.search)
+    console.log('URL参数',infoType)
+
     const { listViewTop, infosListView } = this.props.info;
     return (
       <div>
         <InfoList
+          infoType={infoType.type}
           infos={infosListView}
           listViewTop={listViewTop}
           onEndReached={this.onEndReached}
