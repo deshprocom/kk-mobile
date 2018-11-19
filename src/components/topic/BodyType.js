@@ -80,7 +80,7 @@ export default class BodyType extends Component {
     }else{
       return <Grid data={rowData.images} columnNum={3}
                    hasLine={false}
-                   itemStyle={{ height: '108px',marginBottom:3}}
+                   itemStyle={{ height: '108px'}}
                    renderItem={this.shortRenderItem}/>
     }
   }
