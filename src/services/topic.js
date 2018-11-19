@@ -1,6 +1,10 @@
 import request from '../utils/request';
 import { toSnakeToJson } from '../utils/utils';
 
+export async function queryEssence(params) {
+  return request(`/topics/essence?${toSnakeToJson(params)}`);
+}
+
 export async function queryTopics(params) {
   return request(`/topics?${toSnakeToJson(params)}`);
 }
