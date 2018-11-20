@@ -47,7 +47,7 @@ export default class HotRecommends extends Component {
               <div className={styles.row_center}>
                 <span className={styles.hotel_title}>{sourceInfo.title}</span>
                 <div style={{display: 'flex', flex: 1}}/>
-                {strNotNull(sourceInfo.type.name) ? <span className={styles.hotel}>{sourceInfo.type.name}</span> : null}
+                {strNotNull(sourceInfo.type) ? <span className={styles.hotel}>{sourceInfo.type.name}</span> : null}
 
               </div>
               <div style={{height:164,width:'100%'}}>

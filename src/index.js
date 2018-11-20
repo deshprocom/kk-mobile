@@ -19,6 +19,7 @@ app.model(require('./models/exchangeRate').default);
 app.model(require('./models/hotel').default);
 app.model(require('./models/shop').default);
 app.model(require('./models/hotline').default);
+app.model(require('./models/sauna').default);
 
 // 4. Router
 app.router(require('./router').default);

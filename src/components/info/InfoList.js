@@ -5,6 +5,7 @@ import styles from './index.less';
 import {Images} from '../../Thems';
 import {strNotNull} from '../../utils/utils';
 import GoBack from '../GoBack'
+import SaunaGoBack from '../saunas/GoBack'
 
 export default class InfoList extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export default class InfoList extends Component {
   };
 
   render() {
-    const { isLoading, onEndReached, onClickItem} = this.props;
+    const { isLoading, onEndReached, onClickItem, showSaunas} = this.props;
     const row = (info, sectionID, rowID) => {
       let linkPath = `/infos/${info.id}`;
       return (
@@ -88,10 +89,13 @@ export default class InfoList extends Component {
         }}
       />
     );
-
+    
+    const goback = showSaunas ? <SaunaGoBack currentPath={'info'}/> : <GoBack title={this.infoType(this.props.infoType)}/>;
+    console.log('showSaunas====')
+    console.log(showSaunas)
     return (
       <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
-        <GoBack title={this.infoType(this.props.infoType)}/>
+        {goback}
         <ListView
           ref={el => this.lv = el}
           dataSource={this.state.dataSource}
@@ -117,11 +121,11 @@ export default class InfoList extends Component {
     if (infoType === 'cate') {
       return '美食'
     } else if (infoType === 'recreation') {
-      return '娱乐'
-    } else if (infoType === 'scenic') {
-      return '景点'
-    } else if (infoType === 'humanities') {
-      return '人文'
+      return '休闲娱乐'
+    } else if (infoType === 'discounts') {
+      return '优惠'
+    } else if (infoType === 'strategy') {
+      return '攻略'
     } else {
       return '资讯'
     }

@@ -3,20 +3,47 @@ import { connect } from 'dva';
 import queryString from 'query-string';
 import InfoList from "../../components/info/InfoList";
 
-@connect(({ info }) => ({
-  info
+@connect(({ info, sauna }) => ({
+  info,
+  sauna,
 }))
 export default class Infos extends Component {
-  state = {
-    isLoading: true,
-  };
+  constructor(props) {
+    super(props);
+    const params = queryString.parse(props.location.search);
+    
+    this.state = {
+      isLoading: true,
+      infoType: params.type,
+      showSaunas: false,
+    };
+  }
   
   componentDidMount() {
     if (this.props.info.infosListView.length > 0)
-      this.setState({isLoading: false });
+      this.setState({isLoading: false});
     else
       this.fetchInfos();
+  
+    if (this.state.infoType !== 'recreation') return;
+
+    if(navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(this.getAddress);
+    else
+      alert("您的浏览器不支持地理定位");
   }
+  
+  getAddress = (pos) => {
+    const latitude = pos.coords.latitude;
+    const longitude = pos.coords.longitude;
+    this.props.dispatch({
+      type: 'sauna/fetchShowSaunas',
+      payload: {
+        latitude,
+        longitude
+      }
+    })
+  };
   
   onEndReached = () => {
     this.setState({isLoading: true});
@@ -24,19 +51,22 @@ export default class Infos extends Component {
   };
   
   fetchInfos = () => {
-    const { info, location } = this.props;
-    const params = queryString.parse(location.search);
+    const { info } = this.props;
     this.props.dispatch({
       type: 'info/fetchInfos',
       payload: {
-        type: params.type,
+        type: this.state.infoType,
         page: info.infosNextPage
       }
     })
   };
   
-  UNSAFE_componentWillReceiveProps() {
-    this.setState({isLoading: false });
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const showSaunas =  this.state.infoType === 'recreation' && nextProps.sauna.showSaunas;
+    this.setState({
+      isLoading: false,
+      showSaunas
+    });
   }
   
   onClickItem = () => {
@@ -49,6 +79,7 @@ export default class Infos extends Component {
   
   render() {
     const { listViewTop, infosListView } = this.props.info;
+    const { isLoading, infoType, showSaunas } = this.state;
     return (
       <div>
         <InfoList
@@ -56,7 +87,9 @@ export default class Infos extends Component {
           listViewTop={listViewTop}
           onEndReached={this.onEndReached}
           onClickItem={this.onClickItem}
-          isLoading={this.state.isLoading}/>
+          infoType={infoType}
+          showSaunas={showSaunas}
+          isLoading={isLoading}/>
       </div>
     );
   }
