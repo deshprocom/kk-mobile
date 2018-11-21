@@ -4,6 +4,7 @@ import IndexPage from './routes/IndexPage/Index';
 import InfoIndex from './routes/Info/Index';
 import ExchangeRateIndex from './routes/ExchangeRate/Index';
 import HotelsIndex from './routes/Hotels/Index';
+import SaunasIndex from './routes/Saunas/Index';
 import TopicIndex from './routes/Topic/Index';
 import ShopIndex from './routes/Shop/Index';
 import servicesIndex from './routes/Services/Index';
@@ -23,6 +24,7 @@ function RouterConfig({ history }) {
         <Route path="/services" component={servicesIndex} />
         <Route path="/web_view/:type" component={WebView} />
         <Route path="/visa" component={VisaInfoPage} />
+        <Route path="/saunas" component={SaunasIndex} />
         <Redirect exact from="/" to='/homepage' />
       </Switch>
     </Router>

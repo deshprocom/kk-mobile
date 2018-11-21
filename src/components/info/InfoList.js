@@ -91,8 +91,6 @@ export default class InfoList extends Component {
     );
     
     const goback = showSaunas ? <SaunaGoBack currentPath={'info'}/> : <GoBack title={this.infoType(this.props.infoType)}/>;
-    console.log('showSaunas====')
-    console.log(showSaunas)
     return (
       <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
         {goback}
