@@ -1,7 +1,8 @@
 import {
   queryTopics,
   queryTopicDetail,
-  queryTopicComments
+  queryTopicComments,
+  queryEssence
 } from '../services/topic';
 
 export default {
@@ -13,7 +14,11 @@ export default {
     topicsNextPage: 1,
     listViewTop: 0,
     topicDetail: null,
-    topicComments:[]
+    topicComments:[],
+    essence: [],
+    essencesListView: [],
+    essencesNextPage: 1,
+    essenceListViewTop: 0,
   },
 
   effects: {
@@ -36,6 +41,13 @@ export default {
       yield put({
         type: 'setTopicComments',
         payload: response.data,
+      });
+    },
+    *fetchEssence({ payload }, { call, put }) {
+      const response = yield call(queryEssence, payload);
+      yield put({
+        type: 'setEssence',
+        payload: response.data.items,
       });
     },
   },
@@ -76,15 +88,38 @@ export default {
         listViewTop: 0,
       };
     },
+    setEssence(state, action) {
+      return {
+        ...state,
+        essence: action.payload,
+        essencesNextPage: ++state.essencesNextPage,
+        essencesListView: state.essencesListView.concat(action.payload)
+      };
+    },
+    setEssenceListViewTop(state, action) {
+      return {
+        ...state,
+        essenceListViewTop: action.payload,
+      };
+    },
+    initEssencesData(state){
+      return {
+        ...state,
+        essence: [],
+        essencesListView: [],
+        essencesNextPage: 1,
+        essenceListViewTop: 0,
+      };
+    },
   },
-  
+
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({pathname}) => {
         if (pathname === '/homepage/discovery' && history.action === 'PUSH') {
-          dispatch({
-            type: 'initTopicsData',
-          });
+          // dispatch({
+          //   type: 'initEssencesData',
+          // });
         }
       });
     },

@@ -44,12 +44,12 @@ export default class Infos extends Component {
       }
     })
   };
-  
+
   onEndReached = () => {
     this.setState({isLoading: true});
     this.fetchInfos();
   };
-  
+
   fetchInfos = () => {
     const { info } = this.props;
     this.props.dispatch({
@@ -68,7 +68,7 @@ export default class Infos extends Component {
       showSaunas
     });
   }
-  
+
   onClickItem = () => {
     const scroll= document.body.scrollTop || document.documentElement.scrollTop;
     this.props.dispatch({
@@ -76,7 +76,7 @@ export default class Infos extends Component {
       payload: scroll
     })
   };
-  
+
   render() {
     const { listViewTop, infosListView } = this.props.info;
     const { isLoading, infoType, showSaunas } = this.state;

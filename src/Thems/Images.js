@@ -34,6 +34,7 @@ const images = {
   adr_right: '/images/adr_right.png',
   right: '/images/is>.png',
   sign_retrun: '/images/sign_retrun.png',
+  lottery_close: '/images/lottery_close.png',
 
   macau: {
     search: '/images/macau/search.png',
