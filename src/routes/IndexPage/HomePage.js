@@ -10,28 +10,24 @@ import LotteryPage from "../../components/indexPage/LotteryPage";
   homePage
 }))
 export default class HomePage extends Component {
-  state = {
-    imgHeight: 176,
-    lottery: false
-  };
-
-  componentDidMount() {
-    this.setState({
-      lottery: true
+  
+  closeLottery = () => {
+    this.props.dispatch({
+      type: 'homePage/lotteryVisibleToFalse'
     })
   };
-
-
+  
   render() {
     const {homePage, dispatch} = this.props;
+    console.log('homePage=====')
+    console.log(homePage)
     return (
       <div>
         <HomeCarousel banners={homePage.banners}/>
         <HotCatalogs dispatch={dispatch}/>
         <HomeCardNav dispatch={dispatch}/>
         <HotRecommends recommends={homePage.recommends}/>
-
-        {this.state.lottery ? <LotteryPage/> : null}
+        <LotteryPage visible={homePage.lotteryVisible} onClose={this.closeLottery}/>
       </div>
     );
   }

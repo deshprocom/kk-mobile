@@ -1,32 +1,21 @@
 import React, {Component} from 'react';
-import {Modal, Grid, Flex} from 'antd-mobile';
-import styles from './index.less';
+import {Modal} from 'antd-mobile';
 import {Images} from '../../Thems';
-import {routerRedux} from 'dva/router';
+import styles from './index.less';
 
 export default class LotteryPage extends Component {
-
-  state={
-    visible:true
-  }
-
-  toggle = () => {
-    this.setState({
-      visible: !this.state.visible
-    })
-  };
-
   render(){
+    const { visible, onClose } = this.props;
     return(
       <Modal
         transparent={true}
-        visible={this.state.visible}
-        maskClosable={false}
-        closable={true}
+        visible={visible}
+        maskClosable={true}
+        className={styles.customModal}
+        onClose={onClose}
       >
-        <div onClick={()=>{
-          this.toggle();
-        }} style={{
+        <img style={{width: '100%'}} src={Images.homepage.turntable}/>
+        <div onClick={onClose} style={{
           position: 'absolute',
           top: 30,
           right: 25,
@@ -34,7 +23,6 @@ export default class LotteryPage extends Component {
         }}>
           <img style={{width: 30, height: 30}} src={Images.lottery_close}/>
         </div>
-
       </Modal>
     )
   }

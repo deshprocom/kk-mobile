@@ -36,11 +36,14 @@ export default class Infos extends Component {
   getAddress = (pos) => {
     const latitude = pos.coords.latitude;
     const longitude = pos.coords.longitude;
+    const isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+ 
     this.props.dispatch({
       type: 'sauna/fetchShowSaunas',
       payload: {
         latitude,
-        longitude
+        longitude,
+        platform: isIOS ? 'ios' : 'android'
       }
     })
   };

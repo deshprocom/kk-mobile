@@ -12,12 +12,10 @@ export default class BodyType extends Component {
   }
 
   bodyTypes = (item) => {
-    switch (item.body_type) {
-      case "long":
-        return this.long(item)
-      case "short":
-        return this.short(item)
-    }
+    if (item.body_type === 'long')
+      return this.long(item);
+    else
+      return this.short(item);
   };
 
   long = (item) => {

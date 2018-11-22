@@ -35,7 +35,9 @@ const images = {
   right: '/images/is>.png',
   sign_retrun: '/images/sign_retrun.png',
   lottery_close: '/images/lottery_close.png',
-
+  homepage: {
+    turntable: '/images/homepage/turntable.png',
+  },
   macau: {
     search: '/images/macau/search.png',
     book: '/images/macau/book.png',

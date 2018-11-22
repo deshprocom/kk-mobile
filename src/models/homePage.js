@@ -9,6 +9,7 @@ export default {
   state: {
     banners: [],
     recommends: [],
+    lotteryVisible: true,
   },
   
   effects: {
@@ -39,6 +40,12 @@ export default {
       return {
         ...state,
         recommends: action.payload,
+      };
+    },
+    lotteryVisibleToFalse(state) {
+      return {
+        ...state,
+        lotteryVisible: false,
       };
     },
   },
