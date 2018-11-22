@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
+import SaunnaInfo from '../../components/saunas/SaunnaInfo'
 
 @connect(({ sauna }) => ({
   sauna
@@ -18,10 +19,11 @@ export default class Sauna extends Component {
     const { sauna } = this.props.sauna;
     return (
       <div>
-        <h3>{sauna.title}</h3>
-        <div className="renderHtmlData"
-             id="renderHtmlData"
-             dangerouslySetInnerHTML={{__html: sauna.description}}/>
+        <SaunnaInfo sauna={sauna} dispatch={this.props.dispatch}/>
+        {/*<h3>{sauna.title}</h3>*/}
+        {/*<div className="renderHtmlData"*/}
+             {/*id="renderHtmlData"*/}
+             {/*dangerouslySetInnerHTML={{__html: sauna.description}}/>*/}
       </div>
     );
   }

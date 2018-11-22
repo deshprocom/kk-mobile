@@ -35,6 +35,8 @@ const images = {
   right: '/images/is>.png',
   sign_retrun: '/images/sign_retrun.png',
   lottery_close: '/images/lottery_close.png',
+  phone: '/images/phone.png',
+
   homepage: {
     turntable: '/images/homepage/turntable.png',
   },

@@ -79,7 +79,7 @@
   font-size: 12px;
   margin-top: 8px;
   display:-webkit-box;
-  -webkit-line-clamp:6 !important;
+  -webkit-line-clamp:1 !important;
   -webkit-box-orient:vertical;
   text-overflow: ellipsis;
   overflow:hidden;
@@ -95,4 +95,48 @@
 }
 .imgShow2{
   background: url('/images/navigation/show1.png') no-repeat center;
+}
+
+.infoView{
+  display: flex;
+  flex-direction: column;
+  flex:1;
+
+  .nav_view{
+    padding-top: 10px;
+    padding-bottom: 14px;
+    background-color: white;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 17px;
+  }
+
+  .title{
+    font-size: 18px;
+    color: #444444;
+    width: 70%;
+  }
+  .stars{
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
+
+  .location2{
+    color: #999999;
+    font-size: 12px;
+    margin-top: 8px;
+    display:-webkit-box;
+    -webkit-line-clamp:2 !important;
+    -webkit-box-orient:vertical;
+    text-overflow: ellipsis;
+    overflow:hidden;
+  }
+  .tel{
+    -webkit-line-clamp:1 !important;
+    -webkit-box-orient:vertical;
+    text-overflow: ellipsis;
+    overflow:hidden;
+  }
 }

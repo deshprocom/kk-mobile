@@ -11,20 +11,20 @@ export default class Infos extends Component {
   constructor(props) {
     super(props);
     const params = queryString.parse(props.location.search);
-    
+
     this.state = {
       isLoading: true,
       infoType: params.type,
       showSaunas: false,
     };
   }
-  
+
   componentDidMount() {
     if (this.props.info.infosListView.length > 0)
       this.setState({isLoading: false});
     else
       this.fetchInfos();
-  
+
     if (this.state.infoType !== 'recreation') return;
 
     if(navigator.geolocation)
@@ -32,12 +32,12 @@ export default class Infos extends Component {
     else
       alert("您的浏览器不支持地理定位");
   }
-  
+
   getAddress = (pos) => {
     const latitude = pos.coords.latitude;
     const longitude = pos.coords.longitude;
     const isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
- 
+
     this.props.dispatch({
       type: 'sauna/fetchShowSaunas',
       payload: {
@@ -63,7 +63,7 @@ export default class Infos extends Component {
       }
     })
   };
-  
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     const showSaunas =  this.state.infoType === 'recreation' && nextProps.sauna.showSaunas;
     this.setState({
@@ -91,7 +91,7 @@ export default class Infos extends Component {
           onEndReached={this.onEndReached}
           onClickItem={this.onClickItem}
           infoType={infoType}
-          showSaunas={showSaunas}
+          showSaunas={true}
           isLoading={isLoading}/>
       </div>
     );
