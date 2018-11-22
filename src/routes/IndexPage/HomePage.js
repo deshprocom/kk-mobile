@@ -31,7 +31,7 @@ export default class HomePage extends Component {
         <HomeCardNav dispatch={dispatch}/>
         <HotRecommends recommends={homePage.recommends}/>
 
-        {/*{this.state.lottery ? <LotteryPage/> : null}*/}
+        {this.state.lottery ? <LotteryPage/> : null}
       </div>
     );
   }

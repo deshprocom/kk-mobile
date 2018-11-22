@@ -21,23 +21,18 @@ export default class LotteryPage extends Component {
       <Modal
         transparent={true}
         visible={this.state.visible}
+        maskClosable={false}
+        closable={true}
       >
-        <div style={{
-          display:'flex',
-          flex: 1,
-          alignItems: 'center',
-          backgroundColor: 'rgba(0,0,0,0.6)'
+        <div onClick={()=>{
+          this.toggle();
+        }} style={{
+          position: 'absolute',
+          top: 30,
+          right: 25,
+          zIndex: 999
         }}>
-          <div onClick={()=>{
-            this.toggle();
-          }} style={{
-            position: 'absolute',
-            top: 30,
-            right: 25,
-            zIndex: 999
-          }}>
-            <img style={{width: 30, height: 30}} src={Images.lottery_close}/>
-          </div>
+          <img style={{width: 30, height: 30}} src={Images.lottery_close}/>
         </div>
 
       </Modal>
