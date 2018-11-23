@@ -76,6 +76,9 @@ export default {
           dispatch({
             type: 'fetchRecommends',
           });
+          dispatch({
+            type: 'fetchAppVersions',
+          });
         }
       });
     },

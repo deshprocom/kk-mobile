@@ -1,26 +1,21 @@
 import React, {Component} from 'react';
 import styles from '../index.less'
 import {Images} from '../../Thems/index';
-import {connect} from "dva/index";
+import {connect} from 'dva';
 
-@connect(({app_versions}) => ({
-  app_versions
+@connect(({homePage}) => ({
+  homePage
 }))
 export default class LoadApp extends Component {
   state = {
     show: false,
     showAndroid: false,
-    ios_version: '',
-    android_version: ''
   };
 
   componentDidMount() {
-    const { android_platform, ios_platform } = this.props.app_versions;
-    console.log("更新提示", this.props.app_versions)
-    this.setState({
-      ios_version: ios_platform.version,
-      android_version: android_platform.version
-    })
+    this.props.dispatch({
+      type: 'homePage/fetchAppVersions'
+    });
   }
 
   toIosApp = () => {
@@ -31,7 +26,6 @@ export default class LoadApp extends Component {
   };
 
   toAndroidApp = () => {
-
     let plat = navigator.userAgent;
     if (plat.indexOf('Android') > -1 || plat.indexOf('Adr') > -1) {
       let ua = navigator.userAgent.toLowerCase();
@@ -41,7 +35,7 @@ export default class LoadApp extends Component {
         });
       } else {
 
-        this.open_android(`http://cdn-upyun.deshpro.com/deshpro_public/macauhike.apk?version=${this.state.android_version}`);
+        this.open_android(`http://cdn-upyun.deshpro.com/deshpro_public/macauhike.apk?version=${this.props.homePage.app_versions.android_platform.version}`);
       }
     }
   };
@@ -55,6 +49,7 @@ export default class LoadApp extends Component {
 
 
   render() {
+
     return (
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
         {this.state.showAndroid ? <div style={{
@@ -68,8 +63,7 @@ export default class LoadApp extends Component {
         </div> : null}
 
         <div className={styles.download} style={this.state.showAndroid ? {marginTop: 70} : null}>
-          <div className={styles.black}>
-          </div>
+
           <div style={{
             width: '100%',
             display: 'flex',
