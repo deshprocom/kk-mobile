@@ -14,7 +14,9 @@ export default class LotteryPage extends Component {
         className={styles.customModal}
         onClose={onClose}
       >
-        <img style={{width: '100%'}} src={Images.homepage.turntable}/>
+        <img style={{width: '100%'}} src={Images.homepage.turntable} onClick={()=>{
+          window.location.href = 'https://kkh5.deshpro.com/loadApp'
+        }}/>
         <div onClick={onClose} style={{
           position: 'absolute',
           top: 30,
