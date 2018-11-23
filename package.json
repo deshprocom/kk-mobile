@@ -6,6 +6,7 @@
     "build": "cross-env API_ENV=prod roadhog build",
     "lint": "eslint --ext .js src test",
     "precommit": "npm run lint",
+    "deploy": "npm run build && scp -r dist/ prod-2-deploy:/deploy/production/kk-mobile/",
     "deploy-test": "npm run build && scp -r dist/ test-1-deploy:/deploy/test/kk-mobile/"
   },
   "dependencies": {
@@ -31,6 +32,6 @@
     "eslint-plugin-react": "^7.1.0",
     "husky": "^0.12.0",
     "redbox-react": "^1.4.3",
-    "roadhog": "^2.0.0"
+    "roadhog": "^2.4.0"
   }
 }

@@ -19,8 +19,6 @@ export default class HomePage extends Component {
   
   render() {
     const {homePage, dispatch} = this.props;
-    console.log('homePage=====')
-    console.log(homePage)
     return (
       <div>
         <HomeCarousel banners={homePage.banners}/>

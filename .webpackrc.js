@@ -1,4 +1,5 @@
 export default {
+  es5ImcompatibleVersions: true,
   extraBabelPlugins: [
     ['import', { libraryName: 'antd-mobile', style: true }]  //按需加载antd-mobile样式文件
   ],

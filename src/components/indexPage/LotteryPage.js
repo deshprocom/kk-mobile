@@ -17,7 +17,8 @@ export default class LotteryPage extends Component {
         onClose={onClose}
       >
         <img style={{width: '100%'}} src={Images.homepage.turntable} onClick={()=>{
-          store.dispatch(routerRedux.push('/homepage/loadApp'))
+          store.dispatch(routerRedux.push('/homepage/loadApp'));
+          onClose();
         }}/>
         <div onClick={onClose} style={{
           position: 'absolute',
