@@ -36,6 +36,8 @@ const images = {
   sign_retrun: '/images/sign_retrun.png',
   lottery_close: '/images/lottery_close.png',
   phone: '/images/phone.png',
+  iphoneload: '/images/iphoneload.png',
+  androidload: '/images/androidload.png',
 
   homepage: {
     turntable: '/images/homepage/turntable.png',

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Card} from 'antd-mobile';
 import {strNotNull, getDateDiff} from '../../utils/utils';
 import {Images} from '../../Thems';
 import styles from './index.less';
+import {routerRedux} from "dva/router";
+import store from '../../index';
 
 export default class Comments extends Component {
 
@@ -33,18 +34,18 @@ export default class Comments extends Component {
         <div className={styles.infoDetailBtn}>
           <span className={styles.infoSpan}
                 onClick={() => {
-                  window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                  store.dispatch(routerRedux.push('/homepage/loadApp'))
                 }}>{`全部评论(${this.show_count(detail.comments_count)})`}</span>
           <div style={{display: 'flex', flex: 1}}/>
           <span className={styles.infoSpan}
                 onClick={() => {
-                  window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                  store.dispatch(routerRedux.push('/homepage/loadApp'))
                 }}>阅读&nbsp;{`(${this.show_count(detail.total_views)})`}</span>
           <img className={styles.like} src={Images.like_gray} onClick={() => {
-            window.location.href = 'https://kkh5.deshpro.com/loadApp'
+            store.dispatch(routerRedux.push('/homepage/loadApp'))
           }}/>
           <span className={styles.infoSpan} onClick={() => {
-            window.location.href = 'https://kkh5.deshpro.com/loadApp'
+            store.dispatch(routerRedux.push('/homepage/loadApp'))
           }}>&nbsp;{`(${this.show_count(detail.total_likes)})`}</span>
         </div>
         <div style={{marginTop: 10, width: '100%', height: 1.5, backgroundColor: '#F3F3F3'}}/>
@@ -58,7 +59,7 @@ export default class Comments extends Component {
                 key={`commtens+${index}`}>
                 <div style={{marginTop: 17, display: 'flex', marginRight: 17, flexDirection: 'row'}}>
                   <img className={styles.c_avatar} src={this.set_avatar(user.avatar)} onClick={() => {
-                    window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                    store.dispatch(routerRedux.push('/homepage/loadApp'))
                   }}/>
 
                   <div style={{display: 'flex', flexDirection: 'column', marginLeft: 8}}>
@@ -70,14 +71,14 @@ export default class Comments extends Component {
 
                   <div style={{display: 'flex', flex: 1}}/>
                   <img style={{height: 18, width: 20}} src={Images.reply} onClick={() => {
-                    window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                    store.dispatch(routerRedux.push('/homepage/loadApp'))
                   }}/>
                 </div>
                 <span className={styles.c_body}>{item.body}</span>
 
                 {strNotNull(item.total_replies) && item.total_replies > 0 ?
                   <div className={styles.replies} onClick={() => {
-                    window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                    store.dispatch(routerRedux.push('/homepage/loadApp'))
                   }}>
                     <span className={styles.c_nick2}>查看{item.total_replies}条回复</span>
                   </div> : null}

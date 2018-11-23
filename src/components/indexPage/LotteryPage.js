@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Modal} from 'antd-mobile';
 import {Images} from '../../Thems';
 import styles from './index.less';
+import store from "../../index";
+import {routerRedux} from "dva/router";
 
 export default class LotteryPage extends Component {
   render(){
@@ -15,7 +17,7 @@ export default class LotteryPage extends Component {
         onClose={onClose}
       >
         <img style={{width: '100%'}} src={Images.homepage.turntable} onClick={()=>{
-          window.location.href = 'https://kkh5.deshpro.com/loadApp'
+          store.dispatch(routerRedux.push('/homepage/loadApp'))
         }}/>
         <div onClick={onClose} style={{
           position: 'absolute',

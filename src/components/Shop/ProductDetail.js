@@ -5,6 +5,8 @@ import ProductInfo from './ProductInfo';
 import {Images} from '../../Thems';
 import styles from './index.less';
 import GoBack from "../GoBack";
+import store from "../../index";
+import {routerRedux} from "dva/router";
 
 export default class ProductDetail extends Component {
 
@@ -49,7 +51,7 @@ export default class ProductDetail extends Component {
 
         <div className={styles.spec_View}
              onClick={() => {
-               window.location.href = 'https://kkh5.deshpro.com/loadApp'
+               store.dispatch(routerRedux.push('/homepage/loadApp'))
              }}>
           <span className={styles.spec}>产品规格</span>
           <span className={styles.unSelected}>未选</span>
