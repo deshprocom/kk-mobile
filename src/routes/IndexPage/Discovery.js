@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'dva';
+import React, {Component} from 'react';
+import {connect} from 'dva';
 import Topics from "../../components/indexPage/Topics";
-import { Tabs, Badge } from 'antd-mobile';
+import {Tabs, Badge} from 'antd-mobile';
+import DiscoveryBar from "../../components/indexPage/DiscoveryBar";
 
-@connect(({ topic }) => ({
+@connect(({topic}) => ({
   topic
 }))
 export default class Discovery extends Component {
   state = {
     isLoading: true,
+    show_index: 0
   };
 
   componentDidMount() {
     if (this.props.topic.topicsListView.length > 0)
-      this.setState({isLoading: false });
-    else{
+      this.setState({isLoading: false});
+    else {
       this.fetchEssence()
       this.fetchTopics()
     }
@@ -22,7 +24,7 @@ export default class Discovery extends Component {
   }
 
   UNSAFE_componentWillReceiveProps() {
-    this.setState({isLoading: false });
+    this.setState({isLoading: false});
   }
 
   fetchTopics = () => {
@@ -34,7 +36,7 @@ export default class Discovery extends Component {
     })
   };
 
-  fetchEssence = ()=>{
+  fetchEssence = () => {
     this.props.dispatch({
       type: 'topic/fetchEssence',
       payload: {
@@ -49,7 +51,7 @@ export default class Discovery extends Component {
   };
 
   onClickItemE = () => {
-    const scroll= document.body.scrollTop || document.documentElement.scrollTop;
+    const scroll = document.body.scrollTop || document.documentElement.scrollTop;
     this.props.dispatch({
       type: 'topic/setEssenceListViewTop',
       payload: scroll
@@ -62,49 +64,47 @@ export default class Discovery extends Component {
   };
 
   onClickItem = () => {
-    const scroll= document.body.scrollTop || document.documentElement.scrollTop;
+    const scroll = document.body.scrollTop || document.documentElement.scrollTop;
     this.props.dispatch({
       type: 'topic/setListViewTop',
       payload: scroll
     })
   };
 
-
+  changed_index = (index) => {
+    this.setState({
+      show_index: index
+    })
+  }
 
   render() {
-    const { listViewTop, topicsListView,essenceListViewTop, essencesListView} = this.props.topic;
+    const {listViewTop, topicsListView, essenceListViewTop, essencesListView} = this.props.topic;
 
     console.log(this.props.topic)
 
-    const tabs = [
-      { title: <Badge>精华</Badge> },
-      { title: <Badge>广场</Badge> }
-    ];
-
     return (
-      <div>
-        <Tabs tabs={tabs}
-              initialPage={0}
-              onChange={(tab, index) => { console.log('onChange', index, tab)}}
-              onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
-              style={{position:'fixed'}}
-        >
+      <div style={{display: 'flex', width: '100%', flexDirection: 'column'}}>
+
+        <DiscoveryBar show_index={this.state.show_index} changed_index={this.changed_index}/>
+
+        <div style={{height:50}}/>
+
+        {this.state.show_index === 0 ?
 
           <Topics
             topics={essencesListView}
             onEndReached={this.onEndReachedE}
             onClickItem={this.onClickItemE}
             listViewTop={essenceListViewTop}
-            isLoading={this.state.isLoading}/>
+            isLoading={this.state.isLoading}/> :
 
           <Topics
             topics={topicsListView}
             onEndReached={this.onEndReached}
             onClickItem={this.onClickItem}
             listViewTop={listViewTop}
-            isLoading={this.state.isLoading}/>
+            isLoading={this.state.isLoading}/>}
 
-        </Tabs>
 
       </div>
     );
