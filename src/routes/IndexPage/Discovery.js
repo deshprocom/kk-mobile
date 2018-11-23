@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'dva';
 import Topics from "../../components/indexPage/Topics";
-import {Tabs, Badge} from 'antd-mobile';
 import DiscoveryBar from "../../components/indexPage/DiscoveryBar";
 
 @connect(({topic}) => ({
@@ -72,6 +71,7 @@ export default class Discovery extends Component {
   };
 
   changed_index = (index) => {
+    window.scrollTo(0, 0);
     this.setState({
       show_index: index
     })
@@ -104,8 +104,6 @@ export default class Discovery extends Component {
             onClickItem={this.onClickItem}
             listViewTop={listViewTop}
             isLoading={this.state.isLoading}/>}
-
-
       </div>
     );
   }
