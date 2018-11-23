@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {Link} from 'dva/router';
+import {Link, routerRedux} from 'dva/router';
 import {ListView} from 'antd-mobile';
 import styles from './index.less';
 import {strNotNull, getDateDiff} from "../../utils/utils";
 import {Images} from "../../Thems";
 import BodyType from '../topic/BodyType'
+import store from "../../index";
 
 export default class Topics extends Component {
   constructor(props) {
@@ -75,7 +76,7 @@ export default class Topics extends Component {
             <div
               className={styles.btn_like}
               onClick={() => {
-                window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                store.dispatch(routerRedux.push('/homepage/loadApp'))
               }}>
               <img
                 className={styles.like}
@@ -85,7 +86,7 @@ export default class Topics extends Component {
 
             <div className={styles.btn_like}
                  onClick={() => {
-                   window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                   store.dispatch(routerRedux.push('/homepage/loadApp'))
                  }}>
               <img className={styles.comment}
                    alt={''}

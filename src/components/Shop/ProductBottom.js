@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Images} from '../../Thems';
 import styles from './index.less';
+import store from "../../index";
+import {routerRedux} from "dva/router";
 
 export default class ProductBottom extends Component {
 
@@ -11,7 +13,7 @@ export default class ProductBottom extends Component {
           <div className={styles.bottomLeftView}>
             <div className={styles.bottomLeft}
                  onClick={() => {
-                   window.location.href = 'https://kkh5.deshpro.com/loadApp'
+                   store.dispatch(routerRedux.push('/homepage/loadApp'))
                  }}
             >
               <img className={styles.bottomLeftImg} src={Images.cart}/>
@@ -23,7 +25,7 @@ export default class ProductBottom extends Component {
           <div
             className={styles.bottomRight}
             onClick={() => {
-              window.location.href = 'https://kkh5.deshpro.com/loadApp'
+              store.dispatch(routerRedux.push('/homepage/loadApp'))
             }}
           >
             <span className={styles.bottomRightTxt}>添加购物车</span>
