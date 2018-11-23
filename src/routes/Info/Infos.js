@@ -91,7 +91,7 @@ export default class Infos extends Component {
           onEndReached={this.onEndReached}
           onClickItem={this.onClickItem}
           infoType={infoType}
-          showSaunas={true}
+          showSaunas={showSaunas}
           isLoading={isLoading}/>
       </div>
     );

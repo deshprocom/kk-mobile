@@ -29,8 +29,8 @@ export default class GoBack extends Component {
               borderRadius: 4,
               alignItems: 'center',
               justifyContent: 'center'
-            }} className={currentPath === 'info' ? styles.imgShow1 : styles.imgShow2}>
-              <span onClick={() => currentPath !== 'info' && this.goTo('/infos?type=recreation')}
+            }} className={currentPath === 'infos' ? styles.imgShow1 : styles.imgShow2}>
+              <span onClick={() => currentPath !== 'infos' && this.goTo('/infos?type=recreation')}
                     className={styles.navBarSpanActive}>
                     休闲娱乐
               </span>
