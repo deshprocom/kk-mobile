@@ -1,17 +1,19 @@
 import {
   queryBanners,
   queryRecommends,
+  queryAppVersions
 } from '../services/homePage';
 
 export default {
   namespace: 'homePage',
-  
+
   state: {
     banners: [],
     recommends: [],
     lotteryVisible: true,
+    app_versions:{}
   },
-  
+
   effects: {
     *fetchBanners(_, { call, put }) {
       const response = yield call(queryBanners);
@@ -27,8 +29,15 @@ export default {
         payload: response.data.items,
       });
     },
+    *fetchAppVersions(_, { call, put }) {
+      const response = yield call(queryAppVersions);
+      yield put({
+        type: 'setAppVersions',
+        payload: response.data,
+      });
+    },
   },
-  
+
   reducers: {
     setBanners(state, action) {
       return {
@@ -48,8 +57,14 @@ export default {
         lotteryVisible: false,
       };
     },
+    setAppVersions(state, action) {
+      return {
+        ...state,
+        app_versions:action.payload,
+      };
+    },
   },
-  
+
   subscriptions: {
     setup({ dispatch, history }) {
 
