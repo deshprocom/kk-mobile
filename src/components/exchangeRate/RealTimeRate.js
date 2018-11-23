@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import styles from './index.less';
 import {isEmptyObject} from '../../utils/utils';
 import RateInfo from './RateInfo';
-import {Link} from 'dva/router';
+import {Link, routerRedux} from 'dva/router';
 import GoBack from "../GoBack";
+import store from "../../index";
 
 export default class RealTimeRate extends Component {
 
@@ -40,7 +41,7 @@ export default class RealTimeRate extends Component {
         {/*</Link>*/}
         <div className={styles.localView}
              onClick={() => {
-               window.location.href = 'https://kkh5.deshpro.com/loadApp'
+               store.dispatch(routerRedux.push('/homepage/loadApp'))
              }}>
           <span className={styles.localSpan}>澳门本地汇率参考</span>
 

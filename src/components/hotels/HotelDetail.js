@@ -5,6 +5,7 @@ import {Images} from "../../Thems";
 import {routerRedux} from "dva/router";
 import {strNotNull, sub} from "../../utils/utils";
 import GoBack from "../GoBack";
+import store from "../../index";
 
 export default class HotelDetail extends Component {
 
@@ -122,7 +123,7 @@ export default class HotelDetail extends Component {
             </a>
           </div>
           <div className={styles.rightFooter} onClick={() => {
-            window.location.href = 'https://kkh5.deshpro.com/loadApp'
+            store.dispatch(routerRedux.push('/homepage/loadApp'))
           }}>
             预定房间
           </div>

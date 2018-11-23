@@ -7,3 +7,7 @@ export async function queryBanners() {
 export async function queryRecommends() {
   return request('/recommends');
 }
+
+export async function queryAppVersions() {
+  return request('/app_versions');
+}
